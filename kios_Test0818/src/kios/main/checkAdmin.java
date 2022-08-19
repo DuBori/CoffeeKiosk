@@ -18,8 +18,6 @@ import javax.swing.border.LineBorder;
 
 import kios.admin.Administrator;
 
-
-
 public class checkAdmin extends JFrame{
 
 	private JPanel contentPane;
