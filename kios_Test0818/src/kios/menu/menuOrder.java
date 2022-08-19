@@ -8,7 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import kios_Test0818.kios.db.Static;
-import kios.milage.Ex_Patment;
+import kios.mileage.Ex_Payment;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
@@ -249,7 +249,7 @@ public class menuOrder extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new Ex_Patment();
+				new Ex_Payment();
 				Static.count++;
 				
 			}

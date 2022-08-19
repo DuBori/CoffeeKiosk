@@ -1,4 +1,4 @@
-package kios.milage;
+package kios.mileage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,11 +11,11 @@ import javax.swing.*;
 import kios.register.Register;
 import kios.register.check_Phone;
 
-public class Ex_Patment extends JFrame{
+public class Ex_Payment extends JFrame{
 
 	JTextField inputSpace;
 	boolean clearOnNextDigit;
-	public Ex_Patment() {
+	public Ex_Payment() {
 
 		// 컨테이너 생성.
 		JPanel con = new JPanel(); 
@@ -132,7 +132,7 @@ public class Ex_Patment extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Patment();
+				new Payment();
 				dispose();  // 기존에 있던 창은 없애주는 메서드.
 				
 			}
