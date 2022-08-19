@@ -26,8 +26,7 @@ public class mainFrame extends JFrame {
 	public static void main(String[] args) {
 		new mainFrame();
 	}
- 
-
+  
 	/**
 	 * Create the frame.
 	 */
