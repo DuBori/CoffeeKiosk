@@ -1,2 +1,13 @@
 /image/
+*/*.class
+*/.git/*
+.classpath
+.deployables
+.git
+.idea
+.project
+.settings/
+/*iml
+/out/
+/targert/
 /kios/
