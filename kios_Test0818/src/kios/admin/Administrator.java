@@ -1,6 +1,6 @@
 package kios.admin;
 
-import kios_Test0818.kios.main.mainFrame;
+import kios.main.mainFrame;
 
 import javax.swing.*;
 import java.awt.*;

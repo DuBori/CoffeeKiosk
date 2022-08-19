@@ -1,6 +1,6 @@
 package kios.admin;
 
-import kios_Test0818.kios.db.DBconnection;
+import kios.db.DBconnection;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
