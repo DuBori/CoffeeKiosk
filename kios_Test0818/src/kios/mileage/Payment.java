@@ -1,4 +1,4 @@
-package kios.milage;
+package kios.mileage;
 
 import kios_Test0818.kios.db.Static;
 import kios_Test0818.kios.main.mainFrame;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Patment extends JFrame implements ActionListener{
+public class Payment extends JFrame implements ActionListener{
 
 	
 		ImageIcon card = new ImageIcon("src/image/icon_card.jpg");
@@ -20,7 +20,7 @@ public class Patment extends JFrame implements ActionListener{
 		
 		test_Frame2 tf2;
 
-		public Patment() {
+		public Payment() {
 			setTitle("결제창");
 			this.setLayout(new GridLayout(0,2));
 	        getContentPane().add(jbt1);

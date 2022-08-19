@@ -1,4 +1,4 @@
-package kios.milage;
+package kios.mileage;
 
 import kios_Test0818.kios.db.DBconnection;
 
@@ -9,17 +9,17 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 
-public class checkMilage {
+public class checkMileage {
 	Connection con;
 	PreparedStatement pstmt;
 	ResultSet rs;
 	String query;
 	int ckMilage;
 	int check;
-	public checkMilage() {
+	public checkMileage() {
 		// TODO Auto-generated constructor stub
 	}
-	public checkMilage(String text,int count) {
+	public checkMileage(String text, int count) {
 		try {
 			con= DBconnection.getConnection();
 			query="update member_option set member_milage=? where member_phone=?";

@@ -1,4 +1,4 @@
-package kios.milage;
+package kios.mileage;
 
 import java.awt.BorderLayout;
 
