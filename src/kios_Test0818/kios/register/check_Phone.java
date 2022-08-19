@@ -1,11 +1,13 @@
 package kios_Test0818.kios.register;
 
+import kios_Test0818.kios.db.DBconnection;
+import kios_Test0818.kios.milage.Ex_Patment;
+import kios_Test0818.kios.milage.checkMilage;
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-import kios.db.DBconnection;
-import kios.milage.Ex_Patment;
-import kios.milage.checkMilage;
+
 
 public class check_Phone {
 
@@ -24,7 +26,7 @@ public class check_Phone {
 	public check_Phone(String phone) {
 		try {
 			System.out.println("무결성 체크 시작");
-			con=DBconnection.getConnection();
+			con= DBconnection.getConnection();
 			query="select member_phone,member_milage from member_option where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, phone);
@@ -84,7 +86,7 @@ public class check_Phone {
 		{
 			try {
 				con=DBconnection.getConnection();
-				query="insert into member_option(member_phone,member_pw,member_name,member_milage,member_pay) values(?,?,?,?,?)";
+				query="insert into member_option(member_phone,member_pw,member_name,member_mileage,member_pay) values(?,?,?,?,?)";
 				pstmt=con.prepareStatement(query);
 				pstmt.setString(1, phone);
 				pstmt.setString(2, pw);

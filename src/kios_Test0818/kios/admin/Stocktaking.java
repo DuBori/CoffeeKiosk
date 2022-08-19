@@ -1,27 +1,23 @@
 package kios_Test0818.kios.admin;
+import kios_Test0818.kios.db.DBconnection;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import kios.db.DBconnection;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Enumeration;
 
 public class Stocktaking extends JFrame {
 
-    Connection con;
-    PreparedStatement pstmt;
-    ResultSet rs;
-    String query;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+    String sql = null;
     DefaultTableModel model;
-    
     String stocktakingFont = "맑은고딕";
     JTextField jtf1;
-    JRadioButton jrb1, jrb2, jrb3, jrb4, jrb5, jrb6, jrb7, jrb8, jrb9, jrb10, jrb11, jrb12;
     ButtonGroup bg;
+
     public Stocktaking() {
 
         setTitle("재고관리");
@@ -40,12 +36,13 @@ public class Stocktaking extends JFrame {
 
         JButton btn1 = new JButton("조회");
         btn1.setBounds(250, 320, 100, 25);
+        btn1.setFont(new Font(stocktakingFont, Font.BOLD, 13));
 
         JLabel jl2 = new JLabel("재고추가");
         jl2.setBounds(40, 370, 100, 25);
         jl2.setFont(new Font(stocktakingFont, Font.BOLD, 18));
 
-     // 메뉴 종류 픽스되면 거기에 맞춰서 수정
+        // 메뉴 종류 픽스되면 거기에 맞춰서 수정
         JRadioButton jrb1 = new JRadioButton("아메리카노");
         JRadioButton jrb2 = new JRadioButton("핫아메리카노");
         JRadioButton jrb3 = new JRadioButton("카페라떼");
@@ -71,7 +68,6 @@ public class Stocktaking extends JFrame {
         bg.add(jrb10);
         bg.add(jrb11);
         bg.add(jrb12);
-        
         jrb1.setBounds(40, 400, 100, 25);
         jrb2.setBounds(185, 400, 100, 25);
         jrb3.setBounds(315, 400, 100, 25);
@@ -93,10 +89,11 @@ public class Stocktaking extends JFrame {
 
         JButton btn2 = new JButton("추가");
         btn2.setBounds(345, 510, 60, 25);
+        btn2.setFont(new Font(stocktakingFont, Font.BOLD, 13));
 
         JButton btn3 = new JButton("뒤로가기");
         btn3.setBounds(250, 600, 100, 25);
-
+        btn3.setFont(new Font(stocktakingFont, Font.BOLD, 13));
 
         add(jl1);
         add(jsp);
@@ -118,106 +115,96 @@ public class Stocktaking extends JFrame {
         add(btn1);
         add(btn2);
         add(btn3);
-        System.out.println(bg.getSelection());
+
         setBounds(150, 150, 615, 700);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setVisible(true);
+        setResizable(false);
 
 //      여기까지 화면구현
         
         // 재고 조회 버튼
-        btn1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	
-                try {
-                	model.setRowCount(0);
-					checkProductList();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-            }
+        btn1.addActionListener(e -> {
+            model.setRowCount(0);
+            stocktaking();
         });
 
         // 재고 추가 버튼
-        btn2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               // connect();
-               try {
-            	model.setRowCount(0);
-				addStock();
-				jtf1.setText(null);
-				bg.clearSelection();
-				checkProductList();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+        btn2.addActionListener(e -> {
+            try {
+                if (bg.getSelection() != null && !(jtf1.getText().isEmpty())) {
+                    addStock();
+                } else {
+                    JOptionPane.showMessageDialog(null, "추가할 상품을 선택하고 수량을 입력하세요.", "오류", JOptionPane.WARNING_MESSAGE);
+                }
 
+            } catch (NumberFormatException exception) {
+                exception.printStackTrace();
             }
+            model.setRowCount(0);
+            jtf1.setText(null);
+            bg.clearSelection();
+            stocktaking();
         });
 
         // 뒤로 가기 버튼
-        btn3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new Administrator();
-            }
+        btn3.addActionListener(e -> {
+            dispose();
+            new Administrator();
         });
     }
 
-    public void checkProductList() throws SQLException
-	{
-		
+    public void stocktaking() {
 		try {
-			model.setRowCount(0);
-			con=DBconnection.getConnection();
-			
-			query="select product_id,product_name,product_count from c##kios.product";
-			pstmt=con.prepareStatement(query);
-			rs = pstmt.executeQuery();
-			while(rs.next())
-			{
-				int prouct_id = rs.getInt("product_id");
-				String name = rs.getString("product_name");
-				int count = rs.getInt("product_count");
+            connection = DBconnection.getConnection();
+
+            sql = "select product_id, product_name, product_count from product order by product_id";
+            preparedStatement = connection.prepareStatement(sql);
+
+			resultSet = preparedStatement.executeQuery();
+
+			while(resultSet.next()) {
+				int product_id = resultSet.getInt("product_id");
+				String product_name = resultSet.getString("product_name");
+				int product_count = resultSet.getInt("product_count");
 				
-				Object[] obj = {prouct_id,name,count};
+				Object[] obj = {product_id, product_name, product_count};
+
 				model.addRow(obj);
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		RsPreClose(rs, pstmt);
-		ConClose(con);
+		} finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 	}
-    void addStock() throws Exception {
-        try {
-        	con = DBconnection.getConnection();
-            query = "update product set product_count = product_count + ? where product_name = ?";
-            pstmt = con.prepareStatement(query);
 
-            pstmt.setInt(1, Integer.parseInt(jtf1.getText()));
+    public void addStock() {
+        try {
+        	connection = DBconnection.getConnection();
+
+            sql = "update product set product_count = product_count + ? where product_name = ?";
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, Integer.parseInt(jtf1.getText()));
 
             Enumeration<AbstractButton> elements = bg.getElements();
             while (elements.hasMoreElements()) {
                 AbstractButton abstractButton = elements.nextElement();
             
                 if (abstractButton.isSelected()) {
-                    pstmt.setString(2, abstractButton.getText());
+                    preparedStatement.setString(2, abstractButton.getText());
                 }
             }
 
-            int result = pstmt.executeUpdate();
+            int result = preparedStatement.executeUpdate();
 
             if (result > 0) {
                 JOptionPane.showMessageDialog(null, "재고가 추가되었습니다.");
@@ -226,35 +213,12 @@ public class Stocktaking extends JFrame {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        pstmt.close();
-        ConClose(con);
     }
-
-    
-    
-    
-	private void ConClose(Connection con) {
-		try {
-				con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void RsPreClose(ResultSet rs,PreparedStatement pstmt) {
-		try {
-			if(rs!=null) {
-				rs.close();
-				pstmt.close();
-			}else {
-				pstmt.close();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
 }

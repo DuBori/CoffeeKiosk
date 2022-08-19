@@ -1,24 +1,23 @@
 package kios_Test0818.kios.admin;
+import kios_Test0818.kios.db.DBconnection;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import kios.db.DBconnection;
-
 import java.awt.*;
 import java.sql.*;
 
-public class turnOver extends JFrame {
+public class Turnover extends JFrame {
 
     DefaultTableModel model;
     JLabel jl1;
     String turnoverInfoFont = "맑은고딕";
-    Connection con = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
     String sql = null;
     int orderSumResult = 0;
 
-    public turnOver() {
+    public Turnover() {
 
         setTitle("매출관리");
         JPanel container1 = new JPanel();
@@ -34,8 +33,8 @@ public class turnOver extends JFrame {
 
         JButton btn1 = new JButton("조회");
         JButton btn2 = new JButton("뒤로가기");
-        btn1.setFont(new Font(turnoverInfoFont, Font.BOLD, 14));
-        btn2.setFont(new Font(turnoverInfoFont, Font.BOLD, 14));
+        btn1.setFont(new Font(turnoverInfoFont, Font.BOLD, 13));
+        btn2.setFont(new Font(turnoverInfoFont, Font.BOLD, 13));
         btn1.setPreferredSize(new Dimension(100,40));
         btn2.setPreferredSize(new Dimension(100,40));
 
@@ -52,20 +51,16 @@ public class turnOver extends JFrame {
         setBounds(150, 150, 700, 600);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setResizable(false);
         
 //      여기까지 화면 구현
 
         // 조회 버튼
         btn1.addActionListener(e -> {
-           
-            try {
-            	 model.setRowCount(0);
-                 orderSumResult = 0;
-				turnover();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+            model.setRowCount(0);
+            orderSumResult = 0;
+            turnover();
         });
 
         // 뒤로가기 버튼
@@ -73,25 +68,24 @@ public class turnOver extends JFrame {
             dispose();
             new Administrator();
         });
-        
-        setVisible(true);
     }
 
     // 매출 조회하는 메서드
-    void turnover() throws Exception {
+    public void turnover() {
         try {
-        	con = DBconnection.getConnection();
+        	connection = DBconnection.getConnection();
+
             sql = "select bill_id, sale_name, sale_count, sale_cost * sale_count as \"sale_sum\", sale_date from sales_management";
-            pstmt = con.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql);
 
-            rs = pstmt.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                int billId = rs.getInt("bill_id");
-                String saleName = rs.getString("sale_name");
-                int saleCount = rs.getInt("sale_count");
-                int saleSum = rs.getInt("sale_sum");
-                String saleDate = rs.getString("sale_date");
+            while (resultSet.next()) {
+                int billId = resultSet.getInt("bill_id");
+                String saleName = resultSet.getString("sale_name");
+                int saleCount = resultSet.getInt("sale_count");
+                int saleSum = resultSet.getInt("sale_sum");
+                String saleDate = resultSet.getString("sale_date");
 
                 orderSumResult += saleSum;
                 Object[] data = {billId, saleName, saleCount, saleSum, saleDate};
@@ -102,18 +96,14 @@ public class turnOver extends JFrame {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        RsPreClose(rs, pstmt);
-        ConClose(con);
     }
-    private void ConClose(Connection con) {
-		try {
-				con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void RsPreClose(ResultSet rs,PreparedStatement pstmt) {
-}
 }

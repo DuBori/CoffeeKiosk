@@ -1,19 +1,12 @@
 package kios_Test0818.kios.admin;
 
+import kios_Test0818.kios.main.mainFrame;
+
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
-import kios.main.mainFrame;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
 
 public class Administrator extends JFrame {
 
-    Connection connection = null;
-    DefaultTableModel model;
     String adminFont = "맑은고딕";
 
     public Administrator() {
@@ -62,50 +55,36 @@ public class Administrator extends JFrame {
 
         setVisible(true);
 
+        setResizable(false);
+
 //      여기까지 화면 구현
 
         // 회원정보 버튼
-        btn1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	dispose();
-            	try {
-					new MemberInfo();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-                
-            }
+        btn1.addActionListener(e -> {
+            dispose();
+            MemberInfo memberInfo = new MemberInfo();
+            memberInfo.setVisible(true);
         });
 
         // 매출관리 버튼
-        btn2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new turnOver();
-            }
+        btn2.addActionListener(e -> {
+            dispose();
+            Turnover turnover = new Turnover();
+            turnover.setVisible(true);
         });
 
         // 재고관리 버튼
-        btn3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new Stocktaking();
+        btn3.addActionListener(e -> {
+            dispose();
+            Stocktaking stocktaking = new Stocktaking();
+            stocktaking.setVisible(true);
 
-            }
         });
 
         // 메인으로 버튼
-
-        btn4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new mainFrame();
-            }
+        btn4.addActionListener(e -> {
+            dispose();
+            new mainFrame();
         });
     }
     public static void main(String[] args) {

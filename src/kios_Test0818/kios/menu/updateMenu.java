@@ -1,11 +1,12 @@
 package kios_Test0818.kios.menu;
 
+import kios_Test0818.kios.db.DBconnection;
+import kios_Test0818.kios.db.Static;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import kios.db.DBconnection;
-import kios.db.Static;
 
 public class updateMenu {
 
@@ -21,7 +22,7 @@ public class updateMenu {
 	}
 	public updateMenu(String text,String cupSize,String IceHot,int shot,int count,int cost) {
 		try {
-			con=DBconnection.getConnection();
+			con= DBconnection.getConnection();
 			find=findId("select product_id from product where product_name=?",text);
 			
 			query="insert into menu_product values(?,?,?,?,?,?,?,?)";

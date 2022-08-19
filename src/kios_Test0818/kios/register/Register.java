@@ -1,5 +1,7 @@
 package kios_Test0818.kios.register;
 
+import kios_Test0818.kios.milage.Ex_Patment;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -8,10 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-
-import kios.db.DBconnection;
-import kios.milage.Ex_Patment;
-import kios.milage.Patment;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,7 +30,7 @@ public class Register extends JFrame {
 	private JTextField tf1, tf2, tf3;
 	
 	Connection con;
-	PreparedStatement pstmt;
+	PreparedStatement preparedstatement;
 	ResultSet rs;
 	String query;
 	int check;

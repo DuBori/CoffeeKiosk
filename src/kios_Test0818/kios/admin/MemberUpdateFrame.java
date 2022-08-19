@@ -1,19 +1,20 @@
 package kios_Test0818.kios.admin;
+import kios_Test0818.kios.db.DBconnection;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import kios.db.DBconnection;
-
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class MemberUpdateFrame extends JFrame {
 
-    Connection con;
-    PreparedStatement pstmt;
-    String query;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    String sql = null;
     JTextField jtf1, jtf2;
+    String memberUpdateFont = "맑은고딕";
 
     public MemberUpdateFrame(MemberInfo memberInfo) {
 
@@ -25,11 +26,13 @@ public class MemberUpdateFrame extends JFrame {
         jl1.setBounds(50, 70, 100, 25);
         jtf1 = new JTextField(10);
         jtf1.setBounds(120, 70, 100, 25);
+        jl1.setFont(new Font(memberUpdateFont, Font.BOLD, 13));
 
         JLabel jl2 = new JLabel("이름 :    ");
         jl2.setBounds(75, 120, 100, 25);
         jtf2 = new JTextField(15);
         jtf2.setBounds(120, 120, 100, 25);
+        jl2.setFont(new Font(memberUpdateFont, Font.BOLD, 13));
 
         JButton btn1 = new JButton("확인");
         btn1.setBounds(78, 210, 60, 25);
@@ -49,55 +52,58 @@ public class MemberUpdateFrame extends JFrame {
 
         setVisible(true);
 
+        setResizable(false);
+
         // 확인 버튼
         btn1.addActionListener(e -> {
             try {
-				memberUpdate(memberInfo.table, memberInfo.model);
-				dispose();
-	            memberInfo.model.setRowCount(0);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-            
-           // memberInfo.memberShow();
+                if (!(jtf1.getText().isEmpty()) && !(jtf2.getText().isEmpty())) {
+                    memberUpdate(memberInfo.table, memberInfo.model);
+                    dispose();
+                    memberInfo.model.setRowCount(0);
+                    memberInfo.memberShow();
+                } else {
+                    JOptionPane.showMessageDialog(null, "수정할 내용을 입력하세요.", "오류", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         });
 
         // 취소 버튼
-        btn2.addActionListener(e ->{
-           
-				dispose();
-	            new Administrator();
-        });
-                
-      
+        btn2.addActionListener(e ->
+				dispose());
     }
 
-
-
-    public void memberUpdate(JTable jTable, DefaultTableModel defaultTableModel) throws Exception {
+    public void memberUpdate(JTable jTable, DefaultTableModel defaultTableModel) {
         try {
-        	con=DBconnection.getConnection();
-            query = "update member_option set member_pw = ?, member_name = ? where member_phone = ?";
-            pstmt = con.prepareStatement(query);
+        	connection = DBconnection.getConnection();
+
+            sql = "update member_option set member_pw = ?, member_name = ? where member_phone = ?";
+            preparedStatement = connection.prepareStatement(sql);
 
             int row = jTable.getSelectedRow();
 
-            pstmt.setString(1, jtf1.getText());
-            pstmt.setString(2, jtf2.getText());
-            pstmt.setString(3, defaultTableModel.getValueAt(row, 0).toString());
+            preparedStatement.setString(1, jtf1.getText());
+            preparedStatement.setString(2, jtf2.getText());
+            preparedStatement.setString(3, defaultTableModel.getValueAt(row, 0).toString());
 
-            int result = pstmt.executeUpdate();
+            int result = preparedStatement.executeUpdate();
 
             if (result > 0) {
-                JOptionPane.showMessageDialog(null, "정보가 수정되었습니다.");
-                new Administrator();
+                JOptionPane.showMessageDialog(null, "회원 정보가 수정되었습니다.");
             }else {
                 JOptionPane.showMessageDialog(null, "다시 시도하세요.");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

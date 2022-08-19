@@ -5,8 +5,7 @@ public class MemberDTO {
 	private String member_phone;
 	private String member_pw;
 	private String member_name;
-	
-	private int member_milage;
+	private int member_mileage;
 	private int member_pay;
 	
 	public String getMember_phone() {
@@ -27,11 +26,11 @@ public class MemberDTO {
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
 	}
-	public int getMember_milage() {
-		return member_milage;
+	public int getMember_mileage() {
+		return member_mileage;
 	}
-	public void setMember_milage(int member_milage) {
-		this.member_milage = member_milage;
+	public void setMember_mileage(int member_mileage) {
+		this.member_mileage = member_mileage;
 	}
 	public int getMember_pay() {
 		return member_pay;
@@ -39,6 +38,4 @@ public class MemberDTO {
 	public void setMember_pay(int member_pay) {
 		this.member_pay = member_pay;
 	}
-	
-	
 }

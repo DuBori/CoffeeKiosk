@@ -1,12 +1,13 @@
 package kios_Test0818.kios.milage;
 
+import kios_Test0818.kios.db.DBconnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
 
-import kios.db.DBconnection;
 
 public class checkMilage {
 	Connection con;
@@ -20,7 +21,7 @@ public class checkMilage {
 	}
 	public checkMilage(String text,int count) {
 		try {
-			con=DBconnection.getConnection();
+			con= DBconnection.getConnection();
 			query="update member_option set member_milage=? where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1,++count);

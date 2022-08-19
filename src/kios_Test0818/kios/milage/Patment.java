@@ -1,13 +1,13 @@
 package kios_Test0818.kios.milage;
 
+import kios_Test0818.kios.db.Static;
+import kios_Test0818.kios.main.mainFrame;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
-import kios.db.Static;
-import kios.main.mainFrame;
 
 
 public class Patment extends JFrame implements ActionListener{
@@ -49,7 +49,7 @@ public class Patment extends JFrame implements ActionListener{
 	class test_Frame2 extends JDialog{
 	   
 		JLabel jlb = new JLabel("");
-		JLabel jlb2 = new JLabel("주문번호 : "+Static.count);
+		JLabel jlb2 = new JLabel("주문번호 : "+ Static.count);
 		JTextField jtf = new JTextField(10);
 		JPanel group = new JPanel();
 		JButton button = new JButton("돌아가기");

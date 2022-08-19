@@ -1,55 +1,43 @@
 package kios_Test0818.kios.admin;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import kios_Test0818.kios.db.DBconnection;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import kios.db.DBconnection;
+import java.awt.*;
+import java.sql.*;
 
 public class MemberInfo extends JFrame {
-	Connection con;
-	PreparedStatement pstmt;
-	ResultSet rs;
-	String query;
+
 	DefaultTableModel model;
 	JTable table;
-	String name,phone,pw;
-	int pay,milage;
-	public JScrollPane jsp;
+	JScrollPane jsp;
 	String memberInfoFont = "맑은고딕";
+	Connection connection = null;
+	PreparedStatement preparedStatement = null;
+	ResultSet resultSet = null;
+	String sql = null;
 	
     public MemberInfo(JTable jTable, DefaultTableModel defaultTableModel) {
         this.table = jTable;
         this.model = defaultTableModel;
+		DBconnection.getConnection();
     }
-	public MemberInfo() throws Exception {
+
+	public MemberInfo() {
+
 		setTitle("회원정보");
-		
 		
 		JPanel container = new JPanel();
 		
-		// TODO 회원 테이블 속성
+		// 회원 테이블 속성
 		 String[] header = {"휴대폰 번호", "생년월일", "이름", "스탬프", "소비금액"};
 		
-		// TODO 회원 테이블 생성
+		// 회원 테이블 생성
 		model = new DefaultTableModel(header,0);
-		table=new JTable(model);
-		//TODO 회원 정보 넣기
+		table = new JTable(model);
+		table.setModel(model);
+		// 회원 정보 넣기
 		jsp = new JScrollPane
 				(table, 
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, 
@@ -59,10 +47,10 @@ public class MemberInfo extends JFrame {
         JButton btn3 = new JButton("삭제");
         JButton btn4 = new JButton("뒤로가기");
 
-        btn1.setFont(new Font(memberInfoFont, Font.BOLD, 12));
-        btn2.setFont(new Font(memberInfoFont, Font.BOLD, 12));
-        btn3.setFont(new Font(memberInfoFont, Font.BOLD, 12));
-        btn4.setFont(new Font(memberInfoFont, Font.BOLD, 12));
+        btn1.setFont(new Font(memberInfoFont, Font.BOLD, 13));
+        btn2.setFont(new Font(memberInfoFont, Font.BOLD, 13));
+        btn3.setFont(new Font(memberInfoFont, Font.BOLD, 13));
+        btn4.setFont(new Font(memberInfoFont, Font.BOLD, 13));
 
         btn1.setPreferredSize(new Dimension(90,40));
         btn2.setPreferredSize(new Dimension(90,40));
@@ -80,144 +68,121 @@ public class MemberInfo extends JFrame {
         setBounds(200, 200, 500, 500);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        setVisible(true);
-        // TODO 
-        btn1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-					model.setRowCount(0);
-					memberShow();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-            	
 
-            }
-        });
-        btn2.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
+		setResizable(false);
+
+//      여기까지 화면 구현
+
+		// 조회 버튼
+        btn1.addActionListener(e -> {
+			model.setRowCount(0);
+			memberShow();
+		});
+
+		// 수정 버튼
+        btn2.addActionListener(e -> {
+			if (table.isRowSelected(table.getSelectedRow())) {
 				new MemberUpdateFrame(new MemberInfo(table, model));
-				
-			}
-		});
-        btn3.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				try {
-					memberDelete();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-        btn4.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-				new Administrator();
+			} else {
+				JOptionPane.showMessageDialog(null, "수정할 회원을 선택하세요.", "오류", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 
+		// 삭제 버튼
+        btn3.addActionListener(e -> {
+			int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
+
+			if (result == JOptionPane.CLOSED_OPTION) {
+				JOptionPane.showMessageDialog(null, "실행 취소");
+			} else if (result == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(null, "회원 정보가 삭제되지 않았습니다.");
+			} else {
+				if (table.isRowSelected(table.getSelectedRow())) {
+					memberDelete();
+				} else {
+					JOptionPane.showMessageDialog(null, "삭제할 회원을 선택하세요.", "오류", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+
+		// 뒤로가기 버튼
+        btn4.addActionListener(e -> {
+			dispose();
+			new Administrator();
+		});
 	}
 	
-	void memberShow() throws Exception
-	{
-		
+	public void memberShow() {
 		try {
-			con=DBconnection.getConnection();
-			System.out.println("회원 조회");
-			query="select *  from member_option";
-			pstmt=con.prepareStatement(query);
-			rs=pstmt.executeQuery();
+			connection = DBconnection.getConnection();
+
+			sql = "select * from member_option order by member_phone";
+			preparedStatement = connection.prepareStatement(sql);
+
+			resultSet = preparedStatement.executeQuery();
+
 			MemberDTO dto = new MemberDTO();
-			while(rs.next())
-			{
-				dto.setMember_phone(rs.getString("member_phone"));
-				dto.setMember_pw(rs.getString("member_pw"));
-				dto.setMember_name(rs.getString("member_name"));
-				dto.setMember_pay(rs.getInt("member_pay"));
-				dto.setMember_milage(rs.getInt("member_milage"));
+
+			while(resultSet.next()) {
+				dto.setMember_phone(resultSet.getString("member_phone"));
+				dto.setMember_pw(resultSet.getString("member_pw"));
+				dto.setMember_name(resultSet.getString("member_name"));
+				dto.setMember_mileage(resultSet.getInt("member_mileage"));
+				dto.setMember_pay(resultSet.getInt("member_pay"));
 				
-				phone=dto.getMember_phone();
-				pw = dto.getMember_pw();
-				name =dto.getMember_name();
-				pay = dto.getMember_pay();
-				milage=dto.getMember_milage();
-				System.out.println(phone+"\t"+pw+"\t"+name+"\t"+pay+"\t"+milage+"\t");
-				Object[] data = {phone,pw,name,pay,milage};
+				String phone = dto.getMember_phone();
+				String pw = dto.getMember_pw();
+				String name = dto.getMember_name();
+				int pay = dto.getMember_pay();
+				int mileage = dto.getMember_mileage();
+				System.out.println(phone+"\t"+pw+"\t"+name+"\t"+pay+"\t"+mileage+"\t");
+
+				Object[] data = {phone, pw, name, pay, mileage};
+
 				model.addRow(data);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				if (resultSet != null) resultSet.close();
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection != null) connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		RsPreClose(rs, pstmt);
-		ConClose(con);
 		
 	}
-    public void memberDelete() throws Exception {
+    public void memberDelete() {
         try {
-        	con=DBconnection.getConnection();
-            query = "delete from member_option where member_phone = ?";
-            pstmt = con.prepareStatement(query);
+        	connection = DBconnection.getConnection();
+
+            sql = "delete from member_option where member_phone = ?";
+            preparedStatement = connection.prepareStatement(sql);
 
             int row = table.getSelectedRow();
 
-            pstmt.setString(1, model.getValueAt(row, 0).toString());
+            preparedStatement.setString(1, model.getValueAt(row, 0).toString());
 
-            int result = pstmt.executeUpdate();
+            int result = preparedStatement.executeUpdate();
 
-            if (result > 0) {
-                JOptionPane.showMessageDialog(null, "회원 삭제 성공");
-            }else {
-                JOptionPane.showMessageDialog(null, "회원 삭제 실패");
-            }
+			if (result > 0) {
+				JOptionPane.showMessageDialog(null, "회원 정보가 삭제되었습니다.");
+			}else {
+				JOptionPane.showMessageDialog(null, "다시 시도하세요.");
+			}
 
             model.removeRow(row);
-
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        pstmt.close();
-        ConClose(con);
-    }
-	
-	private void ConClose(Connection con) {
-		try {
-				con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void RsPreClose(ResultSet rs,PreparedStatement pstmt) {
-		try {
-			if(rs!=null) {
-				rs.close();
-				pstmt.close();
-			}else {
-				pstmt.close();
+        } finally {
+			try {
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection != null) connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
-		
-	}
-	
-	
-	
-	
+    }
 }
