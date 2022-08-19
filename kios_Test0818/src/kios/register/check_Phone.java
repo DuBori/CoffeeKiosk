@@ -1,8 +1,8 @@
 package kios.register;
 
-import kios_Test0818.kios.db.DBconnection;
-import kios_Test0818.kios.milage.Ex_Patment;
-import kios_Test0818.kios.milage.checkMilage;
+import kios.db.DBconnection;
+import kios.mileage.Ex_Payment;
+import kios.mileage.checkMileage;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -40,10 +40,10 @@ public class check_Phone {
 			if(chkph==null)
 			{
 				//TODO  연락처가 확인되어 마일리지 도장 1개 적립 메서드
-				new checkMilage(chkph,chkmil);
+				new checkMileage(chkph,chkmil);
 			}else {
 				JOptionPane.showMessageDialog(null, "존재하지 않는 번호입니다.");
-				new Ex_Patment();
+				new Ex_Payment();
 			}
 			
 		} catch (Exception e) {
@@ -98,7 +98,7 @@ public class check_Phone {
 				
 				if(check>0) {
 					JOptionPane.showMessageDialog(null, "회원 가입 성공");
-					new Ex_Patment();
+					new Ex_Payment();
 				}
 				else
 					JOptionPane.showMessageDialog(null, "회원 가입 실패");

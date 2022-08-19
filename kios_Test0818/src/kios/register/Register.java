@@ -1,6 +1,6 @@
 package kios.register;
 
-import kios_Test0818.kios.milage.Ex_Patment;
+import kios.mileage.Ex_Payment;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -104,7 +104,7 @@ public class Register extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new Ex_Patment();
+				new Ex_Payment();
 				dispose();
 			}
 		});
