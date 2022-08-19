@@ -16,7 +16,8 @@ public class Coffee_Inner extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	int ameriPrice;
+	int coffeePrice;
+	int sizePrice;
 	int addShot;
 	int viewCost;
 	JSpinner spinner_1;
@@ -26,7 +27,7 @@ public class Coffee_Inner extends JFrame {
 	String sql = null;
 	DefaultTableModel model;
 	String IceHot,cupSize;
-	int count,cost;
+	int shotCount,count,cost;
 	
 	/**
 	 * Create the frame.
@@ -40,7 +41,7 @@ public class Coffee_Inner extends JFrame {
 		contentPane.setLayout(null);
 
 		textField = new JTextField();
-		textField.setText(String.valueOf(ameriPrice));
+		textField.setText(String.valueOf(coffeePrice));
 		textField.setBounds(307, 144, 77, 28);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -48,12 +49,39 @@ public class Coffee_Inner extends JFrame {
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.setBounds(6, 19, 194, 194);
 		contentPane.add(btnNewButton_2);
+		String m = Menu_Order.picNum;
+		switch(m) {
+		case "ameri":
+			coffeePrice = 4500;
+			btnNewButton_2.setIcon(new ImageIcon("src/images/americano.jpg"));
+			break;
+		case "latte":
+			coffeePrice = 5000;
+			btnNewButton_2.setIcon(new ImageIcon("src/images/caffelatte.jpg"));
+			break;
+		case "mocha":
+			coffeePrice = 5500;
+			btnNewButton_2.setIcon(new ImageIcon("src/images/caffemocha.png"));
+			break;
+		case "cappu":
+			coffeePrice = 5000;
+			btnNewButton_2.setIcon(new ImageIcon("src/images/cappuccino.jpg"));
+			break;
+		case "caramel":
+			coffeePrice = 5900;
+			btnNewButton_2.setIcon(new ImageIcon("src/images/caramelm.jpg"));
+			break;
+		case "espresso":
+			coffeePrice = 4200;
+			btnNewButton_2.setIcon(new ImageIcon("src/images/espresso.jpg"));
+			break;
+		}
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("ICE");
 		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				btnNewButton_2.setIcon(new ImageIcon("src/image/ice_americano.jpg"));
+//				btnNewButton_2.setIcon(new ImageIcon("image/ice_americano.jpg"));
 				IceHot=rdbtnNewRadioButton.getText();
 			}
 		});
@@ -64,12 +92,11 @@ public class Coffee_Inner extends JFrame {
 		rdbtnHot.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				btnNewButton_2.setIcon(new ImageIcon("src/image/americano.jpg"));
+//				btnNewButton_2.setIcon(new ImageIcon("image/americano.jpg"));
 				IceHot=rdbtnHot.getText();
 			}
 		});
 
-		btnNewButton_2.setIcon(new ImageIcon("src/image/americano.jpg"));
 		rdbtnHot.setBounds(212, 30, 66, 23);
 		contentPane.add(rdbtnHot);
 		ButtonGroup group = new ButtonGroup();
@@ -93,7 +120,7 @@ public class Coffee_Inner extends JFrame {
 
 				// 입력값을 받아 단가와 곱한 값을 최종가격으로 넘겨준다
 				// 아메리카노 단가 : 4500원
-				textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+				textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 			}
 		});
 
@@ -108,16 +135,20 @@ public class Coffee_Inner extends JFrame {
 				String s = (String) comboBox.getSelectedItem();
 				switch (s) {
 				case "Tall":
-					ameriPrice = 4500;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+					sizePrice = 0;
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
 				case "Grande":
-					ameriPrice = 5000;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+					sizePrice = 500;
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
 				case "Venti":
-					ameriPrice = 5500;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+					sizePrice = 1000;
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
+					break;
+				default:
+					sizePrice = 0;
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
 				}
 				// 사이즈별 가격 * 수량을 텍스트필드에 반영한다
@@ -136,29 +167,29 @@ public class Coffee_Inner extends JFrame {
 
 				String d = (String) comboBox_1.getSelectedItem();
 				switch (d) {
+				case "샷 추가":
+					addShot = 0;
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
+					break;
 				case "1":
 					addShot = 500;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
 				case "2":
 					addShot = 1000;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
 				case "3":
 					addShot = 1500;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
 				case "4":
 					addShot = 2000;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
 				case "5":
 					addShot = 2500;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
-					break;
-				default:
-					addShot = 0;
-					textField.setText(String.valueOf(viewPrice(ameriPrice, addShot)));
+					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
 				}
 			}
@@ -185,10 +216,11 @@ public class Coffee_Inner extends JFrame {
 			// TODO 라벨값 따오기
 				dispose();
 				cupSize=comboBox.getSelectedItem().toString();
+				shotCount=Integer.parseInt(comboBox_1.getSelectedItem().toString());
 				count=Integer.parseInt(spinner_1.getValue().toString());	
 				cost=Integer.parseInt(textField.getText());
-				new updateMenu(text,cupSize,IceHot,count,cost);
-				menuOrder.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+count+"\t"+cost+"\n");
+				new updateMenu(text,cupSize,IceHot,shotCount,count,cost);
+				Menu_Order.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+shotCount+"\t"+count+"\t"+cost+"\n");
 			}
 		});
 		
@@ -210,8 +242,8 @@ public class Coffee_Inner extends JFrame {
 	public Coffee_Inner() {
 	}
 
-	private int viewPrice(int aP, int aS) {
-		viewCost = (aP + aS) * (int) spinner_1.getValue();
+	private int viewPrice(int aP, int sP, int aS) {
+		viewCost = (aP + sP + aS) * (int) spinner_1.getValue();
 
 		return viewCost;
 	}
