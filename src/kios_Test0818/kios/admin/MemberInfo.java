@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.admin;
+package kios_Test0818.kios.admin;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

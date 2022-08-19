@@ -1,43 +1,35 @@
-package kios_Test0818.src.kios.main;
-
+package kios_Test0818.kios.main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JButton;
 
-import kios_Test0818.src.kios.admin.Administrator;
-
-
-
-public class checkAdmin extends JFrame{
+public class Test extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tf1;
 	private JTextField tf2;
-	JButton btn;
-	private String id;
-	private String pwd;
-	int count;
-	
-	public checkAdmin() throws Exception {
-	
-		//TODO 아이디 비번 넣는 창
-		checkIdPwd();
 
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		new Test();
+		
 	}
 
-	private void checkIdPwd(){
+	/**
+	 * Create the frame.
+	 */
+	public Test() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 300, 450, 200);
@@ -81,35 +73,10 @@ public class checkAdmin extends JFrame{
 		panel_2.setLayout(new BorderLayout(0, 0));
 		
 		JButton btn = new JButton("로그인");
-		btn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-					if((!tf1.getText().equals("admin") || !tf2.getText().equals("1234")) && count <3)
-					{
-						JOptionPane.showMessageDialog(null, "틀리셨습니다."+"남은 기회 : "+(2-count));
-						count++;
-					}else if(tf1.getText().equals("admin") && tf2.getText().equals("1234") && count<3){
-							dispose();
-							new Administrator();
-						
-					}else if(count>=3){
-						dispose();
-						JOptionPane.showMessageDialog(null, "메인페이지로 돌아갑니다.");
-						new mainFrame();
-					}else {
-						dispose();
-						new mainFrame();
-					}
-					
-				
-			}
-		});
 		panel_2.add(btn);
+		
 		setVisible(true);
+		
 	}
-	
-	
+
 }

@@ -1,11 +1,10 @@
-package kios_Test0818.src.kios.admin;
+package kios_Test0818.kios.admin;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import kios.db.DBconnection;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 

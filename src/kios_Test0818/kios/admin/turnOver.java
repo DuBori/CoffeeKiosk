@@ -1,12 +1,10 @@
-package kios_Test0818.src.kios.admin;
+package kios_Test0818.kios.admin;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import kios.db.DBconnection;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class turnOver extends JFrame {

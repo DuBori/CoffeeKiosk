@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.main;
+package kios_Test0818.kios.main;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

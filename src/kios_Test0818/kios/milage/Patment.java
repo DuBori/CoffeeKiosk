@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.milage;
+package kios_Test0818.kios.milage;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

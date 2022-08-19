@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.admin;
+package kios_Test0818.kios.admin;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 

@@ -1,16 +1,11 @@
-package kios_Test0818.src.kios.main;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+package kios_Test0818.kios.main;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import kios_Test0818.src.kios.menu.menuOrder;
+import kios_Test0818.kios.menu.menuOrder;
 
 import javax.swing.JButton;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

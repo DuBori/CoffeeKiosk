@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.admin;
+package kios_Test0818.kios.admin;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
 
 public class Administrator extends JFrame {
 

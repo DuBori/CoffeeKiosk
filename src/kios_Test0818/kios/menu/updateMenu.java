@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.menu;
+package kios_Test0818.kios.menu;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

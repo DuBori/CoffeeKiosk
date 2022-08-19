@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.milage;
+package kios_Test0818.kios.milage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import kios_Test0818.src.kios.register.Register;
-import kios_Test0818.src.kios.register.check_Phone;
+import kios_Test0818.kios.register.Register;
+import kios_Test0818.kios.register.check_Phone;
 
 public class Ex_Patment extends JFrame{
 

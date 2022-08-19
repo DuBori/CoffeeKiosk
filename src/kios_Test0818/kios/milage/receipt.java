@@ -1,18 +1,13 @@
-package kios_Test0818.src.kios.milage;
+package kios_Test0818.kios.milage;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
 import java.awt.Font;
 
 public class receipt extends JFrame {

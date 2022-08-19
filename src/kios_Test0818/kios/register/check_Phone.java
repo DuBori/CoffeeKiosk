@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.register;
+package kios_Test0818.kios.register;
 
 import java.sql.*;
 import javax.swing.JOptionPane;

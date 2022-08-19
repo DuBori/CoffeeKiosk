@@ -1,42 +1,26 @@
-package kios_Test0818.src.kios.menu;
+package kios_Test0818.kios.menu;
  
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-
 import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.text.DefaultFormatter;
 
 import kios.db.DBconnection;
 import kios.db.Static;
-import kios_Test0818.src.kios.milage.Ex_Patment;
+import kios_Test0818.kios.milage.Ex_Patment;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.JSlider;
 
- 
+
 public class menuOrder extends JFrame {
 
  

@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.milage;
+package kios_Test0818.kios.milage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

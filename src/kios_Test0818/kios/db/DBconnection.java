@@ -1,4 +1,4 @@
-package kios_Test0818.src.kios.db;
+package kios_Test0818.kios.db;
 
 import java.sql.*;
 
