@@ -22,9 +22,10 @@ public class mainFrame extends JFrame {
 	 */
 	public static void main(String[] args) {
 		new mainFrame();
+		System.out.println("임시푸시입니다.");
 	}
 
-
+	// 임시 푸시입니다.
 	/**
 	 * Create the frame.
 	 */
