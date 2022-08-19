@@ -1,0 +1,8 @@
+/image/
+/kios/
+
+.idea
+*.iml
+
+/out/
+/target/
