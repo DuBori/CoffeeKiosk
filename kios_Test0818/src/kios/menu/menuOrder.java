@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import kios_Test0818.kios.db.Static;
+import kios.db.Static;
 import kios.mileage.Ex_Payment;
 
 import javax.swing.JTabbedPane;

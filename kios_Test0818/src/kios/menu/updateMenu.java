@@ -1,7 +1,7 @@
 package kios.menu;
 
-import kios_Test0818.kios.db.DBconnection;
-import kios_Test0818.kios.db.Static;
+import kios.db.DBconnection;
+import kios.db.Static;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

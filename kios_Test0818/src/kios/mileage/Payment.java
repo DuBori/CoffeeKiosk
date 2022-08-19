@@ -1,7 +1,7 @@
 package kios.mileage;
 
-import kios_Test0818.kios.db.Static;
-import kios_Test0818.kios.main.mainFrame;
+import kios.db.Static;
+import kios.main.mainFrame;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

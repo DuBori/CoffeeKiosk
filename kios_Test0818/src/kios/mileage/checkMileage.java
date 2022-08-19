@@ -1,6 +1,6 @@
 package kios.mileage;
 
-import kios_Test0818.kios.db.DBconnection;
+import kios.db.DBconnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ public class checkMileage {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	String query;
-	int ckMilage;
+	int ckMileage;
 	int check;
 	public checkMileage() {
 		// TODO Auto-generated constructor stub
