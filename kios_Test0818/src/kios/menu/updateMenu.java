@@ -18,7 +18,7 @@ public class updateMenu {
 	
 	int find;
 	public updateMenu() {
-		// TODO Auto-generated constructor stub
+
 	}
 	public updateMenu(String text,String cupSize,String IceHot,int shot,int count,int cost) {
 		try {
@@ -38,7 +38,6 @@ public class updateMenu {
 			pstmt.executeUpdate();
 		
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -58,7 +57,6 @@ public class updateMenu {
 			
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(find!=0)

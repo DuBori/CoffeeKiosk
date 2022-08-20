@@ -64,7 +64,6 @@ public class mainFrame extends JFrame {
 					dispose();
 					new checkAdmin();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -82,7 +81,6 @@ public class mainFrame extends JFrame {
 				{
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				dispose();
 				new subMainFrame();
 			}
