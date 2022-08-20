@@ -135,9 +135,9 @@ public class MemberInfo extends JFrame {
 				String name = dto.getMember_name();
 				int pay = dto.getMember_pay();
 				int mileage = dto.getMember_mileage();
-				System.out.println(phone+"\t"+pw+"\t"+name+"\t"+pay+"\t"+mileage+"\t");
+				System.out.println(phone + "\t" + pw + "\t" + name + "\t" + mileage + "\t" + pay + "\t");
 
-				Object[] data = {phone, pw, name, pay, mileage};
+				Object[] data = {phone, pw, name, mileage, pay};
 
 				model.addRow(data);
 			}
