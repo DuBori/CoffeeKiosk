@@ -17,7 +17,7 @@ public class checkMileage {
 	int ckMileage;
 	int check;
 	public checkMileage() {
-		// TODO Auto-generated constructor stub
+
 	}
 	public checkMileage(String text, int count) {
 		try {
@@ -32,7 +32,6 @@ public class checkMileage {
 			else
 				JOptionPane.showMessageDialog(null, "적립 실패");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

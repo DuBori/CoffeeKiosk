@@ -45,7 +45,6 @@ public class Ex_Payment extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				new check_Phone(inputSpace.getText());
 			}
 		});
