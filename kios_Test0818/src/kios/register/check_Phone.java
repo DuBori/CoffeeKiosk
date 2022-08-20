@@ -27,7 +27,7 @@ public class check_Phone {
 		try {
 			System.out.println("무결성 체크 시작");
 			con= DBconnection.getConnection();
-			query="select member_phone,member_milage from member_option where member_phone=?";
+			query="select member_phone,member_mileage from member_option where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, phone);
 			rs=pstmt.executeQuery();
@@ -35,7 +35,7 @@ public class check_Phone {
 			while(rs.next())
 			{
 				chkph=rs.getString("member_phone");
-				chkmil=rs.getInt("member_milage");
+				chkmil=rs.getInt("member_mileage");
 			}
 			if(chkph==null)
 			{

@@ -22,7 +22,7 @@ public class checkMileage {
 	public checkMileage(String text, int count) {
 		try {
 			con= DBconnection.getConnection();
-			query="update member_option set member_milage=? where member_phone=?";
+			query="update member_option set member_mileage=? where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1,++count);
 			pstmt.setString(2, text);
