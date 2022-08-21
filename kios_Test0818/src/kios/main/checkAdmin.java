@@ -1,6 +1,5 @@
 package kios.main;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -83,7 +82,6 @@ public class checkAdmin extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 					if((!tf1.getText().equals("admin") || !tf2.getText().equals("1234")) && count <3)
 					{
@@ -101,13 +99,13 @@ public class checkAdmin extends JFrame{
 						dispose();
 						new mainFrame();
 					}
-					
-				
+
+
 			}
 		});
 		panel_2.add(btn);
 		setVisible(true);
 	}
-	
-	
+
+
 }

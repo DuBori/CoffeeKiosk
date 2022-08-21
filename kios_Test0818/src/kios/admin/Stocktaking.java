@@ -37,7 +37,7 @@ public class Stocktaking extends JFrame {
 
         JButton btn1 = new JButton("조회");
         btn1.setBounds(250, 320, 100, 25);
-        btn1.setFont(new Font(stocktakingFont, Font.BOLD, 13));
+        btn1.setFont(new Font(stocktakingFont, Font.BOLD, 12));
 
         JLabel jl2 = new JLabel("재고추가");
         jl2.setBounds(40, 370, 100, 25);
@@ -56,6 +56,18 @@ public class Stocktaking extends JFrame {
         JRadioButton jrb10 = new JRadioButton("홍차");
         JRadioButton jrb11 = new JRadioButton("녹차");
         JRadioButton jrb12 = new JRadioButton("핫초코");
+        jrb1.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb2.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb3.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb4.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb5.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb6.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb7.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb8.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb9.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb10.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb11.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb12.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         bg = new ButtonGroup();
         bg.add(jrb1);
         bg.add(jrb2);
@@ -83,14 +95,14 @@ public class Stocktaking extends JFrame {
         jrb12.setBounds(445, 460, 100, 25);
 
         JLabel jl3 = new JLabel("수량 : ");
-        jl3.setFont(new Font(stocktakingFont, Font.BOLD, 16));
+        jl3.setFont(new Font(stocktakingFont, Font.BOLD, 12));
         jtf1 = new JTextField(5);
         jl3.setBounds(185, 510, 100, 25);
         jtf1.setBounds(235, 510, 100, 25);
 
         JButton btn2 = new JButton("추가");
         btn2.setBounds(345, 510, 60, 25);
-        btn2.setFont(new Font(stocktakingFont, Font.BOLD, 13));
+        btn2.setFont(new Font(stocktakingFont, Font.BOLD, 12));
 
         JButton btn3 = new JButton("뒤로가기");
         btn3.setBounds(250, 600, 100, 25);

@@ -17,12 +17,12 @@ public class checkMileage {
 	int ckMileage;
 	int check;
 	public checkMileage() {
-		// TODO Auto-generated constructor stub
+
 	}
 	public checkMileage(String text, int count) {
 		try {
 			con= DBconnection.getConnection();
-			query="update member_option set member_milage=? where member_phone=?";
+			query="update member_option set member_mileage=? where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1,++count);
 			pstmt.setString(2, text);
@@ -32,7 +32,6 @@ public class checkMileage {
 			else
 				JOptionPane.showMessageDialog(null, "적립 실패");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

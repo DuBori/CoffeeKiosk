@@ -18,27 +18,27 @@ public class updateMenu {
 	
 	int find;
 	public updateMenu() {
-		// TODO Auto-generated constructor stub
+
 	}
-	public updateMenu(String text,String cupSize,String IceHot,int shot,int count,int cost) {
+	public updateMenu(String text,String cupSize,String IceHot,int defaultSizeCost,int shot,int count,int cost) {
 		try {
 			con= DBconnection.getConnection();
 			find=findId("select product_id from product where product_name=?",text);
 			
-			query="insert into menu_product values(?,?,?,?,?,?,?,?)";
+			query="insert into menu_product values(?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, Static.count);
 			pstmt.setInt(2, find);
 			pstmt.setString(3, text);
 			pstmt.setString(4, cupSize);
 			pstmt.setString(5, IceHot);
-			pstmt.setInt(6, shot);
-			pstmt.setInt(7, count);
-			pstmt.setInt(8, cost);
+			pstmt.setInt(6, defaultSizeCost);
+			pstmt.setInt(7, shot);
+			pstmt.setInt(8, count);
+			pstmt.setInt(9, cost);
 			pstmt.executeUpdate();
 		
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -58,7 +58,6 @@ public class updateMenu {
 			
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(find!=0)

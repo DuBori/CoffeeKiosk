@@ -20,14 +20,14 @@ public class check_Phone {
 	int chkmil;
 	
 	public check_Phone() {
-		// TODO Auto-generated constructor stub
+
 	}
 	// TODO 적립시 연락처 확인 메서드
 	public check_Phone(String phone) {
 		try {
 			System.out.println("무결성 체크 시작");
 			con= DBconnection.getConnection();
-			query="select member_phone,member_milage from member_option where member_phone=?";
+			query="select member_phone,member_mileage from member_option where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, phone);
 			rs=pstmt.executeQuery();
@@ -35,7 +35,7 @@ public class check_Phone {
 			while(rs.next())
 			{
 				chkph=rs.getString("member_phone");
-				chkmil=rs.getInt("member_milage");
+				chkmil=rs.getInt("member_mileage");
 			}
 			if(chkph==null)
 			{
@@ -47,7 +47,6 @@ public class check_Phone {
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 	}
 		RsPreClose(rs, pstmt);
@@ -75,7 +74,6 @@ public class check_Phone {
 				}
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 		}
 			RsPreClose(rs, pstmt);
@@ -103,7 +101,6 @@ public class check_Phone {
 				else
 					JOptionPane.showMessageDialog(null, "회원 가입 실패");
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			pstmt.close();
@@ -128,7 +125,6 @@ public class check_Phone {
 					pstmt.close();
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
