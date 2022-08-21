@@ -218,7 +218,7 @@ public class Coffee_Inner extends JFrame {
 				shotCount=Integer.parseInt(comboBox_1.getSelectedItem().toString());
 				count=Integer.parseInt(spinner_1.getValue().toString());	
 				cost=Integer.parseInt(textField.getText());
-				new updateMenu(text,cupSize,IceHot,shotCount,count,cost);
+				new updateMenu(text,cupSize,IceHot,coffeePrice+sizePrice,shotCount,count,cost);
 				menuOrder.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+shotCount+"\t"+count+"\t"+cost+"\n");
 			}
 		});
