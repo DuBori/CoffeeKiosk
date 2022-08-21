@@ -31,7 +31,7 @@ public class MemberInfo extends JFrame {
 		JPanel container = new JPanel();
 		
 		// 회원 테이블 속성
-		 String[] header = {"휴대폰 번호", "생년월일", "이름", "스탬프", "소비금액"};
+		String[] header = {"휴대폰 번호(ID)", "생년월일(PW)", "이름", "스탬프", "누적소비금액"};
 		
 		// 회원 테이블 생성
 		model = new DefaultTableModel(header,0);
@@ -152,8 +152,8 @@ public class MemberInfo extends JFrame {
 				e.printStackTrace();
 			}
 		}
-		
 	}
+
     public void memberDelete() {
         try {
         	connection = DBconnection.getConnection();
