@@ -13,8 +13,8 @@ import javax.swing.*;
 public class Payment extends JFrame implements ActionListener{
 
 	
-		ImageIcon card = new ImageIcon("src/image/icon_card.jpg");
-		ImageIcon money = new ImageIcon("src/image/money.jpg");
+		ImageIcon card = new ImageIcon("kios_Test0818/src/image/icon_card.jpg");
+		ImageIcon money = new ImageIcon("kios_Test0818/src/image/money.jpg");
 		JButton jbt1 = new JButton("카드",card);
 		JButton jbt2 = new JButton("현금",money);
 		
@@ -53,8 +53,8 @@ public class Payment extends JFrame implements ActionListener{
 	   
 		JLabel jlb = new JLabel("");
 		JLabel jlb2 = new JLabel("주문번호 : "+ Static.count);
-		JTextField jtf = new JTextField(10);
 		JPanel group = new JPanel();
+		JPanel group2 = new JPanel(new BorderLayout());
 		JButton button = new JButton("돌아가기");
 		
 		public test_Frame2(String str){
@@ -66,7 +66,6 @@ public class Payment extends JFrame implements ActionListener{
 			jlb.setFont(jlb.getFont().deriveFont(15.0f));
 			jlb2.setFont(jlb.getFont().deriveFont(18.0f));
 			
-			jtf.setEditable(false);
 			
 			button.addActionListener(new ActionListener() {
 				
@@ -77,10 +76,10 @@ public class Payment extends JFrame implements ActionListener{
 					
 				}
 			});
-			group.add(jlb2,BorderLayout.WEST);
-			group.add(jtf,BorderLayout.CENTER);
-			add(group,BorderLayout.SOUTH);
-			add(button,BorderLayout.NORTH);
+			group.add(jlb2,BorderLayout.NORTH);
+			group2.add(button,BorderLayout.SOUTH);
+			add(group,BorderLayout.NORTH);
+			add(group2,BorderLayout.SOUTH);
 			this.setSize(300,300);
        
 			setLocationRelativeTo(null);

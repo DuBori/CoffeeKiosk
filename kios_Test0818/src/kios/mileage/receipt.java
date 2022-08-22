@@ -15,9 +15,11 @@ import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class receipt extends JFrame {
 
@@ -29,9 +31,12 @@ public class receipt extends JFrame {
 	String proName,billSize;
 
 	int costDefault,shot,billCount,billCost;
+	static int total=0;
 	private JPanel contentPane;
 	
-	String sysday;
+	SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd | HH:mm:ss z");
+	Date date = new Date(System.currentTimeMillis());
+	String sysday=formatter.format(date);
 	/**
 	 * Launch the application.
 	 */
@@ -42,9 +47,9 @@ public class receipt extends JFrame {
 	public receipt() {
 
 	}
-	public receipt(JTextArea jta)
+	public receipt(String jta)
 	{
-		setBounds(100, 100, 500, 700);
+		setBounds(100, 100, 500, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -73,12 +78,20 @@ public class receipt extends JFrame {
 				+ "<p>&emsp;상품&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
 				+ "단가&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	"
 				+ "수량&emsp;&emsp;&emsp;	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-				+ "금액</p></html>");
+				+ "금액</p><p>===================================================================</p></html>");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(lblNewLabel_1, BorderLayout.NORTH);
-		
-		JTextArea jArea = jta;
+		jta+="<p>===================================================================</p>";
+		jta+="<p>**********************************이용해주셔서 감사합니다.**********************************</p>";
+		jta+="<p>총액\t\t\t\t\t"+total+"원</p>";
+		jta+="<p>===================================================================</p>";
+		jta+="<p>KH카드</p><p>카드번호: *******************</p><p>거래일시: "+sysday+"</p><p>승인번호 : "+000000+"</p><p>일시불</p></html>";
+		JLabel jArea =new JLabel(jta);
 		panel_1.add(jArea, BorderLayout.CENTER);
+		
+		
+		total=0;
+		
 		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
@@ -87,9 +100,9 @@ public class receipt extends JFrame {
 		setVisible(true);
 	}
 	
-	JTextArea select()
+	String select()
 	{
-		JTextArea textArea = new JTextArea();
+		String addString="<html>";
 		try {
 			System.out.println("들어옴");
 			con=DBconnection.getConnection();
@@ -98,22 +111,32 @@ public class receipt extends JFrame {
 			System.out.println(Static.count);
 			pstmt.setInt(1, Static.count);
 			rs=pstmt.executeQuery();
-			
+			String addShot="샷 추가";
+			String.format("%-"+9+"s", addShot);
 			while(rs.next())
 			{
-				proName = rs.getString("product_name");
-				billSize = rs.getString("bill_size");
+				proName = String.format("%-"+9+"s",  rs.getString("product_name")); 
+				billSize = rs.getString("bill_size").substring(0,1);
 				shot=rs.getInt("bill_shot");
 				billCount=rs.getInt("bill_count");
 				costDefault = rs.getInt("bill_defaultsize");
 				billCost = rs.getInt("bill_cost");
+				total+=billCost;
 				//System.out.println(proName+","+billSize+","+shot+","+billCount+","+costDefault+","+billCost);
 				if(shot>0)
 				{
-					textArea.append("("+billSize+")"+proName+"\t"+costDefault+"\t\t"+billCount+"\t"+billCost+"\n");
-					textArea.append("샷 추가 ->"+shot+"번\t\t"+shot*500+"\n");
+					addString+="<p>("+billSize+")"+proName+"&emsp;&emsp;&emsp;"+costDefault+
+							"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+							+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"+billCost+"원</p>";
+					addString+="<p>"+addShot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+							+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;"
+							+shot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+							+shot*500+"원</p>";
 				}else {
-					textArea.append("("+billSize+")"+proName+"\t"+costDefault+"\t\t"+billCount+"\t"+billCost+"\n");
+					addString+="<p>("+billSize+")"+proName+"\"&emsp;&emsp;&emsp;\""+costDefault
+							+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;\"+billCount"
+							+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+							+billCost+"</p>";
 				}
 	
 			}
@@ -122,7 +145,7 @@ public class receipt extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return textArea;
+		return addString;
 		
 	}
 	
