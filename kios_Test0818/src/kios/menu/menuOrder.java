@@ -75,11 +75,6 @@ public class menuOrder extends JFrame {
 	
 	static String picNum;
 
-	public static void main(String[] args) {
-		new menuOrder();
-	}
-
-
 	/**
 
 	 * Create the frame.
@@ -233,7 +228,7 @@ public class menuOrder extends JFrame {
 		tabbedPane_NonCoffee.addTab("New tab", null, panel_6, null);
 		panel_6.setLayout(null);
 
-		JButton btn_chamo = new JButton("캐모마일 티");
+		JButton btn_chamo = new JButton("케모마일 티");
 		btn_chamo.addActionListener(new ActionListener() {
 			
 			@Override
@@ -519,7 +514,6 @@ public class menuOrder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				new Ex_Payment();
-				Static.count++;
 				
 			}
 		});

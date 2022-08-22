@@ -45,10 +45,11 @@ public class checkMileage extends JFrame{
 		 
 		 try {
 			 con=DBconnection.getConnection();
-			 query="update menu_product set member_phone=? where bill_id=?";
+			 query="update menu_product set member_phone=? where (bill_id=?) and (member_phone!=?)";
 			 pstmt=con.prepareStatement(query);
 			 pstmt.setString(1,text);
 			 pstmt.setInt(2, Static.count);
+			 pstmt.setString(3,receipt.phone);
 			 pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
