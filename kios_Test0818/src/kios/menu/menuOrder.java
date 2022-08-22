@@ -616,7 +616,7 @@ public class menuOrder extends JFrame {
 						// TODO Auto-generated method stub	
 						int count = Integer.parseInt(textArea1.getText());
 						count -= 1;
-						textArea1.setText("0");				
+						textArea1.setText(String.valueOf(count));			
 					}
 				};
 				btnNewButton_7.addActionListener(btnNewButton_7_action);
