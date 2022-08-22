@@ -87,7 +87,7 @@ public class Turnover extends JFrame {
                 String productName = resultSet.getString("product_name");
                 int billCount = resultSet.getInt("bill_count");
                 int billCost = resultSet.getInt("bill_cost");
-                Timestamp billDate = resultSet.getTimestamp("bill_date");
+                String billDate = resultSet.getString("bill_date");
 
                 orderSumResult += billCost;
                 Object[] data = {billId, productName, billCount, billCost, billDate};

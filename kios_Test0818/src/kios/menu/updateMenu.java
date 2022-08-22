@@ -25,7 +25,7 @@ public class updateMenu {
 
 			query = "insert into menu_product(bill_id,product_id,product_name,bill_size,bill_temper,"
 					+ "bill_defaultsize,bill_shot,bill_count,bill_cost,bill_date)"
-					+ "values(?,?,?,?,?,?,?,?,?,?)";
+					+ "values(?,?,?,?,?,?,?,?,?,sysdate)";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, Static.count);
 			pstmt.setInt(2, find);
@@ -36,7 +36,6 @@ public class updateMenu {
 			pstmt.setInt(7, shot);
 			pstmt.setInt(8, count);
 			pstmt.setInt(9, cost);
-			pstmt.setTimestamp(10, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
 
 			pstmt.executeUpdate();
 		
