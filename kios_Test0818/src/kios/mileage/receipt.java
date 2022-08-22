@@ -15,9 +15,11 @@ import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class receipt extends JFrame {
 
@@ -29,9 +31,12 @@ public class receipt extends JFrame {
 	String proName,billSize;
 
 	int costDefault,shot,billCount,billCost;
+	static int total=0;
 	private JPanel contentPane;
 	
-	String sysday;
+	SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd | HH:mm:ss z");
+	Date date = new Date(System.currentTimeMillis());
+	String sysday=formatter.format(date);
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +49,7 @@ public class receipt extends JFrame {
 	}
 	public receipt(JTextArea jta)
 	{
-		setBounds(100, 100, 500, 700);
+		setBounds(100, 100, 500, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -80,6 +85,14 @@ public class receipt extends JFrame {
 		JTextArea jArea = jta;
 		panel_1.add(jArea, BorderLayout.CENTER);
 		
+		jArea.append("===================================================================\n");
+		jArea.append("************************************이용해주셔서 감사합니다.************************************\n");
+		jArea.append("총액\t\t\t\t\t"+total+"원\n\n");
+		jArea.append("===================================================================\n");
+		jArea.append("KH카드\n카드번호: *******************\n거래일시: "+sysday+"\n승인번호 : "+000000+"\n일시불");
+		total=0;
+		
+		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		panel_2.setLayout(new BorderLayout(0, 0));
@@ -107,6 +120,7 @@ public class receipt extends JFrame {
 				billCount=rs.getInt("bill_count");
 				costDefault = rs.getInt("bill_defaultsize");
 				billCost = rs.getInt("bill_cost");
+				total+=billCost;
 				//System.out.println(proName+","+billSize+","+shot+","+billCount+","+costDefault+","+billCost);
 				if(shot>0)
 				{
