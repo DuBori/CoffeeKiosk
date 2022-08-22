@@ -1,12 +1,9 @@
 package kios.menu;
- 
+
 import kios.db.DBconnection;
 import kios.db.Static;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
+import java.sql.*;
 
 public class updateMenu {
 
@@ -14,20 +11,21 @@ public class updateMenu {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	String query;
-	
-	
+
 	int find;
+
 	public updateMenu() {
 
 	}
-	public updateMenu(String text,String cupSize,String IceHot,int defaultSizeCost,int shot,int count,int cost) {
+
+	public updateMenu(String text, String cupSize, String IceHot, int defaultSizeCost, int shot, int count, int cost) {
 		try {
-			con= DBconnection.getConnection();
-			find=findId("select product_id from product where product_name=?",text);
-			
-			query="insert into menu_product(bill_id,product_id,product_name,bill_size,bill_temper,"
-					+ "bill_defaultsize,bill_shot,bill_count,bill_cost)"
-					+ "values(?,?,?,?,?,?,?,?,?)";
+			con = DBconnection.getConnection();
+			find = findId("select product_id from product where product_name=?", text);
+
+			query = "insert into menu_product(bill_id,product_id,product_name,bill_size,bill_temper,"
+					+ "bill_defaultsize,bill_shot,bill_count,bill_cost,bill_date)"
+					+ "values(?,?,?,?,?,?,?,?,?,sysdate)";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, Static.count);
 			pstmt.setInt(2, find);
@@ -38,17 +36,19 @@ public class updateMenu {
 			pstmt.setInt(7, shot);
 			pstmt.setInt(8, count);
 			pstmt.setInt(9, cost);
+
 			pstmt.executeUpdate();
 		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	public updateMenu(String text,int cost,int count) {
 		try {
 			con= DBconnection.getConnection();
 			find=findId("select product_id from product where product_name=?",text);
-			
+
 			query="insert into menu_product(bill_id,product_id,product_name,"
 					+ "bill_count,bill_cost) "
 					+ "values(?,?,?,?,?)";
@@ -59,27 +59,24 @@ public class updateMenu {
 			pstmt.setInt(4, count); // BILL_COUNT
 			pstmt.setInt(5, cost); // BILL_COST
 			pstmt.executeUpdate();
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public int findId(String sql,String text)
-	{
+
+	public int findId(String sql,String text) {
 		try {
-			con=DBconnection.getConnection();
-			query=sql;
-			pstmt=con.prepareStatement(query);
+			con = DBconnection.getConnection();
+			query = sql;
+			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, text);
-			rs=pstmt.executeQuery();
-			
+			rs = pstmt.executeQuery();
+
 			while(rs.next())
 			{
 				find=rs.getInt("product_id");
 			}
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

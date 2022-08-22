@@ -61,7 +61,7 @@ public class Turnover extends JFrame {
         btn1.addActionListener(e -> {
             model.setRowCount(0);
             orderSumResult = 0;
-            turnover();
+            showTurnover();
         });
 
         // 뒤로가기 버튼
@@ -72,24 +72,25 @@ public class Turnover extends JFrame {
     }
 
     // 매출 조회하는 메서드
-    public void turnover() {
+    public void showTurnover() {
         try {
         	connection = DBconnection.getConnection();
 
-            sql = "select bill_id, sale_name, sale_count, sale_cost * sale_count as \"sale_sum\", sale_date from sales_management";
+            sql = "select bill_id, product_name, bill_count, bill_cost, bill_date from menu_product";
             preparedStatement = connection.prepareStatement(sql);
 
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                int billId = resultSet.getInt("bill_id");
-                String saleName = resultSet.getString("sale_name");
-                int saleCount = resultSet.getInt("sale_count");
-                int saleSum = resultSet.getInt("sale_sum");
-                String saleDate = resultSet.getString("sale_date");
 
-                orderSumResult += saleSum;
-                Object[] data = {billId, saleName, saleCount, saleSum, saleDate};
+                int billId = resultSet.getInt("bill_id");
+                String productName = resultSet.getString("product_name");
+                int billCount = resultSet.getInt("bill_count");
+                int billCost = resultSet.getInt("bill_cost");
+                String billDate = resultSet.getString("bill_date");
+
+                orderSumResult += billCost;
+                Object[] data = {billId, productName, billCount, billCost, billDate};
 
                 model.addRow(data);
 
