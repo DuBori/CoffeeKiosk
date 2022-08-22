@@ -32,7 +32,8 @@ public class receipt extends JFrame {
 	String proName,billSize;
 
 	int costDefault,shot,billCount,billCost;
-	static int total=0;
+	public static int total=0;
+	public static String phone="";
 	private JPanel contentPane;
 	
 	SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd | HH:mm:ss z");
@@ -111,10 +112,11 @@ public class receipt extends JFrame {
 		try {	
 			con = DBconnection.getConnection();
 			query="update member_option set member_pay = member_pay +? where member_phone ="
-				+ "(select DISTINCT member_phone  from menu_product where bill_id=?)";
+				+ "(select DISTINCT member_phone  from menu_product where (bill_id=?) and (member_phone=?) )";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, cost);
 			pstmt.setInt(2,Static.count);
+			pstmt.setString(3, phone);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
