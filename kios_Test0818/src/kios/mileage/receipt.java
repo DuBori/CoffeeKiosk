@@ -51,7 +51,7 @@ public class receipt extends JFrame {
 	}
 	public receipt(String jta)
 	{
-		setBounds(100, 100, 510, 630);
+		setBounds(100, 100, 500, 630);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -84,7 +84,7 @@ public class receipt extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(lblNewLabel_1, BorderLayout.NORTH);
 		jta+="<p>===================================================================</p>";
-		jta+="<p>**********************************이용해주셔서 감사합니다.**********************************</p>";
+		jta+="<p>*********************************이용해주셔서 감사합니다.*********************************</p>";
 		jta+="<p>결제금액&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
 				+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
 				+total+"원</p>";
