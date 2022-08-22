@@ -32,7 +32,8 @@ public class checkMileage extends JFrame{
 			check=pstmt.executeUpdate();
 			if(check>0) {	
 				JOptionPane.showMessageDialog(null, "적립 완료");
-				billaddPhone(text);			
+				billaddPhone(text);
+				accumulatedPay(text);
 				new Payment();
 			}else
 				JOptionPane.showMessageDialog(null, "적립 실패");
@@ -55,7 +56,19 @@ public class checkMileage extends JFrame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+	}
+
+	public void accumulatedPay(String text) {
+		try {
+			con = DBconnection.getConnection();
+			query = "update member_option set member_pay = (select sum(bill_cost) from menu_product) where member_phone = ?";
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1,text);
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
