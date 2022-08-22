@@ -134,7 +134,9 @@ public class Ex_Payment extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				receipt.phone="";
 				new Payment();
+				
 				
 			}
 		});

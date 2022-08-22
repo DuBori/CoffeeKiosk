@@ -3,6 +3,7 @@ package kios.register;
 import kios.db.DBconnection;
 import kios.mileage.Ex_Payment;
 import kios.mileage.checkMileage;
+import kios.mileage.receipt;
 
 import java.sql.*;
 
@@ -41,10 +42,11 @@ public class check_Phone extends JFrame{
 			}
 			if(!chkph.equals(""))
 			{
-				//TODO  연락처가 확인되어 마일리지 도장 1개 적립 메서드
+				receipt.phone=chkph;
 				new checkMileage(chkph,chkmil);
 			}else {
 				JOptionPane.showMessageDialog(null, "존재하지 않는 번호입니다.");
+				receipt.phone="";
 				new Ex_Payment();
 			}
 			
