@@ -2,8 +2,10 @@ package kios.menu;
 
 import java.awt.event.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -218,6 +220,7 @@ public class Coffee_Inner extends JFrame {
 				shotCount=Integer.parseInt(comboBox_1.getSelectedItem().toString());
 				count=Integer.parseInt(spinner_1.getValue().toString());	
 				cost=Integer.parseInt(textField.getText());
+
 				new updateMenu(text,cupSize,IceHot,coffeePrice+sizePrice,shotCount,count,cost);
 				menuOrder.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+shotCount+"\t"+count+"\t"+cost+"\n");
 			}
