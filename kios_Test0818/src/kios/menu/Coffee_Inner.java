@@ -1,5 +1,6 @@
 package kios.menu;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -219,7 +220,9 @@ public class Coffee_Inner extends JFrame {
 				count=Integer.parseInt(spinner_1.getValue().toString());	
 				cost=Integer.parseInt(textField.getText());
 				new updateMenu(text,cupSize,IceHot,coffeePrice+sizePrice,shotCount,count,cost);
-				menuOrder.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+shotCount+"\t"+count+"\t"+cost+"\n");
+				menuOrder.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+shotCount+"\n");
+				menuOrder.textArea1.append(count+"\n");
+				menuOrder.textArea2.append(cost+"\n");
 			}
 		});
 		
