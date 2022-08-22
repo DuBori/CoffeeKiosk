@@ -49,7 +49,7 @@ public class receipt extends JFrame {
 	}
 	public receipt(String jta)
 	{
-		setBounds(100, 100, 500, 530);
+		setBounds(100, 100, 500, 630);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -148,5 +148,4 @@ public class receipt extends JFrame {
 		return addString;
 		
 	}
-	
 }

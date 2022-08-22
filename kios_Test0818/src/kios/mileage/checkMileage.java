@@ -6,10 +6,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-public class checkMileage {
+public class checkMileage extends JFrame{
 	Connection con;
 	PreparedStatement pstmt;
 	ResultSet rs;
@@ -22,14 +23,15 @@ public class checkMileage {
 	public checkMileage(String text, int count) {
 		try {
 			con= DBconnection.getConnection();
-			query="update member_option set member_mileage=? where member_phone=?";
+			query="update member_option set member_milage=? where member_phone=?";
 			pstmt=con.prepareStatement(query);
-			pstmt.setInt(1,++count);
+			pstmt.setInt(1,++count); 
 			pstmt.setString(2, text);
 			check=pstmt.executeUpdate();
-			if(check>0)
+			if(check>0) {	
 				JOptionPane.showMessageDialog(null, "적립 완료");
-			else
+				new Payment();
+			}else
 				JOptionPane.showMessageDialog(null, "적립 실패");
 		} catch (Exception e) {
 			e.printStackTrace();

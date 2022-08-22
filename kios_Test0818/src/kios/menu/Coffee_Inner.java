@@ -208,6 +208,8 @@ public class Coffee_Inner extends JFrame {
 		JButton btnNewButton = new JButton("담기");
 		btnNewButton.setBounds(204, 184, 117, 29);
 		contentPane.add(btnNewButton);
+		
+
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override

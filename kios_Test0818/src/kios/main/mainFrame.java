@@ -6,13 +6,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class mainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
-
+	ImageIcon icon = new ImageIcon("kios_Test0818/src/image/coffee.png");
 	public static void main(String[] args) {
 		new mainFrame();
 	}
@@ -27,11 +28,11 @@ public class mainFrame extends JFrame {
 	
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		add(contentPane);
 		
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
-		contentPane.paintComponents(getGraphics());
+		
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		button_action();
@@ -58,7 +59,14 @@ public class mainFrame extends JFrame {
 		
 	}
 	private void panel_action() {
-		JPanel panel_1 = new JPanel();		
+		JPanel panel_1 = new JPanel(){
+			@Override
+			protected void paintComponent(Graphics g) {
+				g.drawImage(icon.getImage(),0,0,null);
+				setOpaque(false);
+				super.paintComponent(g);
+			}
+			};		
 		panel_1.addMouseListener(new mainClick()
 				{
 			@Override

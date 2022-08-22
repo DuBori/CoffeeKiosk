@@ -115,10 +115,11 @@ public class Register extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					if(tf1.getText().equals("") && tf2.getText().equals("")  && tf3.getText().equals(""))
+					if(tf1.getText().equals("") || tf2.getText().equals("")  || tf3.getText().equals(""))
 					{
 						JOptionPane.showMessageDialog(null, "가입 정보가 부족합니다.");	
 					}else {
+							dispose();
 							new check_Phone(tf1.getText(),tf2.getText(),tf3.getText());	
 					}
 					

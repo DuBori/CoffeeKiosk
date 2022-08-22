@@ -16,7 +16,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatter;
 
-import jdk.nashorn.internal.ir.ContinueNode;
+//import jdk.nashorn.internal.ir.ContinueNode;
 import kios.db.DBconnection;
 import kios.db.Static;
 import kios.mileage.Ex_Payment;
@@ -298,8 +298,6 @@ public class menuOrder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				new Ex_Payment();
-				Static.count++;
-				
 			}
 		});
 		
@@ -338,6 +336,7 @@ public class menuOrder extends JFrame {
 						textArea.addCaretListener(new CaretListener() {
 							public void caretUpdate(CaretEvent arg0) {
 								btnNewButton_7.setVisible(true);
+								
 					}
 				});
 				textArea.setBackground(SystemColor.window);
