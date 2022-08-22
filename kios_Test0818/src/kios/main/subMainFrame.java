@@ -15,7 +15,7 @@ public class subMainFrame extends JFrame {
 
 	private JPanel panel1 = new JPanel();
 	private JPanel panel2 = new JPanel();
-	public String using;
+	String using;
 	/**
 	 * Launch the application.
 	 */

@@ -1,10 +1,12 @@
 package kios.mileage;
 
 import kios.db.DBconnection;
+import kios.db.Static;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -30,12 +32,29 @@ public class checkMileage extends JFrame{
 			check=pstmt.executeUpdate();
 			if(check>0) {	
 				JOptionPane.showMessageDialog(null, "적립 완료");
+				billaddPhone(text);
 				new Payment();
 			}else
 				JOptionPane.showMessageDialog(null, "적립 실패");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	private void billaddPhone(String text) {
+		 
+		 try {
+			 con=DBconnection.getConnection();
+			 query="update menu_product set member_phone=? where bill_id=?";
+			 pstmt=con.prepareStatement(query);
+			 pstmt.setString(1,text);
+			 pstmt.setInt(2, Static.count);
+			 pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 }

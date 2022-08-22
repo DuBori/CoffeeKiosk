@@ -25,7 +25,9 @@ public class updateMenu {
 			con= DBconnection.getConnection();
 			find=findId("select product_id from product where product_name=?",text);
 			
-			query="insert into menu_product values(?,?,?,?,?,?,?,?,?)";
+			query="insert into menu_product(bill_id,product_id,product_name,bill_size,bill_temper,"
+					+ "bill_defaultsize,bill_shot,bill_count,bill_cost)"
+					+ "values(?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, Static.count);
 			pstmt.setInt(2, find);

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import kios.db.DBconnection;
 import kios.db.Static;
+import kios.main.subMainFrame;
 
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
@@ -83,13 +84,18 @@ public class receipt extends JFrame {
 		panel_1.add(lblNewLabel_1, BorderLayout.NORTH);
 		jta+="<p>===================================================================</p>";
 		jta+="<p>**********************************이용해주셔서 감사합니다.**********************************</p>";
-		jta+="<p>총액\t\t\t\t\t"+total+"원</p>";
+		jta+="<p>결제금액&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+				+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+				+total+"원</p>";
+		jta+="<p>(부가세포함)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+				+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+				+ "("+(total/11)+")</p>";
 		jta+="<p>===================================================================</p>";
 		jta+="<p>KH카드</p><p>카드번호: *******************</p><p>거래일시: "+sysday+"</p><p>승인번호 : "+000000+"</p><p>일시불</p></html>";
 		JLabel jArea =new JLabel(jta);
 		panel_1.add(jArea, BorderLayout.CENTER);
 		
-		
+		updateTotal(total);
 		total=0;
 		
 		
@@ -100,6 +106,23 @@ public class receipt extends JFrame {
 		setVisible(true);
 	}
 	
+	private void updateTotal(int cost) {
+	
+		try {	
+			con = DBconnection.getConnection();
+			query="update member_option set member_pay = member_pay +? where member_phone ="
+				+ "(select DISTINCT member_phone  from menu_product where bill_id=?)";
+			pstmt=con.prepareStatement(query);
+			pstmt.setInt(1, cost);
+			pstmt.setInt(2,Static.count);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	String select()
 	{
 		String addString="<html>";
@@ -148,4 +171,7 @@ public class receipt extends JFrame {
 		return addString;
 		
 	}
+
+	
+
 }
