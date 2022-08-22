@@ -29,9 +29,9 @@ public class receipt extends JFrame {
 	ResultSet rs;
 	String query;
 	
-	String proName,billSize;
+	String proName,billSize,memPh;
 
-	int costDefault,shot,billCount,billCost;
+	int costDefault,shot,billCount,billCost,proId;
 	public static int total=0;
 	public static String phone="";
 	private JPanel contentPane;
@@ -131,37 +131,51 @@ public class receipt extends JFrame {
 		try {
 			System.out.println("들어옴");
 			con=DBconnection.getConnection();
-			query="select * from menu_product where bill_id=?";
+			query="select * from menu_product where (bill_id=?) and (member_phone=?)";
 			pstmt=con.prepareStatement(query);
-			System.out.println(Static.count);
 			pstmt.setInt(1, Static.count);
+			System.out.println(Static.count);
+			pstmt.setString(2, phone);
 			rs=pstmt.executeQuery();
 			String addShot="샷 추가";
 			String.format("%-"+9+"s", addShot);
 			while(rs.next())
 			{
+				memPh = rs.getString("member_phone");
+				proId = rs.getInt("product_id");
 				proName = String.format("%-"+9+"s",  rs.getString("product_name")); 
-				billSize = rs.getString("bill_size").substring(0,1);
+				billSize = rs.getString("bill_size");
 				shot=rs.getInt("bill_shot");
 				billCount=rs.getInt("bill_count");
 				costDefault = rs.getInt("bill_defaultsize");
 				billCost = rs.getInt("bill_cost");
 				total+=billCost;
 				//System.out.println(proName+","+billSize+","+shot+","+billCount+","+costDefault+","+billCost);
-				if(shot>0)
+				if(proId!=0)
 				{
-					addString+="<p>("+billSize+")"+proName+"&emsp;&emsp;&emsp;"+costDefault+
-							"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-							+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"+billCost+"원</p>";
-					addString+="<p>"+addShot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-							+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;"
-							+shot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-							+shot*500+"원</p>";
-				}else {
-					addString+="<p>("+billSize+")"+proName+"\"&emsp;&emsp;&emsp;\""+costDefault
-							+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;\"+billCount"
-							+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-							+billCost+"</p>";
+					if(proId <50) {
+						if(shot>0)
+						{
+							addString+="<p>("+billSize.substring(0,1)+")"+proName+"&emsp;&emsp;&emsp;"+costDefault+
+									"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"+billCost+"원</p>";
+							addString+="<p>"+addShot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;"
+									+shot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+shot*500+"원</p>";
+						}else {
+							addString+="<p>("+billSize.substring(0,1)+")"+proName+"&emsp;&emsp;&emsp;"+costDefault
+									+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+billCost+"</p>";
+						}
+					}else {
+						addString+="<p>"+proName+"&emsp;&emsp;&emsp;"
+								+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+								+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+										+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+								+billCost+"</p>";
+					}	
 				}
 	
 			}

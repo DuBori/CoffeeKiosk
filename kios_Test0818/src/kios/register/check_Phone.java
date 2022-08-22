@@ -71,7 +71,7 @@ public class check_Phone extends JFrame{
 				{
 					chkph=rs.getString("member_phone");
 				}
-				if(chkph==null && pw !=null && name!=null)
+				if(chkph.equals("") && pw !=null && name!=null)
 				{
 					System.out.println("가입 진행");
 					insert(phone,pw,name);
