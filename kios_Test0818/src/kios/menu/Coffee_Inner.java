@@ -34,18 +34,20 @@ public class Coffee_Inner extends JFrame {
 	 */
 	public Coffee_Inner(String text) {
 
-		setBounds(100, 100, 457, 246);
+		setBounds(100, 100, 470, 260);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+//		최종 가격 표시하는 텍스트 필드
 		textField = new JTextField();
 		textField.setText(String.valueOf(coffeePrice));
 		textField.setBounds(307, 144, 77, 28);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
+//		음료 이미지 출력을 위한 공간
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.setBounds(6, 19, 194, 194);
 		contentPane.add(btnNewButton_2);
@@ -77,6 +79,22 @@ public class Coffee_Inner extends JFrame {
 			break;
 		}
 		
+		textField.setText(String.valueOf(coffeePrice));
+		
+//		온도(HOT or ICE) 선택 라디오 버튼
+		JRadioButton rdbtnHot = new JRadioButton("HOT", true);
+		rdbtnHot.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+//				btnNewButton_2.setIcon(new ImageIcon("image/americano.jpg"));
+				IceHot=rdbtnHot.getText();
+			}
+		});
+		IceHot=rdbtnHot.getText();
+		
+		rdbtnHot.setBounds(212, 30, 66, 23);
+		contentPane.add(rdbtnHot);
+		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("ICE");
 		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -88,23 +106,11 @@ public class Coffee_Inner extends JFrame {
 		rdbtnNewRadioButton.setBounds(321, 30, 67, 23);
 		contentPane.add(rdbtnNewRadioButton);
 
-		JRadioButton rdbtnHot = new JRadioButton("HOT");
-		rdbtnHot.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-//				btnNewButton_2.setIcon(new ImageIcon("image/americano.jpg"));
-				IceHot=rdbtnHot.getText();
-			}
-		});
-
-		rdbtnHot.setBounds(212, 30, 66, 23);
-		contentPane.add(rdbtnHot);
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnNewRadioButton);
 		group.add(rdbtnHot);
 
-		// ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★edited
-
+//		음료 갯수를 입력받는 스피너
 		spinner_1 = new JSpinner();
 		spinner_1.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		JComponent comp = spinner_1.getEditor();
@@ -124,9 +130,10 @@ public class Coffee_Inner extends JFrame {
 			}
 		});
 
-		String[] size = { "사이즈", "Tall", "Grande", "Venti" };
+//		사이즈를 입력받는 콤보박스
+		String[] size = { "Tall", "Grande", "Venti" };
 		JComboBox comboBox = new JComboBox(size);
-		comboBox.setSelectedItem("사이즈");
+		comboBox.setSelectedItem("Tall");
 		comboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -146,19 +153,20 @@ public class Coffee_Inner extends JFrame {
 					sizePrice = 1000;
 					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
-				default:
-					sizePrice = 0;
-					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
-					break;
 				}
 				// 사이즈별 가격 * 수량을 텍스트필드에 반영한다
 
 			}
 		});
-		comboBox.setBounds(210, 89, 68, 23);
+		comboBox.setBounds(252, 89, 68, 23);
 		contentPane.add(comboBox);
+		
+		JLabel lblNewLabel_2 = new JLabel("사이즈");
+		lblNewLabel_2.setBounds(210, 92, 40, 15);
+		contentPane.add(lblNewLabel_2);
 
-		String[] shot = { "샷 추가", "1", "2", "3", "4", "5" };
+//		샷 추가를 입력받는 콤보박스
+		String[] shot = { "0", "1", "2", "3", "4", "5" };
 		JComboBox comboBox_1 = new JComboBox(shot);
 		comboBox_1.addActionListener(new ActionListener() {
 
@@ -167,7 +175,7 @@ public class Coffee_Inner extends JFrame {
 
 				String d = (String) comboBox_1.getSelectedItem();
 				switch (d) {
-				case "샷 추가":
+				case "0":
 					addShot = 0;
 					textField.setText(String.valueOf(viewPrice(coffeePrice, sizePrice, addShot)));
 					break;
@@ -194,8 +202,13 @@ public class Coffee_Inner extends JFrame {
 				}
 			}
 		});
-		comboBox_1.setBounds(319, 89, 69, 23);
+		comboBox_1.setBounds(375, 89, 69, 23);
 		contentPane.add(comboBox_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("샷 추가");
+		lblNewLabel_3.setBounds(330, 92, 40, 15);
+		contentPane.add(lblNewLabel_3);
+		
 
 		JLabel lblNewLabel_2_1 = new JLabel("수량");
 		lblNewLabel_2_1.setBounds(213, 150, 30, 15);
@@ -205,34 +218,31 @@ public class Coffee_Inner extends JFrame {
 		lblNewLabel_1_1.setBounds(389, 157, 22, 15);
 		contentPane.add(lblNewLabel_1_1);
 		
-		JButton btnNewButton = new JButton("담기");
-		btnNewButton.setBounds(204, 184, 117, 29);
-		contentPane.add(btnNewButton);
-		
-
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btn_putIn = new JButton("담기");
+		btn_putIn.setBounds(204, 184, 117, 29);
+		contentPane.add(btn_putIn);
+		btn_putIn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			// TODO HOT, ICE 가지고 올 String 따오기
 			// TODO 라벨값 따오기
 				dispose();
+				
 				cupSize=comboBox.getSelectedItem().toString();
 				shotCount=Integer.parseInt(comboBox_1.getSelectedItem().toString());
 				count=Integer.parseInt(spinner_1.getValue().toString());	
 				cost=Integer.parseInt(textField.getText());
 				new updateMenu(text,cupSize,IceHot,coffeePrice+sizePrice,shotCount,count,cost);
-				menuOrder.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+shotCount+"\n");
-				menuOrder.textArea1.append(count+"\n");
-				menuOrder.textArea2.append(cost+"\n");
+				menuOrder.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+shotCount+"\t"+count+"\t"+cost+"\n");
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("취소");
-		btnNewButton_1.setBounds(321, 184, 117, 29);
-		contentPane.add(btnNewButton_1);
+		JButton btn_cancel = new JButton("취소");
+		btn_cancel.setBounds(330, 184, 117, 29);
+		contentPane.add(btn_cancel);
 		
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btn_cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();

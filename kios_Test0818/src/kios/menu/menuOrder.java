@@ -86,7 +86,7 @@ public class menuOrder extends JFrame {
 
 	 */
 
-	int total=0; int col=0; int row=0; String contents = ""; int bill_id;
+	int total=0; int col=0; int row=0; String contents = "";
 	 
 	public menuOrder() {
 
@@ -96,194 +96,415 @@ public class menuOrder extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane_Main = new JTabbedPane(JTabbedPane.TOP);	// 메인 tab
 
 		JPanel panel = new JPanel();
-		tabbedPane.addTab("Coffee", null, panel, null);
+		tabbedPane_Main.addTab("Coffee", null, panel, null);
 		panel.setLayout(null);
-
-		JButton btnNewButton_1_1 = new JButton("아메리카노");
 		
-		btnNewButton_1_1.addActionListener(new ActionListener() {
+		JTabbedPane tabbedPane_Coffee = new JTabbedPane(JTabbedPane.TOP);	// Coffee 내부 Tab
+		tabbedPane_Coffee.setBounds(0, -27, 685, 472);
+		panel.add(tabbedPane_Coffee);
+		
+		JPanel panel_8 = new JPanel();
+		tabbedPane_Coffee.addTab("New tab", null, panel_8, null);
+		panel_8.setLayout(null);
+
+		JButton btnNewButton_ameri = new JButton("아메리카노");
+		
+		btnNewButton_ameri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "ameri";
-				new Coffee_Inner(btnNewButton_1_1.getText());
+				new Coffee_Inner(btnNewButton_ameri.getText());
 			}
 
 		});
-		btnNewButton_1_1.setBounds(12, 36, 211, 188);
-		panel.add(btnNewButton_1_1);
+		btnNewButton_ameri.setBounds(12, 100, 211, 188);
+		panel_8.add(btnNewButton_ameri);
 		
 		
-		JButton btnNewButton_1 = new JButton("카페라떼");
+		JButton btn_latte = new JButton("카페라떼");
 		
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btn_latte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "latte";
-				new Coffee_Inner(btnNewButton_1.getText());
+				new Coffee_Inner(btn_latte.getText());
 			}
 
 		});
-		btnNewButton_1.setBounds(235, 36, 211, 188);
-		panel.add(btnNewButton_1);
+		btn_latte.setBounds(235, 100, 211, 188);
+		panel_8.add(btn_latte);
 
 		
-		JButton btnNewButton_2 = new JButton("카페모카");
+		JButton btn_mocha = new JButton("카페모카");
 		
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btn_mocha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "mocha";
-				new Coffee_Inner(btnNewButton_2.getText());
+				new Coffee_Inner(btn_mocha.getText());
 			}
 
 		});
-		btnNewButton_2.setBounds(458, 36, 211, 188);
-		panel.add(btnNewButton_2);
+		btn_mocha.setBounds(458, 100, 211, 188);
+		panel_8.add(btn_mocha);
+		
+		JPanel panel_9 = new JPanel();
+		tabbedPane_Coffee.addTab("New tab", null, panel_9, null);
+		panel_9.setLayout(null);
 
 		
+		JButton btn_cappu = new JButton("카푸치노");
 
-		JButton btnNewButton_3 = new JButton("카푸치노");
-
-		btnNewButton_3.addActionListener(new ActionListener() {
+		btn_cappu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "cappu";
-				new Coffee_Inner(btnNewButton_3.getText());
+				new Coffee_Inner(btn_cappu.getText());
 			}
 		});
-		btnNewButton_3.setBounds(12, 258, 211, 188);
-		panel.add(btnNewButton_3);
+		btn_cappu.setBounds(12, 100, 211, 188);
+		panel_9.add(btn_cappu);
 
 
-		JButton btnNewButton_4 = new JButton("카라멜마키아또");
+		JButton btn_caramel = new JButton("카라멜마키아또");
 
-		btnNewButton_4.addActionListener(new ActionListener() {
+		btn_caramel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "caramel";
-				new Coffee_Inner(btnNewButton_4.getText());
+				new Coffee_Inner(btn_caramel.getText());
 			}
 		});
-		btnNewButton_4.setBounds(235, 258, 211, 188);
-		panel.add(btnNewButton_4);
+		btn_caramel.setBounds(235, 100, 211, 188);
+		panel_9.add(btn_caramel);
 
 		
 
-		JButton btnNewButton_5 = new JButton("에스프레소");
+		JButton btn_espresso = new JButton("에스프레소");
 
-		btnNewButton_5.addActionListener(new ActionListener() {
+		btn_espresso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "espresso";
-				new Coffee_Inner(btnNewButton_5.getText());
+				new Coffee_Inner(btn_espresso.getText());
 			}
 		});
-		btnNewButton_5.setBounds(458, 258, 211, 188);
-		panel.add(btnNewButton_5);
+		btn_espresso.setBounds(458, 100, 211, 188);
+		panel_9.add(btn_espresso);
 
 		
-
+		JButton btn_prev_Coffee = new JButton("이전");
+		btn_prev_Coffee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int nowTabNum = tabbedPane_Coffee.getSelectedIndex();
+				if(nowTabNum <= 0) {
+					tabbedPane_Coffee.setSelectedIndex(0);
+				}else {
+					tabbedPane_Coffee.setSelectedIndex(nowTabNum-1);
+				}
+			}
+		});
+		btn_prev_Coffee.setBounds(10, 454, 97, 23);
+		panel.add(btn_prev_Coffee);
+		
+		JButton btn_next_Coffee = new JButton("다음");
+		btn_next_Coffee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int nowTabNum = tabbedPane_Coffee.getSelectedIndex();
+				if(nowTabNum >= 1) {
+					tabbedPane_Coffee.setSelectedIndex(1);
+				}else {
+					tabbedPane_Coffee.setSelectedIndex(nowTabNum+1);
+				}
+			}
+		});
+		btn_next_Coffee.setBounds(576, 454, 97, 23);
+		panel.add(btn_next_Coffee);
+		
+		
 		JPanel panel_1 = new JPanel();
 
-		tabbedPane.addTab("Non-Coffee", null, panel_1, null);
+		tabbedPane_Main.addTab("Non-Coffee", null, panel_1, null);
 
 		panel_1.setLayout(null);
 
+		JTabbedPane tabbedPane_NonCoffee = new JTabbedPane(JTabbedPane.TOP);	// NonCoffee 내부 Tab
+		tabbedPane_NonCoffee.setBounds(0, -27, 685, 472);
+		panel_1.add(tabbedPane_NonCoffee);
 		
+		JPanel panel_6 = new JPanel();
+		tabbedPane_NonCoffee.addTab("New tab", null, panel_6, null);
+		panel_6.setLayout(null);
 
-		JButton btnNewButton_6 = new JButton("카모마일티");
-
-		btnNewButton_6.addActionListener(new ActionListener() {
-
+		JButton btn_chamo = new JButton("캐모마일 티");
+		btn_chamo.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				picNum = "chamo";
+				new NonCoffee_Inner(btn_chamo.getText());
 				
-
 			}
-
 		});
-
-		btnNewButton_6.setBounds(12, 36, 211, 188);
-
-		panel_1.add(btnNewButton_6);
+		btn_chamo.setBounds(12, 100, 211, 188);
+		panel_6.add(btn_chamo);
 
 		
-
-		JButton btnNewButton_6_1 = new JButton("얼그레이 티");
-
-		btnNewButton_6_1.addActionListener(new ActionListener() {
-
+		JButton btn_earlgrey = new JButton("얼그레이 티");
+		btn_earlgrey.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
-
-
+				picNum = "earlgrey";
+				new NonCoffee_Inner(btn_earlgrey.getText());
+				
 			}
-
 		});
-
-		btnNewButton_6_1.setBounds(235, 36, 211, 188);
-
-		panel_1.add(btnNewButton_6_1);
+		btn_earlgrey.setBounds(235, 100, 211, 188);
+		panel_6.add(btn_earlgrey);
 
 		
 
-		JButton btnNewButton_6_2 = new JButton("매실차");
-
-		btnNewButton_6_2.setBounds(458, 36, 211, 188);
-
-		panel_1.add(btnNewButton_6_2);
+		JButton btn_jamong = new JButton("자몽 허니 블랙 티");
+		btn_jamong.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "jamong";
+				new NonCoffee_Inner(btn_jamong.getText());
+				
+			}
+		});
+		btn_jamong.setBounds(457, 100, 211, 188);
+		panel_6.add(btn_jamong);
+		
+		
+		JPanel panel_7 = new JPanel();
+		tabbedPane_NonCoffee.addTab("New tab", null, panel_7, null);
+		panel_7.setLayout(null);
+		
+		JButton btn_saenggang = new JButton("생강차");
+		btn_saenggang.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "saenggang";
+				new NonCoffee_Inner(btn_saenggang.getText());
+				
+			}
+		});
+		btn_saenggang.setBounds(11, 12, 211, 188);
+		panel_7.add(btn_saenggang);
+		
+		JButton btn_green = new JButton("녹차");
+		btn_green.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "green";
+				new NonCoffee_Inner(btn_green.getText());
+				
+			}
+		});
+		btn_green.setBounds(234, 12, 211, 188);
+		panel_7.add(btn_green);
+		
+		JButton btn_maesil = new JButton("매실차");
+		btn_maesil.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "maesil";
+				new NonCoffee_Inner(btn_maesil.getText());
+				
+			}
+		});
+		btn_maesil.setBounds(457, 12, 211, 188);
+		panel_7.add(btn_maesil);
+		
+		JButton btn_yuja = new JButton("유자차");
+		btn_yuja.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "yuja";
+				new NonCoffee_Inner(btn_yuja.getText());
+				
+			}
+		});
+		btn_yuja.setBounds(11, 234, 211, 188);
+		panel_7.add(btn_yuja);
 
 		
-
-		JButton btnNewButton_6_3 = new JButton("유자차");
-
-		btnNewButton_6_3.setBounds(12, 258, 211, 188);
-
-		panel_1.add(btnNewButton_6_3);
-
+		JButton btn_prev_NonCoffee = new JButton("이전");
+		btn_prev_NonCoffee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int nowTabNum = tabbedPane_NonCoffee.getSelectedIndex();
+				if(nowTabNum <= 0) {
+					tabbedPane_NonCoffee.setSelectedIndex(0);
+				}else {
+					tabbedPane_NonCoffee.setSelectedIndex(nowTabNum-1);
+				}
+			}
+		});
+		btn_prev_NonCoffee.setBounds(10, 454, 97, 23);
+		panel_1.add(btn_prev_NonCoffee);
 		
-
-		JButton btnNewButton_6_3_1 = new JButton("녹차");
-
-		btnNewButton_6_3_1.setBounds(235, 258, 211, 188);
-
-		panel_1.add(btnNewButton_6_3_1);
-
+		JButton btn_next_NonCoffee = new JButton("다음");
+		btn_next_NonCoffee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int nowTabNum = tabbedPane_NonCoffee.getSelectedIndex();
+				if(nowTabNum >= 1) {
+					tabbedPane_NonCoffee.setSelectedIndex(1);
+				}else {
+					tabbedPane_NonCoffee.setSelectedIndex(nowTabNum+1);
+				}
+			}
+		});
+		btn_next_NonCoffee.setBounds(576, 454, 97, 23);
+		panel_1.add(btn_next_NonCoffee);
 		
-
-		JButton btnNewButton_6_3_2 = new JButton("대추차");
-
-		btnNewButton_6_3_2.setBounds(458, 258, 211, 188);
-
-		panel_1.add(btnNewButton_6_3_2);
-
 		
-
+		
 		JPanel panel_2 = new JPanel();
 
-		tabbedPane.addTab("Food", null, panel_2, null);
+		tabbedPane_Main.addTab("Food", null, panel_2, null);
 
 		panel_2.setLayout(null);
 
 		
 
-		JButton btnNewButton_6_4 = new JButton("케이크(1조각)");
-
-		btnNewButton_6_4.setBounds(12, 129, 211, 188);
-
-		panel_2.add(btnNewButton_6_4);
-
+		JTabbedPane tabbedPane_Food = new JTabbedPane(JTabbedPane.TOP);	// Food 내부 Tab
+		tabbedPane_Food.setBounds(0, -27, 685, 472);
+		panel_2.add(tabbedPane_Food);
 		
-
-		JButton btnNewButton_6_1_1 = new JButton("샌드위치");
-
-		btnNewButton_6_1_1.setBounds(235, 129, 211, 188);
-
-		panel_2.add(btnNewButton_6_1_1);
-
+		JPanel panel_food1 = new JPanel();
+		tabbedPane_Food.addTab("New tab", null, panel_food1, null);
+		panel_food1.setLayout(null);
 		
-
-		JButton btnNewButton_6_2_1 = new JButton("스콘");
-
-		btnNewButton_6_2_1.setBounds(458, 129, 211, 188);
-
-		panel_2.add(btnNewButton_6_2_1);
+		JButton btn_cheese = new JButton("치즈 케이크");
+		btn_cheese.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "cheese";
+				new Food_Inner(btn_cheese.getText());
+				
+			}
+		});
+		btn_cheese.setBounds(12, 100, 211, 188);
+		panel_food1.add(btn_cheese);
+		
+		JButton btn_tiramisu = new JButton("티라미수 케이크");
+		btn_tiramisu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "tiramisu";
+				new Food_Inner(btn_tiramisu.getText());
+				
+			}
+		});
+		btn_tiramisu.setBounds(235, 100, 211, 188);
+		panel_food1.add(btn_tiramisu);
+		
+		JPanel panel_food2 = new JPanel();
+		tabbedPane_Food.addTab("New tab", null, panel_food2, null);
+		panel_food2.setLayout(null);
+		
+		JButton btn_egg = new JButton("에그 샌드위치");
+		btn_egg.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "egg";
+				new Food_Inner(btn_egg.getText());
+				
+			}
+		});
+		btn_egg.setBounds(12, 100, 211, 188);
+		panel_food2.add(btn_egg);
+		
+		JButton btn_danhobak = new JButton("단호박 샌드위치");
+		btn_danhobak.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "danhobak";
+				new Food_Inner(btn_danhobak.getText());
+				
+			}
+		});
+		btn_danhobak.setBounds(235, 100, 211, 188);
+		panel_food2.add(btn_danhobak);
+		
+		JPanel panel_food3 = new JPanel();
+		tabbedPane_Food.addTab("New tab", null, panel_food3, null);
+		panel_food3.setLayout(null);
+		
+		JButton btn_scorn = new JButton("스콘");
+		btn_scorn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "scorn";
+				new Food_Inner(btn_scorn.getText());
+				
+			}
+		});
+		btn_scorn.setBounds(12, 100, 211, 188);
+		panel_food3.add(btn_scorn);
+		
+		JButton btn_macaron = new JButton("마카롱");
+		btn_macaron.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "macaron";
+				new Food_Inner(btn_macaron.getText());
+				
+			}
+		});
+		btn_macaron.setBounds(235, 100, 211, 188);
+		panel_food3.add(btn_macaron);
+		
+		JButton btn_waffle = new JButton("와플");
+		btn_waffle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				picNum = "waffle";
+				new Food_Inner(btn_waffle.getText());
+				
+			}
+		});
+		btn_waffle.setBounds(458, 100, 211, 188);
+		panel_food3.add(btn_waffle);
+		
+		JButton btn_prev_Food = new JButton("이전");
+		btn_prev_Food.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int nowTabNum = tabbedPane_Food.getSelectedIndex();
+				if(nowTabNum <= 0) {
+					tabbedPane_Food.setSelectedIndex(0);
+				}else {
+					tabbedPane_Food.setSelectedIndex(nowTabNum-1);
+				}
+			}
+		});
+		btn_prev_Food.setBounds(10, 454, 97, 23);
+		panel_2.add(btn_prev_Food);
+		
+		JButton btn_next_Food = new JButton("다음");
+		btn_next_Food.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					int nowTabNum = tabbedPane_Food.getSelectedIndex();
+					if(nowTabNum >= 2) {
+						tabbedPane_Food.setSelectedIndex(2);
+					}else {
+						tabbedPane_Food.setSelectedIndex(nowTabNum+1);
+					}
+			}
+		});
+		btn_next_Food.setBounds(576, 454, 97, 23);
+		panel_2.add(btn_next_Food);
 
 		
 
@@ -298,6 +519,8 @@ public class menuOrder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				new Ex_Payment();
+				Static.count++;
+				
 			}
 		});
 		
@@ -307,7 +530,7 @@ public class menuOrder extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 702, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tabbedPane_Main, GroupLayout.PREFERRED_SIZE, 702, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
@@ -318,7 +541,7 @@ public class menuOrder extends JFrame {
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE)
+					.addComponent(tabbedPane_Main, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
@@ -336,7 +559,6 @@ public class menuOrder extends JFrame {
 						textArea.addCaretListener(new CaretListener() {
 							public void caretUpdate(CaretEvent arg0) {
 								btnNewButton_7.setVisible(true);
-								
 					}
 				});
 				textArea.setBackground(SystemColor.window);
