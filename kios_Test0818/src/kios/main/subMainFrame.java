@@ -15,7 +15,7 @@ public class subMainFrame extends JFrame {
 
 	private JPanel panel1 = new JPanel();
 	private JPanel panel2 = new JPanel();
-	public String using;
+	String using;
 	/**
 	 * Launch the application.
 	 */
@@ -29,7 +29,7 @@ public class subMainFrame extends JFrame {
 		getContentPane().setLayout(new GridLayout(0,2));
         
 		JButton btn1 = new JButton("매장이용");
-		btn1.setIcon(new ImageIcon("src/image/store.png"));
+		btn1.setIcon(new ImageIcon("kios_Test0818/src/image/store.png"));
 		btn1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -42,7 +42,7 @@ public class subMainFrame extends JFrame {
 			}
 		});
 		JButton btn2 = new JButton("포장");
-		btn2.setIcon(new ImageIcon("src/image/takeOut.png"));
+		btn2.setIcon(new ImageIcon("kios_Test0818/src/image/takeOut.png"));
 		btn2.addActionListener(new ActionListener() {
 			
 			@Override

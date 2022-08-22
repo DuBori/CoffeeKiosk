@@ -7,7 +7,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
 
@@ -43,7 +42,6 @@ public class Payment extends JFrame implements ActionListener{
 		dispose();
 		if(e.getSource() == jbt1 || e.getSource() == jbt2){
 			tf2 = new test_Frame2(e.getActionCommand() + " 결제했습니다.");
-			System.out.println(Static.count);
 			new receipt(new receipt().select());
 			Static.count++;
 		 }
