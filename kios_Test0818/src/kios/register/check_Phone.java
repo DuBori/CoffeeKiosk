@@ -5,18 +5,20 @@ import kios.mileage.Ex_Payment;
 import kios.mileage.checkMileage;
 
 import java.sql.*;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
 
-public class check_Phone {
+public class check_Phone extends JFrame{
 
 	Connection con;
 	PreparedStatement pstmt;
 	ResultSet rs;
 	String query;
 	int check;
-	String chkph;
+	String chkph="";
 	int chkmil;
 	
 	public check_Phone() {
@@ -27,7 +29,7 @@ public class check_Phone {
 		try {
 			System.out.println("무결성 체크 시작");
 			con= DBconnection.getConnection();
-			query="select member_phone,member_mileage from member_option where member_phone=?";
+			query="select member_phone,member_milage from member_option where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, phone);
 			rs=pstmt.executeQuery();
@@ -35,9 +37,9 @@ public class check_Phone {
 			while(rs.next())
 			{
 				chkph=rs.getString("member_phone");
-				chkmil=rs.getInt("member_mileage");
+				chkmil=rs.getInt("member_milage");
 			}
-			if(chkph==null)
+			if(!chkph.equals(""))
 			{
 				//TODO  연락처가 확인되어 마일리지 도장 1개 적립 메서드
 				new checkMileage(chkph,chkmil);
@@ -84,7 +86,7 @@ public class check_Phone {
 		{
 			try {
 				con=DBconnection.getConnection();
-				query="insert into member_option(member_phone,member_pw,member_name,member_mileage,member_pay) values(?,?,?,?,?)";
+				query="insert into member_option(member_phone,member_pw,member_name,member_milage,member_pay) values(?,?,?,?,?)";
 				pstmt=con.prepareStatement(query);
 				pstmt.setString(1, phone);
 				pstmt.setString(2, pw);
