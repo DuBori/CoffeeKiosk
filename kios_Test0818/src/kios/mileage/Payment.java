@@ -28,14 +28,6 @@ public class Payment extends JFrame implements ActionListener{
 	JButton jbt1 = new JButton("카드",card);
 	JButton jbt2 = new JButton("현금",money);
 	test_Frame2 tf2;
-=======
-		ImageIcon card = new ImageIcon("kios_Test0818/src/image/icon_card.jpg");
-		ImageIcon money = new ImageIcon("kios_Test0818/src/image/money.jpg");
-		JButton jbt1 = new JButton("카드",card);
-		JButton jbt2 = new JButton("현금",money);
-		
-		test_Frame2 tf2;
->>>>>>> branch 'CKK' of https://github.com/DuBori/CoffeeKiosk.git
 
 	public Payment() {
 		setTitle("결제창");
@@ -64,7 +56,6 @@ public class Payment extends JFrame implements ActionListener{
 			}
 		});
 		jbt2.addActionListener(new ActionListener() {
-			
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -156,3 +147,4 @@ class test_Frame2 extends JDialog{
 
 	}
 }
+
