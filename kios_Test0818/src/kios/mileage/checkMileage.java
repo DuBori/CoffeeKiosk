@@ -25,7 +25,7 @@ public class checkMileage extends JFrame{
 	public checkMileage(String text, int count) {
 		try {
 			con= DBconnection.getConnection();
-			query="update member_option set member_mileage=? where member_phone=?";
+			query="update member_option set member_milage=? where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1,++count); 
 			pstmt.setString(2, text);
@@ -46,11 +46,10 @@ public class checkMileage extends JFrame{
 
 		 try {
 			 con=DBconnection.getConnection();
-			 query="update menu_product set member_phone=? where (bill_id=?) and (member_phone!=?)";
+			 query="update menu_product set member_phone=? where bill_id=?";
 			 pstmt=con.prepareStatement(query);
 			 pstmt.setString(1,text);
 			 pstmt.setInt(2, Static.count);
-			 pstmt.setString(3,receipt.phone);
 			 pstmt.executeUpdate();
 		} catch (SQLException e) {
 //			 TODO Auto-generated catch block
@@ -61,10 +60,10 @@ public class checkMileage extends JFrame{
 	public void accumulatedPay(String text) {
 		try {
 			con = DBconnection.getConnection();
-			query = "update member_option set member_pay = (select sum(bill_cost) from menu_product) where member_phone = ?";
+			query = "update member_option set member_pay = (select sum(bill_cost) from menu_product where member_phone=?) where member_phone = ?";
 			pstmt = con.prepareStatement(query);
-
-			pstmt.setString(1,text);
+			pstmt.setString(1, text);
+			pstmt.setString(2,text);
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
