@@ -1,5 +1,6 @@
 package kios.menu;
  
+import java.awt.FlowLayout;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -224,7 +225,7 @@ public class NonCoffee_Inner extends JFrame {
 		JButton btn_putIn = new JButton("담기");
 		btn_putIn.setBounds(204, 184, 117, 29);
 		contentPane.add(btn_putIn);
-		btn_putIn.addActionListener(new ActionListener() {
+/*		btn_putIn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -238,6 +239,84 @@ public class NonCoffee_Inner extends JFrame {
 				cost=Integer.parseInt(textField.getText());
 				new updateMenu(text,cupSize,IceHot,coffeePrice+sizePrice,shotCount,count,cost);
 				menuOrder.textArea.append(text+"\t"+cupSize+"\t"+IceHot+"\t"+shotCount+"\t"+count+"\t"+cost+"\n");
+			}
+		});
+*/		
+		btn_putIn.addActionListener(new ActionListener() {
+			JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			// TODO HOT, ICE 가지고 올 String 따오기
+			// TODO 라벨값 따오기
+				dispose();
+				
+				JLabel L1 = new JLabel();
+				JLabel L2 = new JLabel();
+				JButton	j1 = new JButton("-");
+				JButton	j2 = new JButton("+");
+				JButton	j3 = new JButton("x");
+				cupSize=comboBox.getSelectedItem().toString();
+				shotCount=Integer.parseInt(comboBox_1.getSelectedItem().toString());
+				count=Integer.parseInt(spinner_1.getValue().toString());	
+				cost=Integer.parseInt(textField.getText());
+				
+//				DTO.textArea1.setText(String.valueOf(count));
+//				DTO.textArea2.append(cost+"\n");
+				DTO.finalOption = coffeePrice+sizePrice+addShot;
+				DTO.realFinalCost = (coffeePrice+sizePrice+addShot)*count;
+				
+				new updateMenu(text,cupSize,IceHot,coffeePrice+sizePrice,shotCount,count,cost);
+				Panel.add(new JLabel(text));
+				Panel.add(j1);
+				j1.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						count -= 1;
+						if(count < 1) {
+							count = 1;
+							L1.setText(String.valueOf(count));
+							L2.setText(String.valueOf(DTO.finalOption * count));
+						}else {
+							L1.setText(String.valueOf(count));
+							L2.setText(String.valueOf(DTO.finalOption * count));
+						}
+						
+					}
+				});
+					
+				Panel.add(L1);
+				Panel.add(j2);
+				j2.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						count += 1;
+								
+							L1.setText(String.valueOf(count));
+							L2.setText(String.valueOf(DTO.finalOption * count));
+						
+					}
+				});
+				Panel.add(j3);
+				j3.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						menuOrder.panel_3.remove(Panel);
+					}
+				});
+				
+				Panel.add(L2);
+				
+				L1.setText(String.valueOf(count));
+				L2.setText(String.valueOf(DTO.realFinalCost));
+				System.out.println(String.valueOf(count)+"\t"+String.valueOf(DTO.realFinalCost));
+				
+				menuOrder.panel_3.add(Panel).setVisible(true);
+				
 			}
 		});
 		

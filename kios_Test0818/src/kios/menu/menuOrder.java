@@ -42,6 +42,7 @@ import javax.swing.JSlider;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
 import javax.swing.event.AncestorListener;
@@ -58,6 +59,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.beans.PropertyChangeEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
@@ -67,13 +70,11 @@ public class menuOrder extends JFrame {
 
 	DefaultTableModel model;
 	private JPanel contentPane;
-	public static JTextArea textArea;
-	public static JTextArea textArea1;
-	public static JTextArea textArea2;
+
 	public static JButton btnNewButton_7;
 	public static JPanel panel_3;
-	
 	static String picNum;
+	public static List<JPanel>  list;
 
 	/**
 
@@ -542,86 +543,102 @@ public class menuOrder extends JFrame {
 						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
 					.addContainerGap())
 		);
-				
-				JPanel panel_3 = new JPanel();
-				scrollPane.setViewportView(panel_3);
-				
-				//수량 - 버튼
-				JButton btnNewButton_7 = new JButton("-");
-				btnNewButton_7.setVisible(false);
-						textArea = new JTextArea();
-						textArea.addCaretListener(new CaretListener() {
-							public void caretUpdate(CaretEvent arg0) {
-								btnNewButton_7.setVisible(true);
-					}
-				});
-				textArea.setBackground(SystemColor.window);
-				
-				//수량 + 버튼
-				JButton btnNewButton_8 = new JButton("+");
-				btnNewButton_8.setVisible(false);
-				textArea1 = new JTextArea();
-				textArea1.addCaretListener(new CaretListener() {
-					public void caretUpdate(CaretEvent e) {
-						btnNewButton_8.setVisible(true);
-					}
-				});
-				textArea1.setBackground(SystemColor.window);
-				
-				//지우기 버튼
-				JButton btnNewButton_9 = new JButton("X");
-				btnNewButton_9.setVisible(false);
-				textArea2 = new JTextArea();
-				textArea2.addCaretListener(new CaretListener() {
-					public void caretUpdate(CaretEvent e) {
-						btnNewButton_9.setVisible(true);
-					}
-				});
-				textArea2.setBackground(SystemColor.window);
-				btnNewButton_9.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						 textArea.setText("");
-						 textArea1.setText("");
-						 textArea2.setText("");
-						 btnNewButton_7.setVisible(false);
-						 btnNewButton_8.setVisible(false);
-						 btnNewButton_9.setVisible(false);
-						 
-					} 
-				});
-				
-				//버튼 클릭시 수량 변동(+)
-				ActionListener btnNewButton_8_action = new ActionListener(){			
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub	
-						int count = Integer.parseInt(textArea1.getText());
-						count += 1;
-						textArea1.setText(String.valueOf(count));				
-					}
-				};
-				btnNewButton_8.addActionListener(btnNewButton_8_action);
 
-				//버튼 클릭시 수량 변동(-)
-				ActionListener btnNewButton_7_action = new ActionListener(){			
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub	
-						int count = Integer.parseInt(textArea1.getText());
-						count -= 1;
-						textArea1.setText(String.valueOf(count));			
-					}
-				};
-				btnNewButton_7.addActionListener(btnNewButton_7_action);
-				
-				panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-				panel_3.add(textArea);
-				panel_3.add(btnNewButton_7);
-				panel_3.add(textArea1);
-				panel_3.add(btnNewButton_8);
-				panel_3.add(textArea2);
-				panel_3.add(btnNewButton_9);
+				panel_3 = new JPanel();
+				panel_3.setLayout(new GridLayout(20, 1, 80, 0));
+				list = new ArrayList<JPanel>();
+				scrollPane.setViewportView(panel_3);
+		
+//				JPanel panel_3 = new JPanel();
+//				scrollPane.setViewportView(panel_3);
+//				
+//				//수량 - 버튼
+//				JButton btn_minus = new JButton("-");
+//				btn_minus.setVisible(false);
+//						DTO.textArea = new JTextArea();
+//						DTO.textArea.addCaretListener(new CaretListener() {
+//							public void caretUpdate(CaretEvent arg0) {
+//								btn_minus.setVisible(true);
+//					}
+//				});
+//						
+//				DTO.textArea.setBackground(SystemColor.window);	// 텍스트창1 : 제품이름/사이즈/온도/샷
+//				
+//				//수량 + 버튼
+//				JButton btn_plus = new JButton("+");
+//				btn_plus.setVisible(false);
+//				DTO.textArea1 = new JTextArea();
+//				DTO.textArea1.addCaretListener(new CaretListener() {
+//					public void caretUpdate(CaretEvent e) {
+//						btn_plus.setVisible(true);
+//					}
+//				});
+//				
+//				DTO.textArea1.setBackground(SystemColor.window); // 텍스트창2 : 수량
+//				
+//				//지우기 버튼
+//				JButton btn_delete = new JButton("X");
+//				btn_delete.setVisible(false);
+//				DTO.textArea2 = new JTextArea();
+//				DTO.textArea2.addCaretListener(new CaretListener() {
+//					public void caretUpdate(CaretEvent e) {
+//						btn_delete.setVisible(true);
+//					}
+//				});
+//				
+//				DTO.textArea2.setBackground(SystemColor.window); // 텍스트창3 : 최종 가격
+//				
+//				btn_delete.addMouseListener(new MouseAdapter() {
+//					@Override
+//					public void mouseClicked(MouseEvent e) {
+//						 DTO.textArea.setText("");
+//						 DTO.textArea1.setText("");
+//						 DTO.textArea2.setText("");
+//						 btn_minus.setVisible(false);
+//						 btn_plus.setVisible(false);
+//						 btn_delete.setVisible(false);
+//						 
+//					} 
+//				});
+//				
+//				//버튼 클릭시 수량 변동(+)
+//				ActionListener btn_plus_action = new ActionListener(){			
+//					@Override
+//					public void actionPerformed(ActionEvent e) {
+//						// TODO Auto-generated method stub	
+//						int count = Integer.parseInt(DTO.textArea1.getText());
+//						count += 1;
+//						DTO.textArea1.setText(String.valueOf(count));
+//						DTO.textArea2.setText(String.valueOf(count * DTO.finalOption));				
+//					}
+//				};
+//				btn_plus.addActionListener(btn_plus_action);
+//
+//				//버튼 클릭시 수량 변동(-)
+//				ActionListener btn_minus_action = new ActionListener(){			
+//					@Override
+//					public void actionPerformed(ActionEvent e) {
+//						// TODO Auto-generated method stub	
+//						int count = Integer.parseInt(DTO.textArea1.getText());
+//						count -= 1;
+//						if(count < 1) {
+//							DTO.textArea1.setText(String.valueOf(1));
+//							DTO.textArea2.setText(String.valueOf(1 * DTO.finalOption));
+//						}else {
+//						DTO.textArea1.setText(String.valueOf(count));
+//						DTO.textArea2.setText(String.valueOf(count * DTO.finalOption));
+//						}
+//					}
+//				};
+//				btn_minus.addActionListener(btn_minus_action);
+//				
+//				panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+//				panel_3.add(DTO.textArea);
+//				panel_3.add(btn_minus);
+//				panel_3.add(DTO.textArea1);
+//				panel_3.add(btn_plus);
+//				panel_3.add(DTO.textArea2);
+//				panel_3.add(btn_delete);
 				contentPane.setLayout(gl_contentPane);
 		setVisible(true);
 	}
