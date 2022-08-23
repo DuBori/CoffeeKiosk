@@ -1,5 +1,6 @@
 package kios.mileage;
 
+import kios.db.DBconnection;
 import kios.db.Static;
 import kios.main.mainFrame;
 
@@ -7,10 +8,20 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import javax.swing.*;
 
 
 public class Payment extends JFrame implements ActionListener{
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String query = null;
+	int down, text, bill_count, product_id;
 	
 	ImageIcon card = new ImageIcon("kios_Test0818/src/image/icon_card.jpg");
 	ImageIcon money = new ImageIcon("kios_Test0818/src/image/money.jpg");
@@ -35,8 +46,24 @@ public class Payment extends JFrame implements ActionListener{
 	        
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		jbt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				downId(down);
+			}
+		});
+		jbt2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				downId(down);
+			}
+		});
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		dispose();
@@ -45,6 +72,37 @@ public class Payment extends JFrame implements ActionListener{
 			new receipt(new receipt().select());
 			Static.count++;
 		 }
+	}
+	private void downId(int count)
+	{
+		try {
+			System.out.println("downId 들어옴");
+			con=DBconnection.getConnection();
+			
+			query = "select DISTINCT * from menu_product where bill_id = ?";
+			pstmt=con.prepareStatement(query);
+			pstmt.setInt(1, Static.count);
+			System.out.println(Static.count);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				bill_count = rs.getInt("bill_count");
+				product_id = rs.getInt("product_id");
+				query = "update product set product_count = product_count -? where product_id = ?";
+				pstmt=con.prepareStatement(query);
+				pstmt.setInt(1, bill_count);
+				pstmt.setInt(2, product_id);
+				text = pstmt.executeUpdate();
+				if(text > 0) {
+					System.out.println("성공");
+				}else {
+					System.out.println("실패");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
 
@@ -89,3 +147,4 @@ class test_Frame2 extends JDialog{
 
 	}
 }
+
