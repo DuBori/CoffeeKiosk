@@ -50,8 +50,8 @@ public class updateMenu {
 			find=findId("select product_id from product where product_name=?",text);
 
 			query="insert into menu_product(bill_id,product_id,product_name,"
-					+ "bill_count,bill_cost) "
-					+ "values(?,?,?,?,?)";
+					+ "bill_count,bill_cost,bill_date) "
+					+ "values(?,?,?,?,?,sysdate)";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, Static.count); // BILL_ID
 			pstmt.setInt(2, find); // PRODUCT_ID
