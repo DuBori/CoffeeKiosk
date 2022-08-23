@@ -36,7 +36,7 @@ public class Stocktaking extends JFrame {
         jsp.setBounds(40, 75, 520, 230);
 
         JButton btn1 = new JButton("조회");
-        btn1.setBounds(250, 320, 100, 25);
+        btn1.setBounds(253, 320, 100, 25);
         btn1.setFont(new Font(stocktakingFont, Font.BOLD, 12));
 
         JLabel jl2 = new JLabel("재고추가");
@@ -45,17 +45,25 @@ public class Stocktaking extends JFrame {
 
         // 메뉴 종류 픽스되면 거기에 맞춰서 수정
         JRadioButton jrb1 = new JRadioButton("아메리카노");
-        JRadioButton jrb2 = new JRadioButton("핫아메리카노");
-        JRadioButton jrb3 = new JRadioButton("카페라떼");
-        JRadioButton jrb4 = new JRadioButton("청포도에이드");
-        JRadioButton jrb5 = new JRadioButton("자몽에이드");
-        JRadioButton jrb6 = new JRadioButton("청귤에이드");
-        JRadioButton jrb7 = new JRadioButton("치즈케이크");
-        JRadioButton jrb8 = new JRadioButton("초코케이크");
-        JRadioButton jrb9 = new JRadioButton("7레이어초코");
-        JRadioButton jrb10 = new JRadioButton("홍차");
+        JRadioButton jrb2 = new JRadioButton("카페라떼");
+        JRadioButton jrb3 = new JRadioButton("카페모카");
+        JRadioButton jrb4 = new JRadioButton("카푸치노");
+        JRadioButton jrb5 = new JRadioButton("카라멜마키아또");
+        JRadioButton jrb6 = new JRadioButton("에스프레소");
+        JRadioButton jrb7 = new JRadioButton("케모마일 티");
+        JRadioButton jrb8 = new JRadioButton("얼그레이 티");
+        JRadioButton jrb9 = new JRadioButton("자몽 허니 블랙 티");
+        JRadioButton jrb10 = new JRadioButton("생강차");
         JRadioButton jrb11 = new JRadioButton("녹차");
-        JRadioButton jrb12 = new JRadioButton("핫초코");
+        JRadioButton jrb12 = new JRadioButton("매실차");
+        JRadioButton jrb13 = new JRadioButton("유자차");
+        JRadioButton jrb14 = new JRadioButton("치즈 케이크");
+        JRadioButton jrb15 = new JRadioButton("티라미수 케이크");
+        JRadioButton jrb16 = new JRadioButton("에그 샌드위치");
+        JRadioButton jrb17 = new JRadioButton("단호박 샌드위치");
+        JRadioButton jrb18 = new JRadioButton("스콘");
+        JRadioButton jrb19 = new JRadioButton("마카롱");
+        JRadioButton jrb20 = new JRadioButton("와플");
         jrb1.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         jrb2.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         jrb3.setFont(new Font(stocktakingFont, Font.BOLD, 11));
@@ -68,6 +76,14 @@ public class Stocktaking extends JFrame {
         jrb10.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         jrb11.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         jrb12.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb13.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb14.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb15.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb16.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb17.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb18.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb19.setFont(new Font(stocktakingFont, Font.BOLD, 11));
+        jrb20.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         bg = new ButtonGroup();
         bg.add(jrb1);
         bg.add(jrb2);
@@ -81,31 +97,47 @@ public class Stocktaking extends JFrame {
         bg.add(jrb10);
         bg.add(jrb11);
         bg.add(jrb12);
-        jrb1.setBounds(40, 400, 100, 25);
-        jrb2.setBounds(185, 400, 100, 25);
-        jrb3.setBounds(315, 400, 100, 25);
-        jrb4.setBounds(445, 400, 100, 25);
-        jrb5.setBounds(40, 430, 100, 25);
-        jrb6.setBounds(185, 430, 100, 25);
-        jrb7.setBounds(315, 430, 100, 25);
-        jrb8.setBounds(445, 430, 100, 25);
-        jrb9.setBounds(40, 460, 100, 25);
-        jrb10.setBounds(185, 460, 100, 25);
-        jrb11.setBounds(315, 460, 100, 25);
-        jrb12.setBounds(445, 460, 100, 25);
+        bg.add(jrb13);
+        bg.add(jrb14);
+        bg.add(jrb15);
+        bg.add(jrb16);
+        bg.add(jrb17);
+        bg.add(jrb18);
+        bg.add(jrb19);
+        bg.add(jrb20);
+        jrb1.setBounds(40, 400, 120, 25);
+        jrb2.setBounds(185, 400, 120, 25);
+        jrb3.setBounds(315, 400, 120, 25);
+        jrb4.setBounds(445, 400, 120, 25);
+        jrb5.setBounds(40, 430, 120, 25);
+        jrb6.setBounds(185, 430, 120, 25);
+        jrb7.setBounds(315, 430, 120, 25);
+        jrb8.setBounds(445, 430, 120, 25);
+        jrb9.setBounds(40, 460, 120, 25);
+        jrb10.setBounds(185, 460, 120, 25);
+        jrb11.setBounds(315, 460, 120, 25);
+        jrb12.setBounds(445, 460, 120, 25);
+        jrb13.setBounds(40, 490, 120, 25);
+        jrb14.setBounds(185, 490, 120, 25);
+        jrb15.setBounds(315, 490, 120, 25);
+        jrb16.setBounds(445, 490, 120, 25);
+        jrb17.setBounds(40, 520, 120, 25);
+        jrb18.setBounds(185, 520, 120, 25);
+        jrb19.setBounds(315, 520, 120, 25);
+        jrb20.setBounds(445, 520, 120, 25);
 
         JLabel jl3 = new JLabel("수량 : ");
         jl3.setFont(new Font(stocktakingFont, Font.BOLD, 12));
         jtf1 = new JTextField(5);
-        jl3.setBounds(185, 510, 100, 25);
-        jtf1.setBounds(235, 510, 100, 25);
+        jl3.setBounds(185, 565, 100, 25);
+        jtf1.setBounds(235, 565, 100, 25);
 
         JButton btn2 = new JButton("추가");
-        btn2.setBounds(345, 510, 60, 25);
+        btn2.setBounds(345, 565, 60, 25);
         btn2.setFont(new Font(stocktakingFont, Font.BOLD, 12));
 
         JButton btn3 = new JButton("뒤로가기");
-        btn3.setBounds(250, 600, 100, 25);
+        btn3.setBounds(253, 645, 100, 25);
         btn3.setFont(new Font(stocktakingFont, Font.BOLD, 13));
 
         add(jl1);
@@ -123,13 +155,21 @@ public class Stocktaking extends JFrame {
         add(jrb10);
         add(jrb11);
         add(jrb12);
+        add(jrb13);
+        add(jrb14);
+        add(jrb15);
+        add(jrb16);
+        add(jrb17);
+        add(jrb18);
+        add(jrb19);
+        add(jrb20);
         add(jl3);
         add(jtf1);
         add(btn1);
         add(btn2);
         add(btn3);
 
-        setBounds(150, 150, 615, 700);
+        setBounds(150, 150, 615, 740);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

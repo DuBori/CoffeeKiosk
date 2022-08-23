@@ -51,19 +51,19 @@ public class Payment extends JFrame implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				downId(down);
 			}
 		});
+
 		jbt2.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				downId(down);
 			}
 		});
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		dispose();
@@ -73,8 +73,8 @@ public class Payment extends JFrame implements ActionListener{
 			Static.count++;
 		 }
 	}
-	private void downId(int count)
-	{
+
+	private void downId(int count) {
 		try {
 			System.out.println("downId 들어옴");
 			con=DBconnection.getConnection();
@@ -85,8 +85,7 @@ public class Payment extends JFrame implements ActionListener{
 			System.out.println(Static.count);
 			rs=pstmt.executeQuery();
 			
-			while(rs.next())
-			{
+			while(rs.next()) {
 				bill_count = rs.getInt("bill_count");
 				product_id = rs.getInt("product_id");
 				query = "update product set product_count = product_count -? where product_id = ?";
@@ -122,8 +121,7 @@ class test_Frame2 extends JDialog{
 		jlb.setHorizontalAlignment(JLabel.CENTER);
 		jlb.setFont(jlb.getFont().deriveFont(15.0f));
 		jlb2.setFont(jlb.getFont().deriveFont(18.0f));
-			
-			
+
 		button.addActionListener(new ActionListener() {
 				
 			@Override
@@ -133,6 +131,7 @@ class test_Frame2 extends JDialog{
 					
 			}
 		});
+
 		group.add(jlb2,BorderLayout.NORTH);
 		group2.add(button,BorderLayout.SOUTH);
 		add(group,BorderLayout.NORTH);
@@ -144,7 +143,6 @@ class test_Frame2 extends JDialog{
 		this.setModal(true);
  
 		this.setVisible(true);
-
 	}
 }
 
