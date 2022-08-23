@@ -17,7 +17,6 @@ import javax.swing.*;
 
 public class Payment extends JFrame implements ActionListener{
 	
-<<<<<<< HEAD
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -66,6 +65,7 @@ public class Payment extends JFrame implements ActionListener{
 		});
 		jbt2.addActionListener(new ActionListener() {
 			
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -82,26 +82,11 @@ public class Payment extends JFrame implements ActionListener{
 			Static.count++;
 		 }
 	}
-<<<<<<< HEAD
 	private void downId(int count)
 	{
 		try {
 			System.out.println("downId 들어옴");
 			con=DBconnection.getConnection();
-=======
-}
-	class test_Frame2 extends JDialog{
-	   
-		JLabel jlb = new JLabel("");
-		JLabel jlb2 = new JLabel("주문번호 : "+ Static.count);
-		JPanel group = new JPanel();
-		JPanel group2 = new JPanel(new BorderLayout());
-		JButton button = new JButton("돌아가기");
-		
-		public test_Frame2(String str){
-	          
-			getContentPane().add(jlb);
->>>>>>> branch 'CKK' of https://github.com/DuBori/CoffeeKiosk.git
 			
 			query = "select DISTINCT * from menu_product where bill_id = ?";
 			pstmt=con.prepareStatement(query);
@@ -109,7 +94,6 @@ public class Payment extends JFrame implements ActionListener{
 			System.out.println(Static.count);
 			rs=pstmt.executeQuery();
 			
-<<<<<<< HEAD
 			while(rs.next())
 			{
 				bill_count = rs.getInt("bill_count");
@@ -123,38 +107,13 @@ public class Payment extends JFrame implements ActionListener{
 					System.out.println("성공");
 				}else {
 					System.out.println("실패");
-=======
-			
-			button.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-					new mainFrame();
-					
->>>>>>> branch 'CKK' of https://github.com/DuBori/CoffeeKiosk.git
 				}
-<<<<<<< HEAD
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 }
-=======
-			});
-			group.add(jlb2,BorderLayout.NORTH);
-			group2.add(button,BorderLayout.SOUTH);
-			add(group,BorderLayout.NORTH);
-			add(group2,BorderLayout.SOUTH);
-			this.setSize(300,300);
-       
-			setLocationRelativeTo(null);
-			
-			this.setModal(true);
- 
-			this.setVisible(true);  
->>>>>>> branch 'CKK' of https://github.com/DuBori/CoffeeKiosk.git
 
 class test_Frame2 extends JDialog{
 	   
