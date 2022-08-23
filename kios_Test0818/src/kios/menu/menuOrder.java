@@ -19,6 +19,8 @@ import javax.swing.text.DefaultFormatter;
 //import jdk.nashorn.internal.ir.ContinueNode;
 import kios.db.DBconnection;
 import kios.db.Static;
+import kios.main.mainClick;
+import kios.main.subMainFrame;
 import kios.mileage.Ex_Payment;
 
 import javax.swing.JTabbedPane;
@@ -87,7 +89,7 @@ public class menuOrder extends JFrame {
 	public menuOrder() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 710, 650);
+		setBounds(100, 100, 710, 710);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -519,6 +521,16 @@ public class menuOrder extends JFrame {
 			}
 		});
 		
+		JButton btnNewButton_1 = new JButton("뒤로가기");
+		btnNewButton_1.addMouseListener(new mainClick()
+		{
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			dispose();
+			new subMainFrame();
+			}
+		});
+		
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -530,7 +542,9 @@ public class menuOrder extends JFrame {
 							.addContainerGap()
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnNewButton)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnNewButton_1)
+								.addComponent(btnNewButton))))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -539,8 +553,11 @@ public class menuOrder extends JFrame {
 					.addComponent(tabbedPane_Main, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 
