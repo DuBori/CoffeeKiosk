@@ -127,7 +127,7 @@ public class MemberInfo extends JFrame {
 				dto.setMember_phone(resultSet.getString("member_phone"));
 				dto.setMember_pw(resultSet.getString("member_pw"));
 				dto.setMember_name(resultSet.getString("member_name"));
-				dto.setMember_mileage(resultSet.getInt("member_milage"));
+				dto.setMember_mileage(resultSet.getInt("member_mileage"));
 				dto.setMember_pay(resultSet.getInt("member_pay"));
 				
 				String phone = dto.getMember_phone();
