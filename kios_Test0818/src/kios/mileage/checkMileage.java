@@ -40,10 +40,10 @@ public class checkMileage extends JFrame{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	private void billaddPhone(String text) {
-		 
+
 		 try {
 			 con=DBconnection.getConnection();
 			 query="update menu_product set member_phone=? where (bill_id=?) and (member_phone!=?)";
@@ -53,7 +53,7 @@ public class checkMileage extends JFrame{
 			 pstmt.setString(3,receipt.phone);
 			 pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+//			 TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
