@@ -30,7 +30,7 @@ public class check_Phone extends JFrame{
 		try {
 			System.out.println("무결성 체크 시작");
 			con= DBconnection.getConnection();
-			query="select member_phone,member_mileage from member_option where member_phone=?";
+			query="select member_phone,member_milage from member_option where member_phone=?";
 			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, phone);
 			rs=pstmt.executeQuery();
@@ -38,7 +38,7 @@ public class check_Phone extends JFrame{
 			while(rs.next())
 			{
 				chkph=rs.getString("member_phone");
-				chkmil=rs.getInt("member_mileage");
+				chkmil=rs.getInt("member_milage");
 			}
 			if(!chkph.equals(""))
 			{
@@ -88,7 +88,7 @@ public class check_Phone extends JFrame{
 		{
 			try {
 				con=DBconnection.getConnection();
-				query="insert into member_option(member_phone,member_pw,member_name,member_mileage,member_pay) values(?,?,?,?,?)";
+				query="insert into member_option(member_phone,member_pw,member_name,member_milage,member_pay) values(?,?,?,?,?)";
 				pstmt=con.prepareStatement(query);
 				pstmt.setString(1, phone);
 				pstmt.setString(2, pw);

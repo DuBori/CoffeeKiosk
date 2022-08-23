@@ -51,6 +51,7 @@ public class receipt extends JFrame {
 	}
 	public receipt(String jta)
 	{
+		System.out.println("정적 폰의 값:"+phone);
 		setBounds(100, 100, 500, 630);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,8 +96,6 @@ public class receipt extends JFrame {
 		jta+="<p>KH카드</p><p>카드번호: *******************</p><p>거래일시: "+sysday+"</p><p>승인번호 : "+000000+"</p><p>일시불</p></html>";
 		JLabel jArea =new JLabel(jta);
 		panel_1.add(jArea, BorderLayout.CENTER);
-		
-		updateTotal(total);
 		total=0;
 		
 		
@@ -107,24 +106,21 @@ public class receipt extends JFrame {
 		setVisible(true);
 	}
 	
-	private void updateTotal(int cost) {
-	
-		try {	
-			con = DBconnection.getConnection();
-			query="update member_option set member_pay = member_pay +? where member_phone ="
-				+ "(select DISTINCT member_phone  from menu_product where (bill_id=?) and (member_phone=?) )";
-			pstmt=con.prepareStatement(query);
-			pstmt.setInt(1, cost);
-			pstmt.setInt(2,Static.count);
-			pstmt.setString(3, phone);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
+	/*
+	 * private void updateTotal(int cost) {
+	 * 
+	 * try { con = DBconnection.getConnection();
+	 * query="update member_option set member_pay = member_pay +? where member_phone ="
+	 * +
+	 * "(select DISTINCT member_phone  from menu_product where (bill_id=?) and (member_phone=?) )"
+	 * ; pstmt=con.prepareStatement(query); pstmt.setInt(1, cost);
+	 * pstmt.setInt(2,Static.count); pstmt.setString(3, phone);
+	 * pstmt.executeUpdate(); } catch (SQLException e) { // TODO Auto-generated
+	 * catch block e.printStackTrace(); }
+	 * 
+	 * 
+	 * }
+	 */
 	String select()
 	{
 		String addString="<html>";
@@ -151,8 +147,6 @@ public class receipt extends JFrame {
 				billCost = rs.getInt("bill_cost");
 				total+=billCost;
 				//System.out.println(proName+","+billSize+","+shot+","+billCount+","+costDefault+","+billCost);
-				if(proId!=0)
-				{
 					if(proId <50) {
 						if(shot>0)
 						{
@@ -178,7 +172,6 @@ public class receipt extends JFrame {
 					}	
 				}
 	
-			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
