@@ -15,6 +15,7 @@ public class Ex_Payment extends JFrame{
 
 	JTextField inputSpace;
 	boolean clearOnNextDigit;
+	JPanel buttonPanel;
 	public Ex_Payment() {
 
 		// 컨테이너 생성.
@@ -25,7 +26,7 @@ public class Ex_Payment extends JFrame{
 		JPanel con4 = new JPanel(new BorderLayout());                             
 		
 		// 버튼을 만들 패널
-		JPanel buttonPanel = new JPanel(new BorderLayout());                       
+		buttonPanel = new JPanel(new BorderLayout());                       
 		
 		// 컴포넌트 생성.
 		JLabel jl1 = new JLabel("적립하시겠습니까?");
@@ -45,7 +46,8 @@ public class Ex_Payment extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new check_Phone(inputSpace.getText());
+				dispose();
+				new check_Phone(inputSpace.getText().toString());
 			}
 		});
 		JButton button3 = new JButton("취소");
@@ -121,7 +123,7 @@ public class Ex_Payment extends JFrame{
 		setResizable(false);
 		
 		//창을 닫을 때 실행 중인 프로그램도 같이 종료되도록 함
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		//보이기 여부
 		setVisible(true);
@@ -131,8 +133,10 @@ public class Ex_Payment extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				receipt.phone="None";
 				new Payment();
-				dispose();  // 기존에 있던 창은 없애주는 메서드.
+				
 				
 			}
 		});

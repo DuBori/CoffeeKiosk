@@ -9,15 +9,18 @@ import javax.swing.border.EmptyBorder;
 
 import kios.db.DBconnection;
 import kios.db.Static;
+import kios.main.subMainFrame;
 
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class receipt extends JFrame {
 
@@ -26,12 +29,16 @@ public class receipt extends JFrame {
 	ResultSet rs;
 	String query;
 	
-	String proName,billSize;
+	String proName,billSize,memPh;
 
-	int costDefault,shot,billCount,billCost;
+	int costDefault,shot,billCount,billCost,proId;
+	public static int total=0;
+	public static String phone="";
 	private JPanel contentPane;
 	
-	String sysday;
+	SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd | HH:mm:ss z");
+	Date date = new Date(System.currentTimeMillis());
+	String sysday=formatter.format(date);
 	/**
 	 * Launch the application.
 	 */
@@ -42,9 +49,10 @@ public class receipt extends JFrame {
 	public receipt() {
 
 	}
-	public receipt(JTextArea jta)
+	public receipt(String jta)
 	{
-		setBounds(100, 100, 500, 700);
+		System.out.println("정적 폰의 값:"+phone);
+		setBounds(100, 100, 500, 630);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -73,12 +81,23 @@ public class receipt extends JFrame {
 				+ "<p>&emsp;상품&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
 				+ "단가&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	"
 				+ "수량&emsp;&emsp;&emsp;	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-				+ "금액</p></html>");
+				+ "금액</p><p>===================================================================</p></html>");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(lblNewLabel_1, BorderLayout.NORTH);
-		
-		JTextArea jArea = jta;
+		jta+="<p>===================================================================</p>";
+		jta+="<p>*********************************이용해주셔서 감사합니다.*********************************</p>";
+		jta+="<p>결제금액&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+				+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+				+total+"원</p>";
+		jta+="<p>(부가세포함)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+				+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+				+ "("+(total/11)+")</p>";
+		jta+="<p>===================================================================</p>";
+		jta+="<p>KH카드</p><p>카드번호: *******************</p><p>거래일시: "+sysday+"</p><p>승인번호 : "+000000+"</p><p>일시불</p></html>";
+		JLabel jArea =new JLabel(jta);
 		panel_1.add(jArea, BorderLayout.CENTER);
+		total=0;
+		
 		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
@@ -87,43 +106,81 @@ public class receipt extends JFrame {
 		setVisible(true);
 	}
 	
-	JTextArea select()
+	/*
+	 * private void updateTotal(int cost) {
+	 * 
+	 * try { con = DBconnection.getConnection();
+	 * query="update member_option set member_pay = member_pay +? where member_phone ="
+	 * +
+	 * "(select DISTINCT member_phone  from menu_product where (bill_id=?) and (member_phone=?) )"
+	 * ; pstmt=con.prepareStatement(query); pstmt.setInt(1, cost);
+	 * pstmt.setInt(2,Static.count); pstmt.setString(3, phone);
+	 * pstmt.executeUpdate(); } catch (SQLException e) { // TODO Auto-generated
+	 * catch block e.printStackTrace(); }
+	 * 
+	 * 
+	 * }
+	 */
+	String select()
 	{
-		JTextArea textArea = new JTextArea();
+		String addString="<html>";
 		try {
 			System.out.println("들어옴");
 			con=DBconnection.getConnection();
-			query="select * from menu_product where bill_id=?";
+			query="select * from menu_product where (bill_id=?) and (member_phone=?)";
 			pstmt=con.prepareStatement(query);
-			System.out.println(Static.count);
 			pstmt.setInt(1, Static.count);
+			System.out.println(Static.count);
+			pstmt.setString(2, phone);
 			rs=pstmt.executeQuery();
-			
+			String addShot="샷 추가";
+			String.format("%-"+9+"s", addShot);
 			while(rs.next())
 			{
-				proName = rs.getString("product_name");
+				memPh = rs.getString("member_phone");
+				proId = rs.getInt("product_id");
+				proName = String.format("%-"+9+"s",  rs.getString("product_name")); 
 				billSize = rs.getString("bill_size");
 				shot=rs.getInt("bill_shot");
 				billCount=rs.getInt("bill_count");
 				costDefault = rs.getInt("bill_defaultsize");
 				billCost = rs.getInt("bill_cost");
+				total+=billCost;
 				//System.out.println(proName+","+billSize+","+shot+","+billCount+","+costDefault+","+billCost);
-				if(shot>0)
-				{
-					textArea.append("("+billSize+")"+proName+"\t"+costDefault+"\t\t"+billCount+"\t"+billCost+"\n");
-					textArea.append("샷 추가 ->"+shot+"번\t\t"+shot*500+"\n");
-				}else {
-					textArea.append("("+billSize+")"+proName+"\t"+costDefault+"\t\t"+billCount+"\t"+billCost+"\n");
+					if(proId <50) {
+						if(shot>0)
+						{
+							addString+="<p>("+billSize.substring(0,1)+")"+proName+"&emsp;&emsp;&emsp;"+costDefault+
+									"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"+billCost+"원</p>";
+							addString+="<p>"+addShot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;"
+									+shot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+shot*500+"원</p>";
+						}else {
+							addString+="<p>("+billSize.substring(0,1)+")"+proName+"&emsp;&emsp;&emsp;"+costDefault
+									+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+									+billCost+"</p>";
+						}
+					}else {
+						addString+="<p>"+proName+"&emsp;&emsp;&emsp;"
+								+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+								+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+										+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+								+billCost+"</p>";
+					}	
 				}
 	
-			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return textArea;
+		return addString;
 		
 	}
+
 	
+
 }

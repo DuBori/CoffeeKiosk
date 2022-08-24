@@ -45,27 +45,27 @@ public class Register extends JFrame {
 	 */
 	public Register() {
 		setTitle("회원가입");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 500, 200);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(150, 50, 150, 50));
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JLabel lblNewLabel = new JLabel("회원가입");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBorder(new TitledBorder(new LineBorder(Color.black,1)));
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(Color.black,1));
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		
 		
 		
 		panel.setLayout(new GridLayout(3, 2, 0, 0));
 		
 		JLabel label1 = new JLabel("휴대폰 번호");
 		label1.setHorizontalAlignment(SwingConstants.CENTER);
-		label1.setBorder(new LineBorder(Color.black,1));
+		
 		panel.add(label1);
 		
 		tf1 = new JTextField();
@@ -75,7 +75,7 @@ public class Register extends JFrame {
 		label2 = new JLabel("생년월일(6자리)");
 		label2.setHorizontalAlignment(SwingConstants.CENTER);
 		label2.setBorder(new EmptyBorder(4, 4, 4, 4));
-		label2.setBorder(new LineBorder(Color.black,1));
+		
 		panel.add(label2);
 		
 		tf2 = new JTextField();
@@ -85,7 +85,6 @@ public class Register extends JFrame {
 		label3 = new JLabel("이 름");
 		label3.setHorizontalAlignment(SwingConstants.CENTER);
 		label3.setBorder(new EmptyBorder(4, 4, 4, 4));
-		label3.setBorder(new LineBorder(Color.black,1));
 		panel.add(label3);
 		
 		tf3 = new JTextField();
@@ -115,10 +114,11 @@ public class Register extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					if(tf1.getText().equals("") && tf2.getText().equals("")  && tf3.getText().equals(""))
+					if(tf1.getText().equals("") || tf2.getText().equals("")  || tf3.getText().equals(""))
 					{
 						JOptionPane.showMessageDialog(null, "가입 정보가 부족합니다.");	
 					}else {
+							dispose();
 							new check_Phone(tf1.getText(),tf2.getText(),tf3.getText());	
 					}
 					

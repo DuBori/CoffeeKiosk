@@ -3,20 +3,23 @@ package kios.register;
 import kios.db.DBconnection;
 import kios.mileage.Ex_Payment;
 import kios.mileage.checkMileage;
+import kios.mileage.receipt;
 
 import java.sql.*;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
 
-public class check_Phone {
+public class check_Phone extends JFrame{
 
 	Connection con;
 	PreparedStatement pstmt;
 	ResultSet rs;
 	String query;
 	int check;
-	String chkph;
+	String chkph="";
 	int chkmil;
 	
 	public check_Phone() {
@@ -37,12 +40,13 @@ public class check_Phone {
 				chkph=rs.getString("member_phone");
 				chkmil=rs.getInt("member_mileage");
 			}
-			if(chkph==null)
+			if(!chkph.equals(""))
 			{
-				//TODO  연락처가 확인되어 마일리지 도장 1개 적립 메서드
+				receipt.phone=chkph;
 				new checkMileage(chkph,chkmil);
 			}else {
 				JOptionPane.showMessageDialog(null, "존재하지 않는 번호입니다.");
+				receipt.phone="";
 				new Ex_Payment();
 			}
 			
@@ -67,7 +71,7 @@ public class check_Phone {
 				{
 					chkph=rs.getString("member_phone");
 				}
-				if(chkph==null && pw !=null && name!=null)
+				if(chkph.equals("") && pw !=null && name!=null)
 				{
 					System.out.println("가입 진행");
 					insert(phone,pw,name);
