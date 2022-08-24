@@ -15,22 +15,15 @@ import javax.swing.text.DefaultFormatter;
 public class Food_Inner extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	int foodPrice;
-	int viewCost;
-	JSpinner spinner_1;
+	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String sql = null;
 	DefaultTableModel model;
-	int count,cost;
-	
-	/**
-	 * Create the frame.
-	 */
-	public Food_Inner(String text) {
 
+	public Food_Inner(String text) {
+	
 		setBounds(100, 100, 470, 260);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -38,11 +31,11 @@ public class Food_Inner extends JFrame {
 		contentPane.setLayout(null);
 
 //		최종 가격 표시하는 텍스트 필드
-		textField = new JTextField();
-		textField.setText(String.valueOf(foodPrice));
-		textField.setBounds(307, 144, 77, 28);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		menuOrder.textField = new JTextField();
+		menuOrder.textField.setText(String.valueOf(menuOrder.foodPrice));
+		menuOrder.textField.setBounds(307, 144, 77, 28);
+		contentPane.add(menuOrder.textField);
+		menuOrder.textField.setColumns(10);
 
 //		음료 이미지 출력을 위한 공간
 		JButton btnNewButton_2 = new JButton("");
@@ -51,54 +44,52 @@ public class Food_Inner extends JFrame {
 		String m = menuOrder.picNum;
 		switch(m) {
 		case "cheese":
-			foodPrice = 5500;
+			menuOrder.foodPrice = 5500;
 			btnNewButton_2.setIcon(new ImageIcon("src/images/americano.jpg"));
 			break;
 		case "tiramisu":
-			foodPrice = 6000;
+			menuOrder.foodPrice = 6000;
 			btnNewButton_2.setIcon(new ImageIcon("src/images/caffelatte.jpg"));
 			break;
 		case "egg":
-			foodPrice = 6000;
+			menuOrder.foodPrice = 6000;
 			btnNewButton_2.setIcon(new ImageIcon("src/images/caffemocha.png"));
 			break;
 		case "danhobak":
-			foodPrice = 6500;
+			menuOrder.foodPrice = 6500;
 			btnNewButton_2.setIcon(new ImageIcon("src/images/cappuccino.jpg"));
 			break;
 		case "scorn":
-			foodPrice = 3000;
+			menuOrder.foodPrice = 3000;
 			btnNewButton_2.setIcon(new ImageIcon("src/images/caramelm.jpg"));
 			break;
 		case "macaron":
-			foodPrice = 2500;
+			menuOrder.foodPrice = 2500;
 			btnNewButton_2.setIcon(new ImageIcon("src/images/espresso.jpg"));
 			break;
 		case "waffle":
-			foodPrice = 3500;
+			menuOrder.foodPrice = 3500;
 			btnNewButton_2.setIcon(new ImageIcon("src/images/espresso.jpg"));
 			break;
 		}
 		
-		textField.setText(String.valueOf(foodPrice));
+		menuOrder.textField.setText(String.valueOf(menuOrder.foodPrice));
 
 //		갯수를 입력받는 스피너
-		spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		JComponent comp = spinner_1.getEditor();
+		menuOrder.spinner_1 = new JSpinner();
+		menuOrder.spinner_1.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		JComponent comp = menuOrder.spinner_1.getEditor();
 		JFormattedTextField field = (JFormattedTextField) comp.getComponent(0);
 		DefaultFormatter formatter = (DefaultFormatter) field.getFormatter();
 		formatter.setCommitsOnValidEdit(true);
-		spinner_1.setBounds(245, 147, 37, 22);
-		contentPane.add(spinner_1);
-		spinner_1.addChangeListener(new ChangeListener() {
+		menuOrder.spinner_1.setBounds(245, 147, 37, 22);
+		contentPane.add(menuOrder.spinner_1);
+		menuOrder.spinner_1.addChangeListener(new ChangeListener() {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
 
-				// 입력값을 받아 단가와 곱한 값을 최종가격으로 넘겨준다
-				// 아메리카노 단가 : 4500원
-				textField.setText(String.valueOf(viewPrice(foodPrice)));
+				menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.foodPrice)));
 			}
 		});
 
@@ -113,95 +104,17 @@ public class Food_Inner extends JFrame {
 		JButton btn_putIn = new JButton("담기");
 		btn_putIn.setBounds(204, 184, 117, 29);
 		contentPane.add(btn_putIn);
-/*		btn_putIn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			// TODO HOT, ICE 가지고 올 String 따오기
-			// TODO 라벨값 따오기
-				dispose();
-				
-				count=Integer.parseInt(spinner_1.getValue().toString());	
-				cost=Integer.parseInt(textField.getText());
-				new updateMenu(text,foodPrice,count);
-				DTO.textArea.append(text+"\t"+"\t"+"\t"+"\t"+count+"\t"+cost+"\n");
-				
-			}
-		});
-*/		
+
 		btn_putIn.addActionListener(new ActionListener() {
-			JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			// TODO HOT, ICE 가지고 올 String 따오기
-			// TODO 라벨값 따오기
+				menuOrder.Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
+				// TODO HOT, ICE 가지고 올 String 따오기
+				// TODO 라벨값 따오기
 				dispose();
 				
-				JLabel L1 = new JLabel();
-				JLabel L2 = new JLabel();
-				JButton	j1 = new JButton("-");
-				JButton	j2 = new JButton("+");
-				JButton	j3 = new JButton("x");
-				count=Integer.parseInt(spinner_1.getValue().toString());	
-				cost=Integer.parseInt(textField.getText());
-				
-//				DTO.textArea1.setText(String.valueOf(count));
-//				DTO.textArea2.append(cost+"\n");
-				DTO.finalOption = foodPrice;
-				DTO.realFinalCost = (foodPrice)*count;
-				
-				new updateMenu(text,foodPrice,count);
-				Panel.add(new JLabel(text));
-				Panel.add(j1);
-				j1.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						count -= 1;
-						if(count < 1) {
-							count = 1;
-							L1.setText(String.valueOf(count));
-							L2.setText(String.valueOf(DTO.finalOption * count));
-						}else {
-							L1.setText(String.valueOf(count));
-							L2.setText(String.valueOf(DTO.finalOption * count));
-						}
-						
-					}
-				});
-					
-				Panel.add(L1);
-				Panel.add(j2);
-				j2.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						count += 1;
-								
-							L1.setText(String.valueOf(count));
-							L2.setText(String.valueOf(DTO.finalOption * count));
-						
-					}
-				});
-				Panel.add(j3);
-				j3.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						menuOrder.panel_3.remove(Panel);
-					}
-				});
-				
-				Panel.add(L2);
-				
-				L1.setText(String.valueOf(count));
-				L2.setText(String.valueOf(DTO.realFinalCost));
-				System.out.println(String.valueOf(count)+"\t"+String.valueOf(DTO.realFinalCost));
-				
-				menuOrder.panel_3.add(Panel).setVisible(true);
-				
+				new PutIn(text, menuOrder.count);
 			}
 		});
 		JButton btn_cancel = new JButton("취소");
@@ -215,6 +128,7 @@ public class Food_Inner extends JFrame {
 				
 			}
 		});
+		setLocationRelativeTo(null);
 		setVisible(true);
 
 	}
@@ -223,9 +137,9 @@ public class Food_Inner extends JFrame {
 	}
 
 	private int viewPrice(int fP) {
-		viewCost = fP * (int) spinner_1.getValue();
+		menuOrder.viewCost = fP * (int) menuOrder.spinner_1.getValue();
 
-		return viewCost;
+		return menuOrder.viewCost;
 	}
 	
 }
