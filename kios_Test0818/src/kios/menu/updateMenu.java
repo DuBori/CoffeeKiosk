@@ -15,39 +15,36 @@ public class updateMenu {
 	int find;
 
 	public updateMenu() {
-
-	}
-
-	public updateMenu(String text, String cupSize, String IceHot, int defaultSizeCost, int shot, int count, int cost) {
 		try {
 			con = DBconnection.getConnection();
-			find = findId("select product_id from product where product_name=?", text);
 
-			query = "insert into menu_product(bill_id,product_id,product_name,bill_size,bill_temper,"
-					+ "bill_defaultsize,bill_shot,bill_count,bill_cost)"
-					+ "values(?,?,?,?,?,?,?,?,?)";
-			pstmt=con.prepareStatement(query);
-			pstmt.setInt(1, Static.count);
-			pstmt.setInt(2, find);
-			pstmt.setString(3, text);
-			pstmt.setString(4, cupSize);
-			pstmt.setString(5, IceHot);
-			pstmt.setInt(6, defaultSizeCost);
-			pstmt.setInt(7, shot);
-			pstmt.setInt(8, count);
-			pstmt.setInt(9, cost);
+			for (int i = 0; i < menuOrder.outer_ArrayList.size(); i++) {
+				find = findId("select product_id from product where product_name=?",menuOrder.outer_ArrayList.get(i).get(0).toString());
 
-			pstmt.executeUpdate();
-		
+				query = "insert into menu_product(bill_id,product_id,product_name,bill_size,bill_temper,"
+						+ "bill_defaultsize,bill_shot,bill_count,bill_cost)"
+						+ "values(?,?,?,?,?,?,?,?,?)";
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, Static.count);
+				pstmt.setInt(2, find);
+				pstmt.setString(3, menuOrder.outer_ArrayList.get(i).get(0).toString());
+				pstmt.setString(4, menuOrder.outer_ArrayList.get(i).get(1).toString());
+				pstmt.setString(5, menuOrder.outer_ArrayList.get(i).get(2).toString());
+				pstmt.setInt(6, (int) menuOrder.outer_ArrayList.get(i).get(3));
+				pstmt.setInt(7, (int) menuOrder.outer_ArrayList.get(i).get(4));
+				pstmt.setInt(8, (int) menuOrder.outer_ArrayList.get(i).get(5));
+				pstmt.setInt(9, (int) menuOrder.outer_ArrayList.get(i).get(6));
+				pstmt.executeUpdate();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public updateMenu(String text,int cost,int count) {
+	public updateMenu(String text, int cost, int count) {
 		try {
-			con= DBconnection.getConnection();
-			find=findId("select product_id from product where product_name=?",text);
+			con = DBconnection.getConnection();
+			find = findId("select product_id from product where product_name=?", text);
 
 			query="insert into menu_product(bill_id,product_id,product_name,"
 					+ "bill_count,bill_cost) "
@@ -65,7 +62,7 @@ public class updateMenu {
 		}
 	}
 
-	public int findId(String sql,String text) {
+	public int findId(String sql, String text) {
 		try {
 			con = DBconnection.getConnection();
 			query = sql;
@@ -73,14 +70,13 @@ public class updateMenu {
 			pstmt.setString(1, text);
 			rs = pstmt.executeQuery();
 
-			while(rs.next())
-			{
-				find=rs.getInt("product_id");
+			while (rs.next()) {
+				find = rs.getInt("product_id");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(find!=0)
+		if (find != 0)
 			return find;
 		else
 			return 0;

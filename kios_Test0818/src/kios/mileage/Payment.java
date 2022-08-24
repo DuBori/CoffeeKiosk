@@ -3,6 +3,7 @@ package kios.mileage;
 import kios.db.DBconnection;
 import kios.db.Static;
 import kios.main.mainFrame;
+import kios.menu.updateMenu;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -69,6 +70,7 @@ public class Payment extends JFrame implements ActionListener{
 		dispose();
 		if(e.getSource() == jbt1 || e.getSource() == jbt2){
 			tf2 = new test_Frame2(e.getActionCommand() + " 결제했습니다.");
+			new updateMenu();
 			new receipt(new receipt().select());
 			Static.count++;
 		 }
@@ -147,4 +149,3 @@ class test_Frame2 extends JDialog{
 		this.setVisible(true);
 	}
 }
-
