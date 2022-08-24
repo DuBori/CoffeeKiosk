@@ -171,7 +171,7 @@ public class Stocktaking extends JFrame {
 
         setBounds(150, 150, 615, 740);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         setResizable(false);
 

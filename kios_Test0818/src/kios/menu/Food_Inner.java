@@ -113,8 +113,9 @@ public class Food_Inner extends JFrame {
 				// TODO HOT, ICE 가지고 올 String 따오기
 				// TODO 라벨값 따오기
 				dispose();
-				
-				new PutIn(text, menuOrder.count);
+
+				PutIn putIn = new PutIn(text, menuOrder.count);
+				new updateMenu().copyData(text, menuOrder.foodPrice, putIn.arryCount, menuOrder.cost);
 			}
 		});
 		JButton btn_cancel = new JButton("취소");

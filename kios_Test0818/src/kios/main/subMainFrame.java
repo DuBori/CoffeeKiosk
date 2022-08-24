@@ -24,7 +24,7 @@ public class subMainFrame extends JFrame {
 	 */
 	public subMainFrame() {
 		setTitle("매장/포장");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 700, 700);
 		getContentPane().setLayout(new GridLayout(0,2));
         

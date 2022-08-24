@@ -46,7 +46,7 @@ public class Payment extends JFrame implements ActionListener{
 		setLocationRelativeTo(null);
 	        
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		jbt1.addActionListener(new ActionListener() {
 			
@@ -70,7 +70,6 @@ public class Payment extends JFrame implements ActionListener{
 		dispose();
 		if(e.getSource() == jbt1 || e.getSource() == jbt2){
 			tf2 = new test_Frame2(e.getActionCommand() + " 결제했습니다.");
-			new updateMenu();
 			new receipt(new receipt().select());
 			Static.count++;
 		 }
@@ -90,7 +89,7 @@ public class Payment extends JFrame implements ActionListener{
 			while(rs.next()) {
 				bill_count = rs.getInt("bill_count");
 				product_id = rs.getInt("product_id");
-				query = "update product set product_count = product_count -? where product_id = ?";
+				query = "update product set product_count = product_count - ? where product_id = ? and product_count > 0";
 				pstmt=con.prepareStatement(query);
 				pstmt.setInt(1, bill_count);
 				pstmt.setInt(2, product_id);
@@ -115,8 +114,10 @@ class test_Frame2 extends JDialog{
 	JPanel group2 = new JPanel(new BorderLayout());
 	JButton button = new JButton("돌아가기");
 		
-	public test_Frame2(String str){
-	          
+	public test_Frame2(String str) {
+
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
 		getContentPane().add(jlb);
 			
 		jlb.setText(str.toString());

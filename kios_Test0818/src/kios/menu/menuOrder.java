@@ -82,7 +82,7 @@ public class menuOrder extends JFrame {
 	public static JPanel panel_3;
 	static String picNum;
 	public static List<JPanel> list;
-	
+
 	static JTextField textField;
 	static JSpinner spinner_1;
 	static JComboBox comboBox, comboBox_1;
@@ -90,7 +90,7 @@ public class menuOrder extends JFrame {
 	public static JPanel Panel;
 	static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
 	static String IceHot, cupSize;
-	
+
 	static ArrayList<ArrayList<Object>> outer_ArrayList = new ArrayList<ArrayList<Object>>(); // 2차원 ArrayList 외부ArrayList 객체 생성
 
 	int total = 0;
@@ -100,8 +100,8 @@ public class menuOrder extends JFrame {
 
 	public menuOrder() {
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 710, 710);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 715, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -529,7 +529,7 @@ public class menuOrder extends JFrame {
 			new subMainFrame();
 			}
 		});
-		
+
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

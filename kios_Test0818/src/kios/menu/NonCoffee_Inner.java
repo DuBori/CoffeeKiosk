@@ -21,7 +21,7 @@ public class NonCoffee_Inner extends JFrame {
 	ResultSet rs = null;
 	String sql = null;
 	DefaultTableModel model;
-	
+
 	public NonCoffee_Inner(String text) {
 
 		setBounds(100, 100, 470, 260);
@@ -213,7 +213,7 @@ public class NonCoffee_Inner extends JFrame {
 		JButton btn_putIn = new JButton("담기");
 		btn_putIn.setBounds(204, 184, 117, 29);
 		contentPane.add(btn_putIn);
-	
+
 		btn_putIn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -222,7 +222,8 @@ public class NonCoffee_Inner extends JFrame {
 				// TODO HOT, ICE 가지고 올 String 따오기
 				// TODO 라벨값 따오기
 				dispose();
-				new PutIn(text);
+				PutIn putIn = new PutIn(text);
+				new updateMenu().copyData(text, menuOrder.coffeePrice, putIn.arryCount, menuOrder.cost);
 			}
 		});
 		
