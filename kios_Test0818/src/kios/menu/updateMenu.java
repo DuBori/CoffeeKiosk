@@ -86,8 +86,6 @@ public class updateMenu {
 		try {
 			con = DBconnection.getConnection();
 
-			find = findId("select product_id from product where product_name = ?", text);
-
 			query = "insert into copy_data(bill_id, product_name, bill_defaultsize, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, ?, sysdate)";
 
 			pstmt=con.prepareStatement(query);
@@ -97,6 +95,24 @@ public class updateMenu {
 			pstmt.setInt(3, defaultSizeCost);
 			pstmt.setInt(4, count);
 			pstmt.setInt(5, cost);
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteCopyData(String text) {
+		try {
+			con = DBconnection.getConnection();
+
+			query = "delete from copy_data where bill_id = ? and product_name = ?";
+
+			pstmt=con.prepareStatement(query);
+
+			pstmt.setInt(1, Static.count);
+			pstmt.setString(2, text);
 
 			pstmt.executeUpdate();
 
