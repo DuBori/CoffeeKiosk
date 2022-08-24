@@ -70,7 +70,6 @@ public class Payment extends JFrame implements ActionListener{
 		dispose();
 		if(e.getSource() == jbt1 || e.getSource() == jbt2){
 			tf2 = new test_Frame2(e.getActionCommand() + " 결제했습니다.");
-			new updateMenu();
 			new receipt(new receipt().select());
 			Static.count++;
 		 }

@@ -101,7 +101,7 @@ public class menuOrder extends JFrame {
 	public menuOrder() {
 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 710, 710);
+		setBounds(100, 100, 715, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
