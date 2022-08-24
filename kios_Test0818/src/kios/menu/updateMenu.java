@@ -24,8 +24,8 @@ public class updateMenu {
 			find = findId("select product_id from product where product_name=?", text);
 
 			query = "insert into menu_product(bill_id,product_id,product_name,bill_size,bill_temper,"
-					+ "bill_defaultsize,bill_shot,bill_count,bill_cost,bill_date)"
-					+ "values(?,?,?,?,?,?,?,?,?,sysdate)";
+					+ "bill_defaultsize,bill_shot,bill_count,bill_cost)"
+					+ "values(?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, Static.count);
 			pstmt.setInt(2, find);
@@ -50,8 +50,8 @@ public class updateMenu {
 			find=findId("select product_id from product where product_name=?",text);
 
 			query="insert into menu_product(bill_id,product_id,product_name,"
-					+ "bill_count,bill_cost,bill_date) "
-					+ "values(?,?,?,?,?,sysdate)";
+					+ "bill_count,bill_cost) "
+					+ "values(?,?,?,?,?)";
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, Static.count); // BILL_ID
 			pstmt.setInt(2, find); // PRODUCT_ID
@@ -84,5 +84,28 @@ public class updateMenu {
 			return find;
 		else
 			return 0;
+	}
+
+	public void copyData(String text, int defaultSizeCost, int count, int cost) {
+		try {
+			con = DBconnection.getConnection();
+
+			find = findId("select product_id from product where product_name = ?", text);
+
+			query = "insert into copy_data(bill_id, product_name, bill_defaultsize, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, ?, sysdate)";
+
+			pstmt=con.prepareStatement(query);
+
+			pstmt.setInt(1, Static.count);
+			pstmt.setString(2, text);
+			pstmt.setInt(3, defaultSizeCost);
+			pstmt.setInt(4, count);
+			pstmt.setInt(5, cost);
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

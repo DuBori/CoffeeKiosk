@@ -33,6 +33,7 @@ public class checkMileage extends JFrame{
 			if(check>0) {	
 				JOptionPane.showMessageDialog(null, "적립 완료");
 				billaddPhone(text);
+				billCopyPhone(text);
 				accumulatedPay(text);
 				new Payment();
 			}else
@@ -57,10 +58,23 @@ public class checkMileage extends JFrame{
 		}
 	}
 
+	private void billCopyPhone(String text) {
+		try {
+			con=DBconnection.getConnection();
+			query="update copy_data set member_phone = ? where bill_id = ?";
+			pstmt=con.prepareStatement(query);
+			pstmt.setString(1,text);
+			pstmt.setInt(2, Static.count);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void accumulatedPay(String text) {
 		try {
 			con = DBconnection.getConnection();
-			query = "update member_option set member_pay = (select sum(bill_cost) from menu_product where member_phone = ?) where member_phone = ?";
+			query = "update member_option set member_pay = (select sum(bill_cost) from copy_data where member_phone = ?) where member_phone = ?";
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, text);
 			pstmt.setString(2, text);

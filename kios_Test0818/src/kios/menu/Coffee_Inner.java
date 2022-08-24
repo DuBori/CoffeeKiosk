@@ -282,6 +282,7 @@ public class Coffee_Inner extends JFrame {
 				DTO.realFinalCost = (coffeePrice+sizePrice+addShot)*count;
 				
 				new updateMenu(text,cupSize,IceHot,coffeePrice+sizePrice,shotCount,count,cost);
+				new updateMenu().copyData(text, coffeePrice + sizePrice, count, cost);
 				Panel.add(new JLabel(text));
 				Panel.add(j1);
 				j1.addActionListener(new ActionListener() {

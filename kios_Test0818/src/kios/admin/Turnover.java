@@ -51,7 +51,7 @@ public class Turnover extends JFrame {
 
         setBounds(150, 150, 700, 600);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         setResizable(false);
         
@@ -76,7 +76,7 @@ public class Turnover extends JFrame {
         try {
         	connection = DBconnection.getConnection();
 
-            sql = "select bill_id, product_name, bill_count, bill_cost, bill_date from menu_product order by bill_id";
+            sql = "select bill_id, product_name, bill_count, bill_cost, bill_date from copy_data order by bill_date";
             preparedStatement = connection.prepareStatement(sql);
 
             resultSet = preparedStatement.executeQuery();

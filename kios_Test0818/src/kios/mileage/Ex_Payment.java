@@ -123,7 +123,7 @@ public class Ex_Payment extends JFrame{
 		setResizable(false);
 		
 		//창을 닫을 때 실행 중인 프로그램도 같이 종료되도록 함
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		//보이기 여부
 		setVisible(true);

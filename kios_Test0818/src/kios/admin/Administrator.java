@@ -1,12 +1,19 @@
 package kios.admin;
 
+import kios.db.DBconnection;
 import kios.main.mainFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Administrator extends JFrame {
 
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    String sql = null;
     String adminFont = "맑은고딕";
 
     public Administrator() {
@@ -25,16 +32,19 @@ public class Administrator extends JFrame {
         JButton btn2 = new JButton("매출관리");
         JButton btn3 = new JButton("재고관리");
         JButton btn4 = new JButton("메인으로");
+        JButton btn5 = new JButton("종료");
 
         btn1.setFont(new Font(adminFont, Font.BOLD, 15));
         btn2.setFont(new Font(adminFont, Font.BOLD, 15));
         btn3.setFont(new Font(adminFont, Font.BOLD, 15));
         btn4.setFont(new Font(adminFont, Font.BOLD, 15));
+        btn5.setFont(new Font(adminFont, Font.BOLD, 15));
 
         btn1.setPreferredSize(new Dimension(160,80));
         btn2.setPreferredSize(new Dimension(160,80));
         btn3.setPreferredSize(new Dimension(160,80));
         btn4.setPreferredSize(new Dimension(120,60));
+        btn5.setPreferredSize(new Dimension(120,60));
 
         container1.add(jl1);
 
@@ -43,6 +53,7 @@ public class Administrator extends JFrame {
         container2.add(btn3);
 
         container3.add(btn4);
+        container3.add(btn5);
 
         add(container1, BorderLayout.NORTH);
         add(container2);
@@ -51,7 +62,7 @@ public class Administrator extends JFrame {
 
         setBounds(200, 200, 700, 400);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         setVisible(true);
 
@@ -86,8 +97,31 @@ public class Administrator extends JFrame {
             dispose();
             new mainFrame();
         });
+
+        btn5.addActionListener(e -> {
+            dataDelete();
+            System.exit(0);
+        });
     }
-    public static void main(String[] args) {
-		new Administrator();
-	}
+
+    public void dataDelete() {
+        try {
+            connection = DBconnection.getConnection();
+
+            sql = "delete from menu_product";
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

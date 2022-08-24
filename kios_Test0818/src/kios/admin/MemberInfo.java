@@ -67,7 +67,7 @@ public class MemberInfo extends JFrame {
 
         setBounds(200, 200, 500, 500);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 		setResizable(false);
 

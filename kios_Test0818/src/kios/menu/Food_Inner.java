@@ -152,6 +152,7 @@ public class Food_Inner extends JFrame {
 				DTO.realFinalCost = (foodPrice)*count;
 				
 				new updateMenu(text,foodPrice,count);
+				new updateMenu().copyData(text, foodPrice, count, cost);
 				Panel.add(new JLabel(text));
 				Panel.add(j1);
 				j1.addActionListener(new ActionListener() {
