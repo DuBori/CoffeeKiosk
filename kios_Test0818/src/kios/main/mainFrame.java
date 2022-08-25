@@ -2,9 +2,12 @@ package kios.main;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,24 +16,35 @@ public class mainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
-	ImageIcon icon = new ImageIcon("kios_Test0818/src/image/coffee.png");
+	ImageIcon icon = new ImageIcon("kios_Test0818/src/image/main.png");
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 	public static void main(String[] args) {
 		new mainFrame();
 	}
 
 	public mainFrame() {
+		Toolkit kit = Toolkit.getDefaultToolkit();
+        
+        //Frame 아이콘 변경
+        Image img = kit.getImage("logo.png");
+        setIconImage(img);
+        
 		setTitle("커피 키오스크");
-	
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 700, 700);
 
 		contentPane = new JPanel();
-	
+		contentPane.setBackground(new Color(74, 68, 61));
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		add(contentPane);
+		getContentPane().add(contentPane);
 		
 		panel = new JPanel();
+		panel.setBackground(new Color(74, 68, 61));
 		contentPane.add(panel, BorderLayout.NORTH);
 		
 		panel.setLayout(new BorderLayout(0, 0));
@@ -42,20 +56,32 @@ public class mainFrame extends JFrame {
 	}
 
 	private void button_action() {
-		JButton btnNewButton = new JButton("관리자 모드");
-		btnNewButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					dispose();
-					new checkAdmin();
-				} catch (Exception e1) {
-					e1.printStackTrace();
+		{
+			lblNewLabel = new JLabel("");
+			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel.setIcon(new ImageIcon(mainFrame.class.getResource("/image/logo_1.png")));
+			panel.add(lblNewLabel, BorderLayout.CENTER);
+		}
+		{
+			lblNewLabel_1 = new JLabel("   ");
+			lblNewLabel_1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					try {
+						dispose();
+						new checkAdmin();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
-				
-			}
 		});
-		panel.add(btnNewButton, BorderLayout.EAST);
+			lblNewLabel_1.setIcon(new ImageIcon(mainFrame.class.getResource("/image/manager.png")));
+			panel.add(lblNewLabel_1, BorderLayout.EAST);
+		}
+		{
+			lblNewLabel_2 = new JLabel("              ");
+			panel.add(lblNewLabel_2, BorderLayout.WEST);
+		}
 		
 	}
 	private void panel_action() {
