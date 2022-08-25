@@ -6,8 +6,13 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 
+import kios.db.Static;
+import kios.menu.menuOrder;
 import kios.register.Register;
 import kios.register.check_Phone;
 
@@ -39,6 +44,7 @@ public class Ex_Payment extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				new Register();
 				dispose();
+				
 			}
 		});
 		JButton button2 = new JButton("확인");
@@ -51,6 +57,19 @@ public class Ex_Payment extends JFrame{
 			}
 		});
 		JButton button3 = new JButton("취소");
+		JLabel lb1 = new JLabel("돌아가기");
+		lb1.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				new menuOrder();
+				System.out.println(Static.panel_3.getComponentCount());
+				menuOrder.scrollPane.setViewportView(Static.panel_3);
+				
+				
+			}
+		});
 		
 		//setLayout(null);
 		inputSpace = new JTextField(20);
@@ -97,9 +116,10 @@ public class Ex_Payment extends JFrame{
 		con1.add(inputSpace);               
 		con2.add(buttonPanel); 
 		
-		con3.add(button1,BorderLayout.WEST); 
-		con3.add(button2,BorderLayout.CENTER);
-		con3.add(button3,BorderLayout.EAST);
+		con3.add(button1); 
+		con3.add(button2);
+		con3.add(button3);
+		con3.add(lb1);
 		
 		con4.add(con, BorderLayout.NORTH);
 		con4.add(con2,BorderLayout.NORTH);
@@ -134,12 +154,15 @@ public class Ex_Payment extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				receipt.phone="None";
+				Static.phone="None";
 				new Payment();
 			}
 		});
 		
-	}
+
+	
+		
+}
 	
 
 	//만들어놓은 버튼에 액션 리스너 기능 추가

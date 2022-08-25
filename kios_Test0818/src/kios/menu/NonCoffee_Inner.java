@@ -222,7 +222,7 @@ public class NonCoffee_Inner extends JFrame {
 				// TODO HOT, ICE 가지고 올 String 따오기
 				// TODO 라벨값 따오기
 				dispose();
-				new PutIn(text);
+				PutIn putIn = new PutIn(text);
 			}
 		});
 		
