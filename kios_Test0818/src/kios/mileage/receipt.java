@@ -33,7 +33,6 @@ public class receipt extends JFrame {
 
 	int costDefault,shot,billCount,billCost,proId;
 	public static int total=0;
-	public static String phone="";
 	private JPanel contentPane;
 	
 	SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd | HH:mm:ss z");
@@ -51,7 +50,7 @@ public class receipt extends JFrame {
 	}
 	public receipt(String jta)
 	{
-		System.out.println("정적 폰의 값:"+phone);
+		System.out.println("정적 폰의 값:"+Static.phone);
 		setBounds(100, 100, 500, 630);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -131,7 +130,7 @@ public class receipt extends JFrame {
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, Static.count);
 			System.out.println(Static.count);
-			pstmt.setString(2, phone);
+			pstmt.setString(2, Static.phone);
 			rs=pstmt.executeQuery();
 			String addShot="샷 추가";
 			String.format("%-"+9+"s", addShot);

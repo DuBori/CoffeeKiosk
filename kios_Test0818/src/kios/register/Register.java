@@ -38,7 +38,7 @@ public class Register extends JFrame {
 	
 	JLabel label1,label2,label3;
 	String phone,pw,name;
-	String chkph=null;
+	String chkph;
 	
 	/**
 	 * Create the frame.

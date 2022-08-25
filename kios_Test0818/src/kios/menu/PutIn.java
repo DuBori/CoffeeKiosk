@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import kios.db.Static;
+
 public class PutIn {
 
 	int arryCount = Integer.parseInt(menuOrder.spinner_1.getValue().toString());
@@ -40,7 +42,7 @@ public class PutIn {
 		inner_ArrayList.add(menuOrder.cost);
 		inner_ArrayList.add(inner_ArrayList.hashCode());
 
-		menuOrder.outer_ArrayList.add(inner_ArrayList); // 내부 ArrayList를 외부 ArrayList에 추가
+		Static.outer_ArrayList.add(inner_ArrayList); // 내부 ArrayList를 외부 ArrayList에 추가
 		TestPanel.add(new JLabel(text));
 		TestPanel.add(j1);
 		// - 버튼 액션
@@ -87,12 +89,12 @@ public class PutIn {
 				updateMenu updateMenu = new updateMenu();
 				updateMenu.deleteCopyData(text);
 
-				for(int i=0; i<menuOrder.outer_ArrayList.size();i++)
+				for(int i=0; i<Static.outer_ArrayList.size();i++)
 				{
-					if(menuOrder.outer_ArrayList.get(i).hashCode() == inner_ArrayList.hashCode())
+					if(Static.outer_ArrayList.get(i).hashCode() == inner_ArrayList.hashCode())
 					{
-						menuOrder.panel_3.remove(TestPanel);
-						menuOrder.outer_ArrayList.remove(i);
+						Static.panel_3.remove(TestPanel);
+						Static.outer_ArrayList.remove(i);
 					}
 				}
 
@@ -104,10 +106,10 @@ public class PutIn {
 		L1.setText(String.valueOf(arryCount));
 		L2.setText(String.valueOf((menuOrder.coffeePrice + menuOrder.sizePrice + menuOrder.addShot) * arryCount));
 
-		menuOrder.panel_3.add(TestPanel).setVisible(true);
-		menuOrder.scrollPane.setViewportView(menuOrder.panel_3);
+		Static.panel_3.add(TestPanel).setVisible(true);
+		menuOrder.scrollPane.setViewportView(Static.panel_3);
 
-		System.out.println("어레이 크기: "+menuOrder.outer_ArrayList.size());
+		System.out.println("어레이 크기: "+Static.outer_ArrayList.size());
 	}
 
 	// ########################### 두번째 인자 생성자 ###########################
@@ -131,7 +133,7 @@ public class PutIn {
 		inner_ArrayList.add(menuOrder.cost);
 
 
-		menuOrder.outer_ArrayList.add(inner_ArrayList); // 내부 ArrayList를 외부 ArrayList에 추가
+		Static.outer_ArrayList.add(inner_ArrayList); // 내부 ArrayList를 외부 ArrayList에 추가
 		menuOrder.Panel.add(new JLabel(text));
 		menuOrder.Panel.add(j1);
 		// - 버튼 액션
@@ -176,8 +178,8 @@ public class PutIn {
 				updateMenu updateMenu = new updateMenu();
 				updateMenu.deleteCopyData(text);
 
-				menuOrder.panel_3.remove(menuOrder.Panel);
-				menuOrder.outer_ArrayList.remove(menuOrder.removeCount++);
+				Static.panel_3.remove(menuOrder.Panel);
+				Static.outer_ArrayList.remove(menuOrder.removeCount++);
 				menuOrder.removeCount--;
 			}
 		});
@@ -187,8 +189,8 @@ public class PutIn {
 		L1.setText(String.valueOf(arryCount));
 		L2.setText(String.valueOf(menuOrder.foodPrice * arryCount));
 
-		menuOrder.panel_3.add(menuOrder.Panel).setVisible(true);
-		menuOrder.scrollPane.setViewportView(menuOrder.panel_3);
+		Static.panel_3.add(menuOrder.Panel).setVisible(true);
+		menuOrder.scrollPane.setViewportView(Static.panel_3);
 
 		menuOrder.removeCount++;
 	}

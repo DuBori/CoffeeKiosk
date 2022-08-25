@@ -79,7 +79,6 @@ public class menuOrder extends JFrame {
 	private JPanel contentPane;
 
 	public static JButton btnNewButton_7;
-	public static JPanel panel_3;
 	static String picNum;
 	public static List<JPanel> list;
 
@@ -91,15 +90,14 @@ public class menuOrder extends JFrame {
 	static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
 	static String IceHot, cupSize;
 
-	static ArrayList<ArrayList<Object>> outer_ArrayList = new ArrayList<ArrayList<Object>>(); // 2차원 ArrayList 외부ArrayList 객체 생성
-
+	
 	int total = 0;
 	int col = 0;
 	int row = 0;
 	String contents = "";
 
 	public menuOrder() {
-
+		System.out.println("판넬 : "+Static.panel_3.getComponentCount()+"\n"+"outer : "+Static.outer_ArrayList.size());
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 715, 750);
 		contentPane = new JPanel();
@@ -514,7 +512,7 @@ public class menuOrder extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+				dispose();
 				new Ex_Payment();
 
 			}
@@ -525,7 +523,7 @@ public class menuOrder extends JFrame {
 		{
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			dispose();
+			setVisible(false);
 			new subMainFrame();
 			}
 		});
@@ -559,10 +557,10 @@ public class menuOrder extends JFrame {
 							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
-		panel_3 = new JPanel();
-		panel_3.setLayout(new GridLayout(20, 1, 80, 0));
+
+		
 		list = new ArrayList<JPanel>();
-		scrollPane.setViewportView(panel_3);
+		scrollPane.setViewportView(Static.panel_3);
 
 
 		contentPane.setLayout(gl_contentPane);
