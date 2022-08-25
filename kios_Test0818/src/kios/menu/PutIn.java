@@ -84,6 +84,8 @@ public class PutIn {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				updateMenu updateMenu = new updateMenu();
+				updateMenu.deleteCopyData(text);
 
 				for(int i=0; i<menuOrder.outer_ArrayList.size();i++)
 				{
@@ -170,7 +172,10 @@ public class PutIn {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+
+				updateMenu updateMenu = new updateMenu();
+				updateMenu.deleteCopyData(text);
+
 				menuOrder.panel_3.remove(menuOrder.Panel);
 				menuOrder.outer_ArrayList.remove(menuOrder.removeCount++);
 				menuOrder.removeCount--;
