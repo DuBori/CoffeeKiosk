@@ -174,7 +174,7 @@ public class Stocktaking extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         setResizable(false);
-
+        setLocationRelativeTo(null);
 //      여기까지 화면구현
         
         // 재고 조회 버튼
