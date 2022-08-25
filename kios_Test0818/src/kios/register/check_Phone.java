@@ -1,6 +1,7 @@
 package kios.register;
 
 import kios.db.DBconnection;
+import kios.db.Static;
 import kios.mileage.Ex_Payment;
 import kios.mileage.checkMileage;
 import kios.mileage.receipt;
@@ -42,11 +43,11 @@ public class check_Phone extends JFrame{
 			}
 			if(!chkph.equals(""))
 			{
-				receipt.phone=chkph;
+				Static.phone=chkph;
 				new checkMileage(chkph,chkmil);
 			}else {
 				JOptionPane.showMessageDialog(null, "존재하지 않는 번호입니다.");
-				receipt.phone="";
+
 				new Ex_Payment();
 			}
 			

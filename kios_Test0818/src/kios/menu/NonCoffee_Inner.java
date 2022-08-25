@@ -223,7 +223,6 @@ public class NonCoffee_Inner extends JFrame {
 				// TODO 라벨값 따오기
 				dispose();
 				PutIn putIn = new PutIn(text);
-				new updateMenu().copyData(text, menuOrder.coffeePrice, putIn.arryCount, menuOrder.cost);
 			}
 		});
 		
