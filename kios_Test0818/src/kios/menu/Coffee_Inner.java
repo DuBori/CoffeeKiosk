@@ -217,8 +217,7 @@ public class Coffee_Inner extends JFrame {
 				// TODO HOT, ICE 가지고 올 String 따오기
 				// TODO 라벨값 따오기
 				dispose();
-				PutIn putIn = new PutIn(text);
-				new updateMenu().copyData(text, menuOrder.coffeePrice, putIn.arryCount, menuOrder.cost);
+				new PutIn(text);
 			}
 		});
 

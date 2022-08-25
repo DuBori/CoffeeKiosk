@@ -13,7 +13,7 @@ import kios.register.check_Phone;
 
 public class Ex_Payment extends JFrame{
 
-	JTextField inputSpace;
+	static JTextField inputSpace;
 	boolean clearOnNextDigit;
 	JPanel buttonPanel;
 	public Ex_Payment() {
@@ -136,8 +136,6 @@ public class Ex_Payment extends JFrame{
 				dispose();
 				receipt.phone="None";
 				new Payment();
-				
-				
 			}
 		});
 		

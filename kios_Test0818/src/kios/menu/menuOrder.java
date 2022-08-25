@@ -91,7 +91,7 @@ public class menuOrder extends JFrame {
 	static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
 	static String IceHot, cupSize;
 
-	static ArrayList<ArrayList<Object>> outer_ArrayList = new ArrayList<ArrayList<Object>>(); // 2차원 ArrayList 외부ArrayList 객체 생성
+	public static ArrayList<ArrayList<Object>> outer_ArrayList = new ArrayList<ArrayList<Object>>(); // 2차원 ArrayList 외부ArrayList 객체 생성
 
 	int total = 0;
 	int col = 0;
@@ -516,7 +516,6 @@ public class menuOrder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				new Ex_Payment();
-
 			}
 		});
 		
