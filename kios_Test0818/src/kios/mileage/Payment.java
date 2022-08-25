@@ -10,85 +10,91 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
 
 
-public class Payment extends JFrame implements ActionListener{
+public class Payment extends JFrame implements MouseListener{
 
    Connection con = null;
    PreparedStatement pstmt = null;
    ResultSet rs = null;
    String query = null;
    int down, result, bill_count, product_id;
-
-   ImageIcon card = new ImageIcon("kios_Test0818/src/image/icon_card.jpg");
-   ImageIcon money = new ImageIcon("kios_Test0818/src/image/money.jpg");
-   JButton jbt1 = new JButton("카드",card);
-   JButton jbt2 = new JButton("현금",money);
    test_Frame2 tf2;
-
+   JLabel card,cash;
    public Payment() {
-      setTitle("결제창");
+	  setTitle("결제");
       this.setLayout(new GridLayout(0,2));
-      getContentPane().add(jbt1);
-      getContentPane().add(jbt2);
+      card = new JLabel("");
+      cash = new JLabel("");
+      
+      card.addMouseListener(this);
+	  cash.addMouseListener(this);
+	  
+      card.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				downId(down);
+				//수정수정
+			}
+		});
+      card.setIcon(new ImageIcon(Payment.class.getResource("/image/card.png")));
 
-      setResizable(false);
-      this.setSize(400,250);
-      this.setVisible(true);
+      
+		cash.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				downId(down);
+				//수정수정
+			}
+		});
+		cash.setIcon(new ImageIcon(Payment.class.getResource("/image/cash.png")));
+	  
+		
+		
+		
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(32)
+					.addComponent(card)
+					.addGap(18)
+					.addComponent(cash, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(cash, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
+						.addComponent(card, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 
-      jbt1.addActionListener(this);
-      jbt2.addActionListener(this);
 
-      setLocationRelativeTo(null);
+		getContentPane().setLayout(groupLayout);
+	       
+		setResizable(false);
+		this.setSize(400,250);
+		this.setVisible(true);
 
-      setVisible(true);
-      setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
-      jbt1.addActionListener(new ActionListener() {
-
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            downId(down);
-         }
-      });
-
-      jbt2.addActionListener(new ActionListener() {
-
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            downId(down);
-         }
-      });
+		setLocationRelativeTo(null);
+	        
+		setVisible(true);
    }
 
-   @Override
-   public void actionPerformed(ActionEvent e) {
-      dispose();
-      if(e.getSource() == jbt1 || e.getSource() == jbt2){
-         tf2 = new test_Frame2(e.getActionCommand() + " 결제했습니다.");
-         new updateMenu();
-         new checkMileage().billaddPhone(Static.phone);
 
-         copyData();
-         new checkMileage().billCopyPhone(Static.phone);
-         new checkMileage().accumulatedPay(Static.phone);
-         new receipt(new receipt().select());
 
-         Static.count++;
-         Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
-
-         System.out.println(Static.outer_ArrayList.size());
-         while(Static.outer_ArrayList.size()>0) {
-        	 System.out.println("들어옴");
-        	 Static.outer_ArrayList.remove(0);
-         }
-       }
-   }
 
    private void downId(int count) {
       try {
@@ -143,6 +149,62 @@ public class Payment extends JFrame implements ActionListener{
 	      }
 	   }
 
+
+@Override
+public void mouseClicked(MouseEvent e) {
+	 dispose();
+     if(e.getSource() == card){
+    	
+        tf2 = new test_Frame2("카드 결제했습니다.");
+     }else {
+    	 tf2 = new test_Frame2("현금 결제했습니다.");	
+     }
+     new updateMenu();
+     new checkMileage().billaddPhone(Static.phone);
+
+     copyData();
+     new checkMileage().billCopyPhone(Static.phone);
+     new checkMileage().accumulatedPay(Static.phone);
+     new receipt(new receipt().select());
+
+     Static.count++;
+     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
+
+     System.out.println(Static.outer_ArrayList.size());
+     while(Static.outer_ArrayList.size()>0) {
+    	 System.out.println("들어옴");
+    	 Static.outer_ArrayList.remove(0);
+     }
+}
+
+
+
+@Override
+public void mousePressed(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void mouseReleased(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void mouseEntered(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void mouseExited(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
 }
 
 class test_Frame2 extends JDialog{
