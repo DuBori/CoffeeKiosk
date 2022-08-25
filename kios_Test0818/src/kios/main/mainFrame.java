@@ -33,6 +33,7 @@ public class mainFrame extends JFrame {
         
 		setTitle("커피 키오스크");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setBounds(100, 100, 700, 700);
 
 		contentPane = new JPanel();
