@@ -65,7 +65,7 @@ public class Administrator extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         setVisible(true);
-
+        setLocationRelativeTo(null);
         setResizable(false);
 
 //      여기까지 화면 구현

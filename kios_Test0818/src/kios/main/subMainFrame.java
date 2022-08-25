@@ -58,7 +58,7 @@ public class subMainFrame extends JFrame {
 		getContentPane().add(btn1);
         getContentPane().add(btn2);
 		
-        
+        setLocationRelativeTo(null);
 		setVisible(true);
 	}
 

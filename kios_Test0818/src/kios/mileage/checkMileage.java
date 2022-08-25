@@ -49,7 +49,7 @@ public class checkMileage extends JFrame{
 			 con=DBconnection.getConnection();
 			 query="update menu_product set member_phone=? where bill_id=?";
 			 pstmt=con.prepareStatement(query);
-			 pstmt.setString(1,text);
+			 pstmt.setString(1,Static.phone);
 			 pstmt.setInt(2, Static.count);
 			 pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -63,7 +63,7 @@ public class checkMileage extends JFrame{
 			con=DBconnection.getConnection();
 			query="update copy_data set member_phone = ? where bill_id = ?";
 			pstmt=con.prepareStatement(query);
-			pstmt.setString(1,text);
+			pstmt.setString(1,Static.phone);
 			pstmt.setInt(2, Static.count);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

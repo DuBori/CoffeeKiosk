@@ -132,6 +132,7 @@ public class Register extends JFrame {
 		
 		panel_1.add(btn2);
 		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 	
