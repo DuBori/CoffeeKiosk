@@ -59,8 +59,6 @@ public class Register extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		
-		
 		panel.setLayout(new GridLayout(3, 2, 0, 0));
 		
 		JLabel label1 = new JLabel("휴대폰 번호");
