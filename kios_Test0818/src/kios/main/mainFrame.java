@@ -1,16 +1,9 @@
 package kios.main;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import java.awt.event.*;
+import java.awt.event.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 public class mainFrame extends JFrame {
 
@@ -29,11 +22,10 @@ public class mainFrame extends JFrame {
         
         //Frame 아이콘 변경
         Image img = kit.getImage("logo.png");
-        setIconImage(img);
-        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(mainFrame.class.getResource("/image/logo.png")));
 		setTitle("커피 키오스크");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		//setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 700, 700);
 
 		contentPane = new JPanel();
@@ -52,7 +44,6 @@ public class mainFrame extends JFrame {
 		button_action();
 		panel_action();
 		
-		setLocationRelativeTo(null);
 		setVisible(true);	
 	}
 
@@ -105,4 +96,3 @@ public class mainFrame extends JFrame {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 	}
 }
-
