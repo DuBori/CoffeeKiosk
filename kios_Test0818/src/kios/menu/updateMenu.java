@@ -82,6 +82,23 @@ public class updateMenu {
          return 0;
    }
 
+   public void deleteMenuData(String text) {
+      try {
+         con = DBconnection.getConnection();
+
+         query = "delete from menu_product where bill_id = ? and product_name = ?";
+
+         pstmt=con.prepareStatement(query);
+
+         pstmt.setInt(1, Static.count);
+         pstmt.setString(2, text);
+
+         pstmt.executeUpdate();
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
 
    public void deleteCopyData(String text) {
       try {
