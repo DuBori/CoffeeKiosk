@@ -213,7 +213,7 @@ public class Coffee_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				menuOrder.Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
+//				menuOrder.Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
 				// TODO HOT, ICE 가지고 올 String 따오기
 				// TODO 라벨값 따오기
 				dispose();
