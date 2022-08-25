@@ -58,7 +58,7 @@ public class checkMileage extends JFrame{
 		}
 	}
 
-	private void billCopyPhone(String text) {
+	public void billCopyPhone(String text) {
 		try {
 			con=DBconnection.getConnection();
 			query="update copy_data set member_phone = ? where bill_id = ?";
