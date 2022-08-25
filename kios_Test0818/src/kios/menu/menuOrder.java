@@ -90,7 +90,7 @@ public class menuOrder extends JFrame {
 	static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
 	static String IceHot, cupSize;
 
-	
+
 	int total = 0;
 	int col = 0;
 	int row = 0;
@@ -514,7 +514,6 @@ public class menuOrder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				new Ex_Payment();
-
 			}
 		});
 		
@@ -558,7 +557,7 @@ public class menuOrder extends JFrame {
 					.addContainerGap())
 		);
 
-		
+
 		list = new ArrayList<JPanel>();
 		scrollPane.setViewportView(Static.panel_3);
 

@@ -72,11 +72,16 @@ public class Payment extends JFrame implements ActionListener{
       if(e.getSource() == jbt1 || e.getSource() == jbt2){
          tf2 = new test_Frame2(e.getActionCommand() + " 결제했습니다.");
          new updateMenu();
-         new checkMileage().billaddPhone(Ex_Payment.inputSpace.getText());
+         new checkMileage().billaddPhone(Static.phone);
+
+         copyData();
+         new checkMileage().billCopyPhone(Static.phone);
+         new checkMileage().accumulatedPay(Static.phone);
          new receipt(new receipt().select());
+
          Static.count++;
          Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
-         
+
          System.out.println(Static.outer_ArrayList.size());
          while(Static.outer_ArrayList.size()>0) {
         	 System.out.println("들어옴");

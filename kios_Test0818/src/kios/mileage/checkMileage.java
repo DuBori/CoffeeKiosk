@@ -32,9 +32,6 @@ public class checkMileage extends JFrame{
 			check=pstmt.executeUpdate();
 			if(check>0) {	
 				JOptionPane.showMessageDialog(null, "적립 완료");
-				//billaddPhone(text);
-				billCopyPhone(text);
-				accumulatedPay(text);
 				new Payment();
 			}else
 				JOptionPane.showMessageDialog(null, "적립 실패");
@@ -58,7 +55,7 @@ public class checkMileage extends JFrame{
 		}
 	}
 
-	private void billCopyPhone(String text) {
+	public void billCopyPhone(String text) {
 		try {
 			con=DBconnection.getConnection();
 			query="update copy_data set member_phone = ? where bill_id = ?";

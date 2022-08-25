@@ -156,8 +156,6 @@ public class Ex_Payment extends JFrame{
 				dispose();
 				Static.phone="None";
 				new Payment();
-				
-				
 			}
 		});
 		
