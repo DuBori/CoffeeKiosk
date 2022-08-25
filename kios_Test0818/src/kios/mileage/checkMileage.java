@@ -32,9 +32,6 @@ public class checkMileage extends JFrame{
 			check=pstmt.executeUpdate();
 			if(check>0) {	
 				JOptionPane.showMessageDialog(null, "적립 완료");
-				//billaddPhone(text);
-				billCopyPhone(text);
-				accumulatedPay(text);
 				new Payment();
 			}else
 				JOptionPane.showMessageDialog(null, "적립 실패");
