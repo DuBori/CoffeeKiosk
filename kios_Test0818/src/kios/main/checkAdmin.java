@@ -105,6 +105,7 @@ public class checkAdmin extends JFrame{
 		});
 		panel_2.add(btn);
 		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 

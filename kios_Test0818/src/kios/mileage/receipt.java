@@ -103,6 +103,7 @@ public class receipt extends JFrame {
 		panel_2.setLayout(new BorderLayout(0, 0));
 		
 		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 	
 	/*
@@ -170,7 +171,7 @@ public class receipt extends JFrame {
 								+billCost+"</p>";
 					}	
 				}
-	
+			 System.out.println(true&false);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

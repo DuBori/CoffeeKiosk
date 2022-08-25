@@ -109,11 +109,7 @@ public class Food_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				menuOrder.Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
-				// TODO HOT, ICE 가지고 올 String 따오기
-				// TODO 라벨값 따오기
 				dispose();
-
 				PutIn putIn = new PutIn(text, menuOrder.count);
 			}
 		});
@@ -124,13 +120,11 @@ public class Food_Inner extends JFrame {
 		btn_cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
+				dispose();		
 			}
 		});
 		setLocationRelativeTo(null);
 		setVisible(true);
-
 	}
 	
 	public Food_Inner() {
