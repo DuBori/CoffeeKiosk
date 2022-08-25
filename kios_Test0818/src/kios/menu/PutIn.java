@@ -86,9 +86,6 @@ public class PutIn {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				updateMenu updateMenu = new updateMenu();
-				updateMenu.deleteCopyData(text);
-
 				for(int i=0; i<Static.outer_ArrayList.size();i++)
 				{
 					if(Static.outer_ArrayList.get(i).hashCode() == inner_ArrayList.hashCode())
@@ -174,9 +171,6 @@ public class PutIn {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				updateMenu updateMenu = new updateMenu();
-				updateMenu.deleteCopyData(text);
 
 				Static.panel_3.remove(menuOrder.Panel);
 				Static.outer_ArrayList.remove(menuOrder.removeCount++);
