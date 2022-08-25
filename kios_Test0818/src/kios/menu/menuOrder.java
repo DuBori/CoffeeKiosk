@@ -86,7 +86,7 @@ public class menuOrder extends JFrame {
 	static JSpinner spinner_1;
 	static JComboBox comboBox, comboBox_1;
 	public static JScrollPane scrollPane;
-	public static JPanel Panel;
+//	public static JPanel Panel;
 	static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
 	static String IceHot, cupSize;
 
@@ -97,7 +97,7 @@ public class menuOrder extends JFrame {
 	String contents = "";
 
 	public menuOrder() {
-		System.out.println("판넬 : "+Static.panel_3.getComponentCount()+"\n"+"outer : "+Static.outer_ArrayList.size());
+//		System.out.println("판넬 : "+Static.panel_3.getComponentCount()+"\n"+"outer : "+Static.outer_ArrayList.size());
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 715, 750);
 		contentPane = new JPanel();
@@ -512,7 +512,11 @@ public class menuOrder extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				if(Static.outer_ArrayList.size() == 0) {
+					JOptionPane.showMessageDialog(null, "메뉴를 선택해주세요^-^");
+					return;
+				}
+				setVisible(false);
 				new Ex_Payment();
 			}
 		});
@@ -524,6 +528,15 @@ public class menuOrder extends JFrame {
 		public void mouseClicked(MouseEvent e) {
 			setVisible(false);
 			new subMainFrame();
+			}
+		});
+		
+		JButton btnNewButton_2 = new JButton("전체취소");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Static.panel_3.removeAll();
+				Static.outer_ArrayList.clear();
+				menuOrder.scrollPane.setViewportView(Static.panel_3);
 			}
 		});
 
@@ -538,9 +551,10 @@ public class menuOrder extends JFrame {
 							.addContainerGap()
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnNewButton_1)
-								.addComponent(btnNewButton))))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnNewButton_2, 0, 0, Short.MAX_VALUE)
+								.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -549,11 +563,13 @@ public class menuOrder extends JFrame {
 					.addComponent(tabbedPane_Main, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 
