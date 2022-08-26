@@ -161,14 +161,14 @@ public class receipt extends JFrame {
 							addString+="<p>("+billSize.substring(0,1)+")"+proName+"&emsp;&emsp;&emsp;"+costDefault
 									+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
 									+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-									+billCost+"</p>";
+									+billCost+"원</p>";
 						}
 					}else {
 						addString+="<p>"+proName+"&emsp;&emsp;&emsp;"
 								+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
 								+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
 										+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-								+billCost+"</p>";
+								+billCost+"원</p>";
 					}	
 				}
 			RsPreClose(rs, pstmt);
