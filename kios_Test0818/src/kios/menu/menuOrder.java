@@ -48,6 +48,7 @@ import javax.swing.JSpinner;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ContainerAdapter;
@@ -97,7 +98,7 @@ public class menuOrder extends JFrame {
 	String contents = "";
 
 	public menuOrder() {
-//		System.out.println("판넬 : "+Static.panel_3.getComponentCount()+"\n"+"outer : "+Static.outer_ArrayList.size());
+		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.menuOrder.class.getResource("/image/logo.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 715, 750);
 		contentPane = new JPanel();

@@ -75,7 +75,6 @@ public class checkMileage extends JFrame{
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, text);
 			pstmt.setString(2, text);
-
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
