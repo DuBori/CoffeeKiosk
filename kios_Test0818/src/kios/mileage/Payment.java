@@ -2,6 +2,7 @@ package kios.mileage;
 
 import kios.db.DBconnection;
 import kios.db.Static;
+import kios.deco.TextDeco;
 import kios.main.mainFrame;
 import kios.menu.menuOrder;
 import kios.menu.updateMenu;
@@ -41,27 +42,8 @@ public class Payment extends JFrame implements MouseListener{
       
       card.addMouseListener(this);
 	  cash.addMouseListener(this);
-	  
-      card.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				downId(down);
-				//수정수정
-			}
-		});
-      card.setIcon(new ImageIcon(Payment.class.getResource("/image/card.png")));
-
-      
-		cash.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				downId(down);
-				//수정수정
-			}
-		});
-		cash.setIcon(new ImageIcon(Payment.class.getResource("/image/cash.png")));
+	  card.setIcon(new ImageIcon(Payment.class.getResource("/image/card.png")));
+	  cash.setIcon(new ImageIcon(Payment.class.getResource("/image/cash.png")));
 	  
 		
 		
@@ -215,8 +197,9 @@ class test_Frame2 extends JDialog{
    JLabel jlb2 = new JLabel("주문번호 : "+ Static.count);
    JPanel group = new JPanel();
    JPanel group2 = new JPanel(new BorderLayout());
+   TextDeco td = new TextDeco();
    JButton button = new JButton("돌아가기");
-
+   
    public test_Frame2() {
 	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.test_Frame2.class.getResource("/image/logo.png")));
       setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -224,6 +207,8 @@ class test_Frame2 extends JDialog{
       jlb.setForeground(Color.black);
       getContentPane().add(jlb);
       // 여기가 배경 판넬
+      td.decobtn(button);
+      td.decoLable(jlb2);
       getContentPane().setBackground(Color.blue);
       jlb2.setFont(jlb.getFont().deriveFont(18.0f));
 

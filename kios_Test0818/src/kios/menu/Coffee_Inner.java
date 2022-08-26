@@ -12,6 +12,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatter;
 
+import kios.deco.TextDeco;
+
 public class Coffee_Inner extends JFrame {
 
 	private JPanel contentPane;
@@ -21,7 +23,7 @@ public class Coffee_Inner extends JFrame {
 	ResultSet rs = null;
 	String sql = null;
 	DefaultTableModel model;
-
+	TextDeco td = new TextDeco();
 	public Coffee_Inner(String text) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.Coffee_Inner.class.getResource("/image/logo.png")));
 		setBounds(100, 100, 470, 260);
@@ -206,6 +208,7 @@ public class Coffee_Inner extends JFrame {
 		contentPane.add(lblNewLabel_1_1);
 
 		JButton btn_putIn = new JButton("담기");
+		td.decobtn(btn_putIn);
 		btn_putIn.setBounds(204, 184, 117, 29);
 		contentPane.add(btn_putIn);
 
@@ -222,6 +225,7 @@ public class Coffee_Inner extends JFrame {
 		});
 
 		JButton btn_cancel = new JButton("취소");
+		td.decobtn(btn_cancel);
 		btn_cancel.setBounds(330, 184, 117, 29);
 		contentPane.add(btn_cancel);
 

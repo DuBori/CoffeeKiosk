@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import kios.admin.Administrator;
+import kios.deco.TextDeco;
+
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -20,6 +22,7 @@ public class checkAdmin extends JFrame{
 	private String id;
 	private String pwd;
 	int count;
+	TextDeco td =new TextDeco();
 	
 	public checkAdmin() throws Exception {
 	
@@ -43,7 +46,7 @@ public class checkAdmin extends JFrame{
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_2 = new JLabel("관리자 로그인");
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		td.decoLable(lblNewLabel_2);
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel_2, BorderLayout.SOUTH);
@@ -62,7 +65,7 @@ public class checkAdmin extends JFrame{
 		
 		JLabel lblNewLabel_1 = new JLabel("비밀번호");
 		lblNewLabel_1.setBackground(Color.BLACK);
-		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		td.decoLable(lblNewLabel_1);
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -77,7 +80,7 @@ public class checkAdmin extends JFrame{
 		tf2.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("아이디");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		td.decoLable(lblNewLabel);
 		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
