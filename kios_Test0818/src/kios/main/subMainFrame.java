@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class subMainFrame extends JFrame {
 
@@ -23,6 +24,7 @@ public class subMainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public subMainFrame() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(subMainFrame.class.getResource("/image/logo.png")));
 		setTitle("매장/포장");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 700, 700);

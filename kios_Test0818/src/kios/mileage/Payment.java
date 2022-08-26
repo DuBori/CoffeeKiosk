@@ -9,6 +9,7 @@ import kios.menu.updateMenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -32,6 +33,7 @@ public class Payment extends JFrame implements MouseListener{
    test_Frame2 tf2;
    JLabel card,cash;
    public Payment() {
+	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.Payment.class.getResource("/image/logo.png")));
 	  setTitle("결제");
       this.setLayout(new GridLayout(0,2));
       card = new JLabel("");
@@ -216,7 +218,7 @@ class test_Frame2 extends JDialog{
    JButton button = new JButton("돌아가기");
 
    public test_Frame2() {
-
+	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.test_Frame2.class.getResource("/image/logo.png")));
       setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
       // 글씨가 들어가 있는데 판넬색깔이 잡아먹어서 글씨가 안보임
       jlb.setForeground(Color.black);

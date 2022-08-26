@@ -19,7 +19,7 @@ public class Turnover extends JFrame {
     int orderSumResult = 0;
 
     public Turnover() {
-
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(kios.admin.Turnover.class.getResource("/image/logo.png")));
         setTitle("매출관리");
         JPanel container1 = new JPanel();
         JPanel container2 = new JPanel();
@@ -108,4 +108,5 @@ public class Turnover extends JFrame {
             }
         }
     }
+    
 }

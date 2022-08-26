@@ -25,7 +25,7 @@ public class MemberInfo extends JFrame {
     }
 
 	public MemberInfo() {
-
+		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.admin.MemberInfo.class.getResource("/image/logo.png")));
 		setTitle("회원정보");
 		
 		JPanel container = new JPanel();
