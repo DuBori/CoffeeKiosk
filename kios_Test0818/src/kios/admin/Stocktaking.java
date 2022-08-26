@@ -64,6 +64,7 @@ public class Stocktaking extends JFrame {
         JRadioButton jrb18 = new JRadioButton("스콘");
         JRadioButton jrb19 = new JRadioButton("마카롱");
         JRadioButton jrb20 = new JRadioButton("와플");
+        
         jrb1.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         jrb2.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         jrb3.setFont(new Font(stocktakingFont, Font.BOLD, 11));
