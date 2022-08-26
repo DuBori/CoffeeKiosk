@@ -81,6 +81,7 @@ public class PutIn {
 					L2.setText(String.valueOf((menuOrder.coffeePrice + menuOrder.sizePrice + menuOrder.addShot) * arryCount));
 				}
 				inner_ArrayList.set(5, arryCount);
+				
 			}
 		});
 
@@ -130,6 +131,9 @@ public class PutIn {
 			Static.panel_3.add(TestPanel).setVisible(true);
 		}
 		menuOrder.scrollPane.setViewportView(Static.panel_3);
+		
+		menuOrder.addShot = 0;
+		menuOrder.sizePrice = 0;
 		System.out.println("PutIn맨끝 i : "+i);
 }
 
