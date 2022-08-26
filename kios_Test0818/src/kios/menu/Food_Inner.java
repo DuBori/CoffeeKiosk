@@ -13,6 +13,8 @@ import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatter;
 
+import kios.db.Static;
+
 public class Food_Inner extends JFrame {
 
 	private JPanel contentPane;
@@ -90,7 +92,16 @@ public class Food_Inner extends JFrame {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 
-				menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.foodPrice)));
+				dispose();
+	            QuantityLimit quantityLimit = new QuantityLimit(text);
+
+	            if (quantityLimit.productCount < (int)menuOrder.spinner_1.getValue() + Static.value) {
+	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
+	            } else {
+
+		               Static.value+= (int)menuOrder.spinner_1.getValue();
+	               new PutIn(text);
+	            }
 			}
 		});
 
