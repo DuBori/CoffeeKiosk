@@ -221,7 +221,9 @@ public class NonCoffee_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+		           if(Static.value>0  ) {
+		        	   Static.value=0;
+		           }
 				dispose();
 	            QuantityLimit quantityLimit = new QuantityLimit(text);
 
