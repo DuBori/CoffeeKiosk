@@ -65,15 +65,49 @@ public class checkAdmin extends JFrame{
       lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
       lblNewLabel_1.setForeground(Color.BLACK);
       lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-      
-      tf2 = new JTextField();
-      tf2.setBorder(new LineBorder(new Color(74, 68, 61)));
-      tf2.setHorizontalAlignment(SwingConstants.LEFT);
-      
+           
       tf2 = new JPasswordField();
       tf2.setBorder(new LineBorder(new Color(74, 68, 61)));
       tf2.setHorizontalAlignment(SwingConstants.LEFT);
       tf2.setColumns(10);
+      tf2.addKeyListener(new KeyListener() {
+		
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyChar()==KeyEvent.VK_ENTER)
+			{
+	               if((!tf1.getText().equals("admin") || !tf2.getText().equals("1234")) && count <3)
+	               {
+	                  JOptionPane.showMessageDialog(null, "틀리셨습니다."+"남은 기회 : "+(2-count));
+	                  count++;
+	               }else if(tf1.getText().equals("admin") && tf2.getText().equals("1234") && count<3){
+	                     dispose();
+	                     new Administrator();
+	                  
+	               }else if(count>=3){
+	                  dispose();
+	                  JOptionPane.showMessageDialog(null, "메인페이지로 돌아갑니다.");
+	                  new mainFrame();
+	               }else {
+	                  dispose();
+	                  new mainFrame();
+	               }
+			}
+			
+		}
+	});
       
       JLabel lblNewLabel = new JLabel("아이디");
       lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
