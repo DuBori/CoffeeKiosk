@@ -77,10 +77,14 @@ public class PutIn {
 					L1.setText(String.valueOf(arryCount));
 					L2.setText(String.valueOf((menuOrder.coffeePrice + menuOrder.sizePrice + menuOrder.addShot) * arryCount));
 				} else {
+					if(Static.value>0) {
+						Static.value-=1;
+					}
 					L1.setText(String.valueOf(arryCount));
 					L2.setText(String.valueOf((menuOrder.coffeePrice + menuOrder.sizePrice + menuOrder.addShot) * arryCount));
 				}
 				inner_ArrayList.set(5, arryCount);
+				inner_ArrayList.set(6,(menuOrder.coffeePrice + menuOrder.sizePrice + menuOrder.addShot) * arryCount);
 				
 			}
 		});
@@ -90,16 +94,21 @@ public class PutIn {
 		// + 버튼 액션
 		j2.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				arryCount += 1;
-
-				L1.setText(String.valueOf(arryCount));
-				L2.setText(String.valueOf((menuOrder.coffeePrice + menuOrder.sizePrice + menuOrder.addShot) * arryCount));
-				inner_ArrayList.set(5, arryCount);
-			}
-
-		});
+	         @Override
+	         public void actionPerformed(ActionEvent e) {
+	            QuantityLimit quantityLimit = new QuantityLimit(text);
+	            if (quantityLimit.productCount <=arryCount) {
+	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
+	            } else {
+	               arryCount += 1;
+	               Static.value+=1;
+	               L1.setText(String.valueOf(arryCount));
+	               L2.setText(String.valueOf((menuOrder.coffeePrice+ menuOrder.sizePrice+ menuOrder.addShot) * arryCount));
+	               inner_ArrayList.set(5, arryCount);
+	               inner_ArrayList.set(6, (menuOrder.coffeePrice+ menuOrder.sizePrice+ menuOrder.addShot) * arryCount);
+	            }
+	         }
+	      });
 
 		TestPanel.add(j3);
 		// X 버튼 액션
@@ -115,6 +124,7 @@ public class PutIn {
 						menuOrder.scrollPane.setViewportView(Static.panel_3);
 						}
 				}
+				Static.value=0;
 				
 			}
 		});
@@ -163,7 +173,6 @@ public class PutIn {
 				arryCount = arryCount + (int)Static.outer_ArrayList.get(i).get(5);
 				Static.outer_ArrayList.remove(i);
 				Static.panel_3.remove(i);
-
 				chk=true;
 				break;
 			}
@@ -182,15 +191,20 @@ public class PutIn {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				arryCount -= 1;
-				if(arryCount < 1) {
+				if (arryCount < 1) {
 					arryCount = 1;
 					L1.setText(String.valueOf(arryCount));
 					L2.setText(String.valueOf(menuOrder.foodPrice * arryCount));
-				}else {
+				} else {
+					if(Static.value>0) {
+						Static.value-=1;
+					}
 					L1.setText(String.valueOf(arryCount));
-					L2.setText(String.valueOf(menuOrder.foodPrice * arryCount));
+					L2.setText(String.valueOf((menuOrder.foodPrice * arryCount)));
 				}
 				inner_ArrayList.set(5, arryCount);
+				inner_ArrayList.set(6,(menuOrder.foodPrice * arryCount));
+				
 			}
 		});
 
@@ -201,11 +215,17 @@ public class PutIn {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				arryCount += 1;
-
-				L1.setText(String.valueOf(arryCount));
-				L2.setText(String.valueOf(menuOrder.foodPrice * arryCount));
-                inner_ArrayList.set(5, arryCount);
+	            QuantityLimit quantityLimit = new QuantityLimit(text);
+	            if (quantityLimit.productCount <=arryCount) {
+	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
+	            } else {
+	               arryCount += 1;
+	               Static.value+=1;
+	               L1.setText(String.valueOf(arryCount));
+	               L2.setText(String.valueOf(menuOrder.foodPrice * arryCount));
+	               inner_ArrayList.set(5, arryCount);
+	               inner_ArrayList.set(6, (menuOrder.foodPrice * arryCount) );
+	            }
 			}
 		});
 

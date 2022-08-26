@@ -12,6 +12,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatter;
 
+import kios.db.Static;
+
 public class Coffee_Inner extends JFrame {
 
 	private JPanel contentPane;
@@ -211,16 +213,23 @@ public class Coffee_Inner extends JFrame {
 		contentPane.add(btn_putIn);
 
 		btn_putIn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				menuOrder.Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
-				// TODO HOT, ICE 가지고 올 String 따오기
-				// TODO 라벨값 따오기
-				dispose();
-				PutIn putIn = new PutIn(text);
-			}
-		});
+
+	         @Override
+	         public void actionPerformed(ActionEvent e) {
+	           
+	        	 dispose();
+	            QuantityLimit quantityLimit = new QuantityLimit(text);
+
+	            if (quantityLimit.productCount < (int)menuOrder.spinner_1.getValue() + Static.value) {
+	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
+	            } else {
+
+		               Static.value+= (int)menuOrder.spinner_1.getValue();
+	               new PutIn(text);
+	            }
+	            System.out.println(Static.value);
+	         }
+	      });
 
 		JButton btn_cancel = new JButton("취소");
 		btn_cancel.setBounds(330, 184, 117, 29);
