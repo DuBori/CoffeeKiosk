@@ -148,7 +148,7 @@ public class Payment extends JFrame implements MouseListener{
 public void mouseClicked(MouseEvent e) {
     dispose();
     
-     tf2 = new test_Frame2();   
+   
      
      new updateMenu();
      new checkMileage().billaddPhone(Static.phone);
@@ -157,7 +157,7 @@ public void mouseClicked(MouseEvent e) {
      new checkMileage().billCopyPhone(Static.phone);
      new checkMileage().accumulatedPay(Static.phone);
      new receipt(new receipt().select());
-
+     tf2 = new test_Frame2();   
      Static.count++;
      Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
 
