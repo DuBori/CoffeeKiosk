@@ -216,7 +216,9 @@ public class Coffee_Inner extends JFrame {
 
 	         @Override
 	         public void actionPerformed(ActionEvent e) {
-	           if(Static.value>0  ) {
+
+	           if(Static.value>0) {
+
 	        	   Static.value=0;
 	           }
 	        	 dispose();
