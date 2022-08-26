@@ -7,6 +7,7 @@ import kios.menu.menuOrder;
 import kios.menu.updateMenu;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -153,15 +154,13 @@ public class Payment extends JFrame implements MouseListener{
 @Override
 public void mouseClicked(MouseEvent e) {
 	 dispose();
-     if(e.getSource() == card){
-    	
-        tf2 = new test_Frame2("카드 결제했습니다.");
-     }else {
-    	 tf2 = new test_Frame2("현금 결제했습니다.");	
-     }
+	 
+     tf2 = new test_Frame2();	
+     
      new updateMenu();
      new checkMileage().billaddPhone(Static.phone);
 
+     downId(down);
      copyData();
      new checkMileage().billCopyPhone(Static.phone);
      new checkMileage().accumulatedPay(Static.phone);
@@ -207,23 +206,23 @@ public void mouseExited(MouseEvent e) {
 }
 }
 
+
 class test_Frame2 extends JDialog{
 
-   JLabel jlb = new JLabel("");
+   JLabel jlb = new JLabel("이미지");
    JLabel jlb2 = new JLabel("주문번호 : "+ Static.count);
    JPanel group = new JPanel();
    JPanel group2 = new JPanel(new BorderLayout());
    JButton button = new JButton("돌아가기");
 
-   public test_Frame2(String str) {
+   public test_Frame2() {
 
       setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
+      // 글씨가 들어가 있는데 판넬색깔이 잡아먹어서 글씨가 안보임
+      jlb.setForeground(Color.black);
       getContentPane().add(jlb);
-
-      jlb.setText(str.toString());
-      jlb.setHorizontalAlignment(JLabel.CENTER);
-      jlb.setFont(jlb.getFont().deriveFont(15.0f));
+      // 여기가 배경 판넬
+      getContentPane().setBackground(Color.blue);
       jlb2.setFont(jlb.getFont().deriveFont(18.0f));
 
       button.addActionListener(new ActionListener() {

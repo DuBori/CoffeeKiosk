@@ -81,10 +81,38 @@ public class checkMileage extends JFrame{
 			e.printStackTrace();
 		} finally {
 			try {
-				if (pstmt != null) pstmt.close();
+				if (pstmt != null) 
+					{
+					pstmt.close();
+					ConClose(con);
+					}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 		}
+	}
+	
+	private void ConClose(Connection con) {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void RsPreClose(ResultSet rs,PreparedStatement pstmt) {
+		try {
+			if(rs!=null) {
+				rs.close();
+				pstmt.close();
+			}else {
+				pstmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

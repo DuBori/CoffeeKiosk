@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Administrator extends JFrame {
@@ -112,7 +113,8 @@ public class Administrator extends JFrame {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.executeUpdate();
-
+            preparedStatement.close();
+            ConClose(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -124,4 +126,12 @@ public class Administrator extends JFrame {
             }
         }
     }
+    
+	private void ConClose(Connection con) {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -171,13 +171,36 @@ public class receipt extends JFrame {
 								+billCost+"</p>";
 					}	
 				}
-			 System.out.println(true&false);
+			RsPreClose(rs, pstmt);
+			ConClose(con);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return addString;
+		
+	}
+	private void ConClose(Connection con) {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void RsPreClose(ResultSet rs,PreparedStatement pstmt) {
+		try {
+			if(rs!=null) {
+				rs.close();
+				pstmt.close();
+			}else {
+				pstmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 
