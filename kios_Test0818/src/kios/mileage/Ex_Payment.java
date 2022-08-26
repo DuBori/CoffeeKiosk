@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import kios.db.Static;
+import kios.deco.TextDeco;
 import kios.menu.menuOrder;
 import kios.register.Register;
 import kios.register.check_Phone;
@@ -22,6 +23,7 @@ public class Ex_Payment extends JFrame{
 	static JTextField inputSpace;
 	boolean clearOnNextDigit;
 	JPanel buttonPanel;
+	TextDeco td = new TextDeco();
 	public Ex_Payment() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.Ex_Payment.class.getResource("/image/logo.png")));
 		// 컨테이너 생성.
@@ -39,6 +41,7 @@ public class Ex_Payment extends JFrame{
 		
 		// 취소& 회원가입 버튼 생성.
 		JButton button1 = new JButton("회원가입");
+		td.decobtn(button1);
 		button1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -49,6 +52,7 @@ public class Ex_Payment extends JFrame{
 			}
 		});
 		JButton button2 = new JButton("확인");
+		td.decobtn(button2);
 		button2.addActionListener(new ActionListener() {
 			
 			@Override
@@ -58,7 +62,9 @@ public class Ex_Payment extends JFrame{
 			}
 		});
 		JButton button3 = new JButton("취소");
+		td.decobtn(button3);
 		JLabel lb1 = new JLabel("돌아가기");
+		td.decoLable(lb1);
 		lb1.addMouseListener(new MouseAdapter() {
 			
 			@Override

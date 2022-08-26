@@ -20,6 +20,7 @@ import javax.swing.text.DefaultFormatter;
 //import jdk.nashorn.internal.ir.ContinueNode;
 import kios.db.DBconnection;
 import kios.db.Static;
+import kios.deco.TextDeco;
 import kios.main.mainClick;
 import kios.main.subMainFrame;
 import kios.mileage.Ex_Payment;
@@ -90,7 +91,7 @@ public class menuOrder extends JFrame {
 //	public static JPanel Panel;
 	static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
 	static String IceHot, cupSize;
-
+	TextDeco td = new TextDeco();
 
 	int total = 0;
 	int col = 0;
@@ -100,9 +101,11 @@ public class menuOrder extends JFrame {
 	public menuOrder() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.menuOrder.class.getResource("/image/logo.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	
 		setBounds(100, 100, 715, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(74, 68, 61));
 		setContentPane(contentPane);
 
 		JTabbedPane tabbedPane_Main = new JTabbedPane(JTabbedPane.TOP);	// 메인 tab
@@ -120,6 +123,7 @@ public class menuOrder extends JFrame {
 		panel_8.setLayout(null);
 
 		JButton btnNewButton_ameri = new JButton("아메리카노");
+		
 		
 		btnNewButton_ameri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -200,6 +204,7 @@ public class menuOrder extends JFrame {
 
 		
 		JButton btn_prev_Coffee = new JButton("이전");
+		td.decobtn(btn_prev_Coffee);
 		btn_prev_Coffee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int nowTabNum = tabbedPane_Coffee.getSelectedIndex();
@@ -214,6 +219,7 @@ public class menuOrder extends JFrame {
 		panel.add(btn_prev_Coffee);
 
 		JButton btn_next_Coffee = new JButton("다음");
+		td.decobtn(btn_next_Coffee);
 		btn_next_Coffee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int nowTabNum = tabbedPane_Coffee.getSelectedIndex();
@@ -509,6 +515,7 @@ public class menuOrder extends JFrame {
 		scrollPane = new JScrollPane();
 
 		JButton btnNewButton = new JButton("결제하기");
+		td.decobtn(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -523,6 +530,7 @@ public class menuOrder extends JFrame {
 		});
 		
 		JButton btnNewButton_1 = new JButton("뒤로가기");
+		td.decobtn(btnNewButton_1);
 		btnNewButton_1.addMouseListener(new mainClick()
 		{
 		@Override
@@ -533,6 +541,7 @@ public class menuOrder extends JFrame {
 		});
 		
 		JButton btnNewButton_2 = new JButton("전체취소");
+		td.decobtn(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Static.panel_3.removeAll();

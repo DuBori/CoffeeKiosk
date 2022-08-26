@@ -27,13 +27,13 @@ public class MemberUpdateFrame extends JFrame {
         jl1.setBounds(50, 70, 100, 25);
         jtf1 = new JTextField(10);
         jtf1.setBounds(120, 70, 100, 25);
-        jl1.setFont(new Font(memberUpdateFont, Font.BOLD, 13));
+        jl1.setFont(new Font(memberUpdateFont, Font.BOLD, 12));
 
         JLabel jl2 = new JLabel("이름 :    ");
         jl2.setBounds(75, 120, 100, 25);
         jtf2 = new JTextField(15);
         jtf2.setBounds(120, 120, 100, 25);
-        jl2.setFont(new Font(memberUpdateFont, Font.BOLD, 13));
+        jl2.setFont(new Font(memberUpdateFont, Font.BOLD, 12));
 
         JButton btn1 = new JButton("확인");
         btn1.setBounds(78, 210, 60, 25);
