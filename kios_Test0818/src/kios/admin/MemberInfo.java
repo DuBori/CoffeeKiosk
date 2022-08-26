@@ -31,7 +31,7 @@ public class MemberInfo extends JFrame {
 		JPanel container = new JPanel();
 		container.setBackground(new Color(74, 68, 61));
 		
-		// 회원 테이블 속성
+		//회원 테이블 속성
 		String[] header = {"휴대폰 번호(ID)", "생년월일(PW)", "이름", "스탬프", "누적소비금액"};
 		
 		// 회원 테이블 생성

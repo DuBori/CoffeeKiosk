@@ -31,7 +31,7 @@ public class Coffee_Inner extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.setBackground(Color.white);
 
-//		최종 가격 표시하는 텍스트 필드
+//		최종 가격 표시하는 텍스트 필드.
 		menuOrder.textField = new JTextField();
 		menuOrder.textField.setText(String.valueOf(menuOrder.coffeePrice));
 		menuOrder.textField.setBounds(307, 144, 77, 28);

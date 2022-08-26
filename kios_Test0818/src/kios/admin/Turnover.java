@@ -59,7 +59,7 @@ public class Turnover extends JFrame {
         
 //      여기까지 화면 구현
 
-        // 조회 버튼
+        //조회 버튼
         btn1.addActionListener(e -> {
             model.setRowCount(0);
             orderSumResult = 0;

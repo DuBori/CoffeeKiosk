@@ -8,7 +8,6 @@ import kios.db.Static;
 import kios.main.mainFrame;
 import kios.register.Register;
 import kios.register.check_Phone;
-import java.awt.SystemColor;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 

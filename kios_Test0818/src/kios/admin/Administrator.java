@@ -102,7 +102,7 @@ public class Administrator extends JFrame {
 
         });
 
-        // 메인으로 버튼
+        //메인으로 버튼
         btn4.addActionListener(e -> {
             dispose();
             new mainFrame();

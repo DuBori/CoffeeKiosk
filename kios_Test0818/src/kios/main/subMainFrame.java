@@ -31,7 +31,7 @@ public class subMainFrame extends JFrame {
 						using="매장";
 						new menuOrder();
 						System.out.println("이용방법 : "+using);
-						dispose();  // 기존에 있던 창은 없애주는 메서드.
+						dispose();  //기존에 있던 창은 없애주는 메서드.
 						
 					}
 				});

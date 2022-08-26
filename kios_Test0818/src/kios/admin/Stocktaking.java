@@ -46,7 +46,7 @@ public class Stocktaking extends JFrame {
         jl2.setBounds(40, 370, 100, 25);
         jl2.setFont(new Font(stocktakingFont, Font.BOLD, 18));
 
-        // 메뉴 종류 픽스되면 거기에 맞춰서 수정
+        //메뉴 종류 픽스되면 거기에 맞춰서 수정
         JRadioButton jrb1 = new JRadioButton("아메리카노");
         jrb1.setForeground(Color.WHITE);
         JRadioButton jrb2 = new JRadioButton("카페라떼");

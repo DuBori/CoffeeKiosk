@@ -23,7 +23,7 @@ public class checkAdmin extends JFrame{
    
    public checkAdmin() throws Exception {
    
-      //TODO 아이디 비번 넣는 창
+      //TODO 아이디 비번 넣는 창.
       checkIdPwd();
 
    }

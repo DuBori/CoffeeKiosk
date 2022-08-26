@@ -20,7 +20,7 @@ public class mainFrame extends JFrame {
 	public mainFrame() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
         
-        //Frame 아이콘 변경
+        //Frame 아이콘 변경.
         Image img = kit.getImage("logo.png");
         setIconImage(img);
         
