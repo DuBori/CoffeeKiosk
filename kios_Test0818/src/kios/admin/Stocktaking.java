@@ -20,12 +20,14 @@ public class Stocktaking extends JFrame {
     ButtonGroup bg;
 
     public Stocktaking() {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage(kios.admin.Stocktaking.class.getResource("/image/logo.png")));
+    	getContentPane().setBackground(new Color(74, 68, 61));
+
         setTitle("재고관리");
 
-        setLayout(null);
+        getContentPane().setLayout(null);
 
         JLabel jl1 = new JLabel("재고현황");
+        jl1.setForeground(Color.WHITE);
         jl1.setBounds(40, 45, 100, 25);
         jl1.setFont(new Font(stocktakingFont, Font.BOLD, 18));
 
@@ -40,31 +42,51 @@ public class Stocktaking extends JFrame {
         btn1.setFont(new Font(stocktakingFont, Font.BOLD, 12));
 
         JLabel jl2 = new JLabel("재고추가");
+        jl2.setForeground(Color.WHITE);
         jl2.setBounds(40, 370, 100, 25);
         jl2.setFont(new Font(stocktakingFont, Font.BOLD, 18));
 
         // 메뉴 종류 픽스되면 거기에 맞춰서 수정
         JRadioButton jrb1 = new JRadioButton("아메리카노");
+        jrb1.setForeground(Color.WHITE);
         JRadioButton jrb2 = new JRadioButton("카페라떼");
+        jrb2.setForeground(Color.WHITE);
         JRadioButton jrb3 = new JRadioButton("카페모카");
+        jrb3.setForeground(Color.WHITE);
         JRadioButton jrb4 = new JRadioButton("카푸치노");
+        jrb4.setForeground(Color.WHITE);
         JRadioButton jrb5 = new JRadioButton("카라멜마키아또");
+        jrb5.setForeground(Color.WHITE);
         JRadioButton jrb6 = new JRadioButton("에스프레소");
+        jrb6.setForeground(Color.WHITE);
         JRadioButton jrb7 = new JRadioButton("케모마일 티");
+        jrb7.setForeground(Color.WHITE);
         JRadioButton jrb8 = new JRadioButton("얼그레이 티");
+        jrb8.setForeground(Color.WHITE);
         JRadioButton jrb9 = new JRadioButton("자몽 허니 블랙 티");
+        jrb9.setForeground(Color.WHITE);
         JRadioButton jrb10 = new JRadioButton("생강차");
+        jrb10.setForeground(Color.WHITE);
         JRadioButton jrb11 = new JRadioButton("녹차");
+        jrb11.setForeground(Color.WHITE);
         JRadioButton jrb12 = new JRadioButton("매실차");
+        jrb12.setForeground(Color.WHITE);
         JRadioButton jrb13 = new JRadioButton("유자차");
+        jrb13.setForeground(Color.WHITE);
         JRadioButton jrb14 = new JRadioButton("치즈 케이크");
+        jrb14.setForeground(Color.WHITE);
         JRadioButton jrb15 = new JRadioButton("티라미수 케이크");
+        jrb15.setForeground(Color.WHITE);
         JRadioButton jrb16 = new JRadioButton("에그 샌드위치");
+        jrb16.setForeground(Color.WHITE);
         JRadioButton jrb17 = new JRadioButton("단호박 샌드위치");
+        jrb17.setForeground(Color.WHITE);
         JRadioButton jrb18 = new JRadioButton("스콘");
+        jrb18.setForeground(Color.WHITE);
         JRadioButton jrb19 = new JRadioButton("마카롱");
+        jrb19.setForeground(Color.WHITE);
         JRadioButton jrb20 = new JRadioButton("와플");
-        
+        jrb20.setForeground(Color.WHITE);
         jrb1.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         jrb2.setFont(new Font(stocktakingFont, Font.BOLD, 11));
         jrb3.setFont(new Font(stocktakingFont, Font.BOLD, 11));
@@ -128,6 +150,7 @@ public class Stocktaking extends JFrame {
         jrb20.setBounds(445, 520, 120, 25);
 
         JLabel jl3 = new JLabel("수량 : ");
+        jl3.setForeground(Color.WHITE);
         jl3.setFont(new Font(stocktakingFont, Font.BOLD, 12));
         jtf1 = new JTextField(5);
         jl3.setBounds(185, 565, 100, 25);
@@ -141,41 +164,41 @@ public class Stocktaking extends JFrame {
         btn3.setBounds(253, 645, 100, 25);
         btn3.setFont(new Font(stocktakingFont, Font.BOLD, 13));
 
-        add(jl1);
-        add(jsp);
-        add(jl2);
-        add(jrb1);
-        add(jrb2);
-        add(jrb3);
-        add(jrb4);
-        add(jrb5);
-        add(jrb6);
-        add(jrb7);
-        add(jrb8);
-        add(jrb9);
-        add(jrb10);
-        add(jrb11);
-        add(jrb12);
-        add(jrb13);
-        add(jrb14);
-        add(jrb15);
-        add(jrb16);
-        add(jrb17);
-        add(jrb18);
-        add(jrb19);
-        add(jrb20);
-        add(jl3);
-        add(jtf1);
-        add(btn1);
-        add(btn2);
-        add(btn3);
+        getContentPane().add(jl1);
+        getContentPane().add(jsp);
+        getContentPane().add(jl2);
+        getContentPane().add(jrb1);
+        getContentPane().add(jrb2);
+        getContentPane().add(jrb3);
+        getContentPane().add(jrb4);
+        getContentPane().add(jrb5);
+        getContentPane().add(jrb6);
+        getContentPane().add(jrb7);
+        getContentPane().add(jrb8);
+        getContentPane().add(jrb9);
+        getContentPane().add(jrb10);
+        getContentPane().add(jrb11);
+        getContentPane().add(jrb12);
+        getContentPane().add(jrb13);
+        getContentPane().add(jrb14);
+        getContentPane().add(jrb15);
+        getContentPane().add(jrb16);
+        getContentPane().add(jrb17);
+        getContentPane().add(jrb18);
+        getContentPane().add(jrb19);
+        getContentPane().add(jrb20);
+        getContentPane().add(jl3);
+        getContentPane().add(jtf1);
+        getContentPane().add(btn1);
+        getContentPane().add(btn2);
+        getContentPane().add(btn3);
 
         setBounds(150, 150, 615, 740);
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         setResizable(false);
-        setLocationRelativeTo(null);
+
 //      여기까지 화면구현
         
         // 재고 조회 버튼

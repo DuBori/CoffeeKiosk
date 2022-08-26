@@ -22,7 +22,8 @@ public class mainFrame extends JFrame {
         
         //Frame 아이콘 변경
         Image img = kit.getImage("logo.png");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(mainFrame.class.getResource("/image/logo.png")));
+        setIconImage(img);
+        
 		setTitle("커피 키오스크");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -44,8 +45,7 @@ public class mainFrame extends JFrame {
 		button_action();
 		panel_action();
 		
-		setVisible(true);
-		setLocationRelativeTo(null);
+		setVisible(true);	
 	}
 
 	private void button_action() {

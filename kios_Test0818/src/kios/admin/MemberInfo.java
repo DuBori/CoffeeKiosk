@@ -25,10 +25,11 @@ public class MemberInfo extends JFrame {
     }
 
 	public MemberInfo() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.admin.MemberInfo.class.getResource("/image/logo.png")));
+
 		setTitle("회원정보");
 		
 		JPanel container = new JPanel();
+		container.setBackground(new Color(74, 68, 61));
 		
 		// 회원 테이블 속성
 		String[] header = {"휴대폰 번호(ID)", "생년월일(PW)", "이름", "스탬프", "누적소비금액"};
@@ -47,10 +48,10 @@ public class MemberInfo extends JFrame {
         JButton btn3 = new JButton("삭제");
         JButton btn4 = new JButton("뒤로가기");
 
-        btn1.setFont(new Font(memberInfoFont, Font.BOLD, 12));
-        btn2.setFont(new Font(memberInfoFont, Font.BOLD, 12));
-        btn3.setFont(new Font(memberInfoFont, Font.BOLD, 12));
-        btn4.setFont(new Font(memberInfoFont, Font.BOLD, 12));
+        btn1.setFont(new Font(memberInfoFont, Font.BOLD, 13));
+        btn2.setFont(new Font(memberInfoFont, Font.BOLD, 13));
+        btn3.setFont(new Font(memberInfoFont, Font.BOLD, 13));
+        btn4.setFont(new Font(memberInfoFont, Font.BOLD, 13));
 
         btn1.setPreferredSize(new Dimension(90,40));
         btn2.setPreferredSize(new Dimension(90,40));
@@ -62,15 +63,14 @@ public class MemberInfo extends JFrame {
         container.add(btn3);
         container.add(btn4);
 
-        add(jsp, BorderLayout.CENTER);
-        add(container, BorderLayout.SOUTH);
+        getContentPane().add(jsp, BorderLayout.CENTER);
+        getContentPane().add(container, BorderLayout.SOUTH);
 
-        setBounds(200, 200, 500, 500);
+        setBounds(150, 150, 700, 600);
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 		setResizable(false);
-		setLocationRelativeTo(null);
 
 //      여기까지 화면 구현
 

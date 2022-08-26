@@ -12,25 +12,24 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatter;
 
-import kios.deco.TextDeco;
-
 public class Coffee_Inner extends JFrame {
 
 	private JPanel contentPane;
-
+	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String sql = null;
 	DefaultTableModel model;
-	TextDeco td = new TextDeco();
+
 	public Coffee_Inner(String text) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.Coffee_Inner.class.getResource("/image/logo.png")));
+
 		setBounds(100, 100, 470, 260);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.setBackground(Color.white);
 
 //		최종 가격 표시하는 텍스트 필드
 		menuOrder.textField = new JTextField();
@@ -208,7 +207,6 @@ public class Coffee_Inner extends JFrame {
 		contentPane.add(lblNewLabel_1_1);
 
 		JButton btn_putIn = new JButton("담기");
-		td.decobtn(btn_putIn);
 		btn_putIn.setBounds(204, 184, 117, 29);
 		contentPane.add(btn_putIn);
 
@@ -216,7 +214,7 @@ public class Coffee_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				menuOrder.Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
+				menuOrder.Panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
 				// TODO HOT, ICE 가지고 올 String 따오기
 				// TODO 라벨값 따오기
 				dispose();
@@ -225,7 +223,6 @@ public class Coffee_Inner extends JFrame {
 		});
 
 		JButton btn_cancel = new JButton("취소");
-		td.decobtn(btn_cancel);
 		btn_cancel.setBounds(330, 184, 117, 29);
 		contentPane.add(btn_cancel);
 

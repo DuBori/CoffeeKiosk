@@ -2,7 +2,6 @@ package kios.mileage;
 
 import kios.db.DBconnection;
 import kios.db.Static;
-import kios.deco.TextDeco;
 import kios.main.mainFrame;
 import kios.menu.menuOrder;
 import kios.menu.updateMenu;
@@ -10,7 +9,6 @@ import kios.menu.updateMenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -34,48 +32,65 @@ public class Payment extends JFrame implements MouseListener{
    test_Frame2 tf2;
    JLabel card,cash;
    public Payment() {
-	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.Payment.class.getResource("/image/logo.png")));
-	  setTitle("결제");
-      this.setLayout(new GridLayout(0,2));
+   	getContentPane().setBackground(Color.WHITE);
+     setTitle("결제");
+      getContentPane().setLayout(new GridLayout(0,2));
       card = new JLabel("");
       cash = new JLabel("");
       
       card.addMouseListener(this);
-	  cash.addMouseListener(this);
-	  card.setIcon(new ImageIcon(Payment.class.getResource("/image/card.png")));
-	  cash.setIcon(new ImageIcon(Payment.class.getResource("/image/cash.png")));
-	  
-		
-		
-		
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(32)
-					.addComponent(card)
-					.addGap(18)
-					.addComponent(cash, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(cash, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
-						.addComponent(card, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+     cash.addMouseListener(this);
+     
+      card.addMouseListener(new MouseAdapter() {
+         @Override
+         public void mouseClicked(MouseEvent e) {
+            dispose();
+            downId(down);
+         }
+      });
+      card.setIcon(new ImageIcon(Payment.class.getResource("/image/card.png")));
+
+      
+      cash.addMouseListener(new MouseAdapter() {
+         @Override
+         public void mouseClicked(MouseEvent e) {
+            dispose();
+            downId(down);
+         }
+      });
+      cash.setIcon(new ImageIcon(Payment.class.getResource("/image/cash.png")));
+     
+      
+      
+      
+      GroupLayout groupLayout = new GroupLayout(getContentPane());
+      groupLayout.setHorizontalGroup(
+         groupLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(groupLayout.createSequentialGroup()
+               .addGap(32)
+               .addComponent(card)
+               .addGap(18)
+               .addComponent(cash, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+      );
+      groupLayout.setVerticalGroup(
+         groupLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(groupLayout.createSequentialGroup()
+               .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                  .addComponent(cash, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
+                  .addComponent(card, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE))
+               .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      );
 
 
-		getContentPane().setLayout(groupLayout);
-	       
-		setResizable(false);
-		this.setSize(400,250);
-		this.setVisible(true);
+      getContentPane().setLayout(groupLayout);
+          
+      setResizable(false);
+      this.setSize(400,250);
+      this.setVisible(true);
 
-		setLocationRelativeTo(null);
-	        
-		setVisible(true);
+      setLocationRelativeTo(null);
+           
+      setVisible(true);
    }
 
 
@@ -112,39 +127,38 @@ public class Payment extends JFrame implements MouseListener{
    }
 
    public void copyData() {
-	      try {
-	         con = DBconnection.getConnection();
+         try {
+            con = DBconnection.getConnection();
 
-	         for (int i = 0; i < Static.outer_ArrayList.size(); i++) {
-	            query = "insert into copy_data(bill_id, product_name, bill_defaultsize, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, ?, sysdate)";
+            for (int i = 0; i < Static.outer_ArrayList.size(); i++) {
+               query = "insert into copy_data(bill_id, product_name, bill_defaultsize, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, ?, sysdate)";
 
-	            pstmt=con.prepareStatement(query);
+               pstmt=con.prepareStatement(query);
 
-	            pstmt.setInt(1, Static.count);
-	            pstmt.setString(2, Static.outer_ArrayList.get(i).get(0).toString());
-	            pstmt.setInt(3, (int) Static.outer_ArrayList.get(i).get(3));
-	            pstmt.setInt(4, (int) Static.outer_ArrayList.get(i).get(5));
-	            pstmt.setInt(5, (int) Static.outer_ArrayList.get(i).get(6));
+               pstmt.setInt(1, Static.count);
+               pstmt.setString(2, Static.outer_ArrayList.get(i).get(0).toString());
+               pstmt.setInt(3, (int) Static.outer_ArrayList.get(i).get(3));
+               pstmt.setInt(4, (int) Static.outer_ArrayList.get(i).get(5));
+               pstmt.setInt(5, (int) Static.outer_ArrayList.get(i).get(6));
 
-	            pstmt.executeUpdate();
-	         }
+               pstmt.executeUpdate();
+            }
 
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	   }
+         } catch (Exception e) {
+            e.printStackTrace();
+         }
+      }
 
 
 @Override
 public void mouseClicked(MouseEvent e) {
-	 dispose();
-	 
-     tf2 = new test_Frame2();	
+    dispose();
+    
+     tf2 = new test_Frame2();   
      
      new updateMenu();
      new checkMileage().billaddPhone(Static.phone);
 
-     downId(down);
      copyData();
      new checkMileage().billCopyPhone(Static.phone);
      new checkMileage().accumulatedPay(Static.phone);
@@ -155,8 +169,8 @@ public void mouseClicked(MouseEvent e) {
 
      System.out.println(Static.outer_ArrayList.size());
      while(Static.outer_ArrayList.size()>0) {
-    	 System.out.println("들어옴");
-    	 Static.outer_ArrayList.remove(0);
+        System.out.println("들어옴");
+        Static.outer_ArrayList.remove(0);
      }
 }
 
@@ -164,52 +178,57 @@ public void mouseClicked(MouseEvent e) {
 
 @Override
 public void mousePressed(MouseEvent e) {
-	// TODO Auto-generated method stub
-	
+   // TODO Auto-generated method stub
+   
 }
 
 
 @Override
 public void mouseReleased(MouseEvent e) {
-	// TODO Auto-generated method stub
-	
+   // TODO Auto-generated method stub
+   
 }
 
 
 @Override
 public void mouseEntered(MouseEvent e) {
-	// TODO Auto-generated method stub
-	
+   // TODO Auto-generated method stub
+   
 }
 
 
 @Override
 public void mouseExited(MouseEvent e) {
-	// TODO Auto-generated method stub
-	
+   // TODO Auto-generated method stub
+   
 }
 }
 
 
 class test_Frame2 extends JDialog{
 
-   JLabel jlb = new JLabel("이미지");
+   JLabel jlb = new JLabel("");
+   JLabel jlb1 = new JLabel("결제가 완료되었습니다");
+   
    JLabel jlb2 = new JLabel("주문번호 : "+ Static.count);
    JPanel group = new JPanel();
    JPanel group2 = new JPanel(new BorderLayout());
-   TextDeco td = new TextDeco();
    JButton button = new JButton("돌아가기");
-   
+
    public test_Frame2() {
-	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.test_Frame2.class.getResource("/image/logo.png")));
       setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+      jlb.setIcon(new ImageIcon(Payment.class.getResource("/image/logo__1.png")));
       // 글씨가 들어가 있는데 판넬색깔이 잡아먹어서 글씨가 안보임
-      jlb.setForeground(Color.black);
-      getContentPane().add(jlb);
+      jlb1.setForeground(Color.white);
+      jlb2.setForeground(Color.white);
+      //getContentPane().add(jlb);
+      //getContentPane().add(jlb1);
+      
       // 여기가 배경 판넬
-      td.decobtn(button);
-      td.decoLable(jlb2);
-      getContentPane().setBackground(Color.blue);
+      getContentPane().setBackground(new Color(74, 68, 61));
+      jlb2.setBackground(new Color(74, 68, 61));
+      group.setBackground(new Color(74, 68, 61));
+      group2.setBackground(new Color(74, 68, 61));
       jlb2.setFont(jlb.getFont().deriveFont(18.0f));
 
       button.addActionListener(new ActionListener() {
@@ -223,6 +242,10 @@ class test_Frame2 extends JDialog{
       });
 
       group.add(jlb2,BorderLayout.NORTH);
+      group.add(jlb,BorderLayout.CENTER);
+      //group.add(jlb1,BorderLayout.SOUTH);
+      jlb.setHorizontalAlignment(SwingConstants.CENTER);
+      //jlb1.setHorizontalAlignment(SwingConstants.CENTER);
       group2.add(button,BorderLayout.SOUTH);
       add(group,BorderLayout.NORTH);
       add(group2,BorderLayout.SOUTH);

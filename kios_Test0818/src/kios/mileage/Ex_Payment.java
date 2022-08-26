@@ -1,58 +1,57 @@
 package kios.mileage;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 import kios.db.Static;
-import kios.deco.TextDeco;
-import kios.menu.menuOrder;
+import kios.main.mainFrame;
 import kios.register.Register;
 import kios.register.check_Phone;
+import java.awt.SystemColor;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Ex_Payment extends JFrame{
-
 	static JTextField inputSpace;
 	boolean clearOnNextDigit;
-	JPanel buttonPanel;
-	TextDeco td = new TextDeco();
+	private JTextField textField;
 	public Ex_Payment() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.Ex_Payment.class.getResource("/image/logo.png")));
-		// 컨테이너 생성.
-		JPanel con = new JPanel(); 
-		JPanel con1 = new JPanel();            	
-		JPanel con2 = new JPanel();                            
-		JPanel con3 = new JPanel();        
-		JPanel con4 = new JPanel(new BorderLayout());                             
+		getContentPane().setBackground(SystemColor.window);
 		
-		// 버튼을 만들 패널
-		buttonPanel = new JPanel(new BorderLayout());                       
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(74, 68, 61));
+		getContentPane().add(panel_1, BorderLayout.NORTH);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		// 컴포넌트 생성.
-		JLabel jl1 = new JLabel("적립하시겠습니까?");
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(Ex_Payment.class.getResource("/image/logo_1.png")));
+		panel_1.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("<html><body style='text-align:center;'>적립을 위해"
+				+ "<br/>전화번호를 입력해주세요</body></html>");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblNewLabel_1, BorderLayout.SOUTH);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(74, 68, 61));
+		getContentPane().add(panel_2, BorderLayout.SOUTH);
 		
 		// 취소& 회원가입 버튼 생성.
 		JButton button1 = new JButton("회원가입");
-		td.decobtn(button1);
 		button1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Register();
 				dispose();
-				
 			}
 		});
+		
 		JButton button2 = new JButton("확인");
-		td.decobtn(button2);
 		button2.addActionListener(new ActionListener() {
 			
 			@Override
@@ -61,41 +60,78 @@ public class Ex_Payment extends JFrame{
 				new check_Phone(inputSpace.getText().toString());
 			}
 		});
+		
 		JButton button3 = new JButton("취소");
-		td.decobtn(button3);
-		JLabel lb1 = new JLabel("돌아가기");
-		td.decoLable(lb1);
-		lb1.addMouseListener(new MouseAdapter() {
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(50)
+					.addComponent(button1)
+					.addGap(24)
+					.addComponent(button2)
+					.addGap(33)
+					.addComponent(button3)
+					.addGap(55))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(5)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+						.addComponent(button1)
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+							.addComponent(button2)
+							.addComponent(button3))))
+		);
+		panel_2.setLayout(gl_panel_2);
+		button3.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new menuOrder();
-				System.out.println(Static.panel_3.getComponentCount());
-				menuOrder.scrollPane.setViewportView(Static.panel_3);
+				Static.phone="None";
+				new Payment();
 				
 				
 			}
 		});
 		
-		//setLayout(null);
-		inputSpace = new JTextField(20);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(74, 68, 61));
+		getContentPane().add(panel, BorderLayout.CENTER);
 		
-        inputSpace.setEditable(false);
-		inputSpace.setBackground(Color.WHITE);
-		//정렬위치 설정
-		inputSpace.setHorizontalAlignment(JTextField.CENTER);
-		inputSpace.setFont(new Font("Arial", Font.BOLD, 10));
+		inputSpace = new JTextField();
+		inputSpace.setHorizontalAlignment(SwingConstants.CENTER);
+		inputSpace.setColumns(20);
+		inputSpace.setEditable(false);
 		
-		// 1줄, 1칸짜리 레이아웃을 가진 그리드 레이아웃 & 글씨체 중앙 배치 및 폰드 크기 설정. 
-		jl1.setLayout(new GridLayout(1,1));
-		jl1.setHorizontalAlignment(JLabel.CENTER);
-		jl1.setFont(new Font("Serif", Font.BOLD, 25));
-			
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setBackground(new Color(74, 68, 61));
+		
 		//GridLayout(4, 4, 10, 10) -> 가로 칸수, 세로 칸수, 좌우 간격, 상하 간격
 		buttonPanel.setLayout(new GridLayout(4, 4, 10, 10));
 		//위치와 크기 설정
 		buttonPanel.setBounds(8, 90, 270, 235);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(51)
+							.addComponent(inputSpace, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(inputSpace, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+		);
+		panel.setLayout(gl_panel);
 		// 입력 버튼의 글자를 차례대로 배열에 저장
 		String button_names[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9","C","0","←"};
 		// 버튼들의 배열 
@@ -106,7 +142,7 @@ public class Ex_Payment extends JFrame{
 			//글씨체
 			buttons[i].setFont(new Font("Arial", Font.BOLD, 20));
 			//글자색 지정
-			buttons[i].setForeground(Color.GRAY);
+			buttons[i].setForeground(Color.white);
 			//테두리 없앱
 			buttons[i].setBorderPainted(false);
 			//밑에서 만든 액션리스너를 버튼에 추가
@@ -114,32 +150,6 @@ public class Ex_Payment extends JFrame{
 			//버튼들을 버튼패널에 추가
 			buttonPanel.add(buttons[i]);
 		}
-		
-		// 새로운 컨테이너를 2개 생성.
-		JPanel group1 = new JPanel(new BorderLayout(10,10));
-		JPanel group2 = new JPanel(new BorderLayout(10,10));
-		
-		con.add(jl1);                        
-		con1.add(inputSpace);               
-		con2.add(buttonPanel); 
-		
-		con3.add(button1); 
-		con3.add(button2);
-		con3.add(button3);
-		con3.add(lb1);
-		
-		con4.add(con, BorderLayout.NORTH);
-		con4.add(con2,BorderLayout.NORTH);
-		
-		group1.add(con, BorderLayout.NORTH);
-		group1.add(con1, BorderLayout.SOUTH);
-		
-		group2.add(con4, BorderLayout.CENTER);
-		group2.add(con3, BorderLayout.SOUTH);
-		
-		//버튼 패널 추가
-		add(group1, BorderLayout.CENTER);
-		add(group2, BorderLayout.SOUTH);
 		//위치와 크기
 		setBounds(100, 100, 400, 400);
 			
@@ -155,23 +165,8 @@ public class Ex_Payment extends JFrame{
 		//보이기 여부
 		setVisible(true);
 		
-		// 취소 버튼 이벤트 
-		button3.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				Static.phone="None";
-				new Payment();
-			}
-		});
-		
-
+	}
 	
-		
-}
-	
-
 	//만들어놓은 버튼에 액션 리스너 기능 추가
 	//액션리스너를 상속시켜주고 actionPerformed(ActionEvent e)메소드로 이벤트 처리
 	class PadActionListener implements ActionListener{
