@@ -44,7 +44,8 @@ public class mainFrame extends JFrame {
 		button_action();
 		panel_action();
 		
-		setVisible(true);	
+		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 	private void button_action() {

@@ -23,7 +23,7 @@ public class NonCoffee_Inner extends JFrame {
 	DefaultTableModel model;
 
 	public NonCoffee_Inner(String text) {
-
+		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.NonCoffee_Inner.class.getResource("/image/logo.png")));
 		setBounds(100, 100, 470, 260);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

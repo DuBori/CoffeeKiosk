@@ -18,7 +18,7 @@ public class Administrator extends JFrame {
     String adminFont = "맑은고딕";
 
     public Administrator() {
-
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(kios.admin.Administrator.class.getResource("/image/logo.png")));
         setTitle("관리자 메뉴");
 
         JPanel container1 = new JPanel();

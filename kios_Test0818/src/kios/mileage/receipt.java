@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -50,6 +51,7 @@ public class receipt extends JFrame {
 	}
 	public receipt(String jta)
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.receipt.class.getResource("/image/logo.png")));
 		System.out.println("정적 폰의 값:"+Static.phone);
 		setBounds(100, 100, 500, 630);
 		contentPane = new JPanel();

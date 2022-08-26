@@ -20,7 +20,7 @@ public class Stocktaking extends JFrame {
     ButtonGroup bg;
 
     public Stocktaking() {
-
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(kios.admin.Stocktaking.class.getResource("/image/logo.png")));
         setTitle("재고관리");
 
         setLayout(null);

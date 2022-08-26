@@ -29,7 +29,7 @@ public class checkAdmin extends JFrame{
 	}
 
 	private void checkIdPwd(){
-		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.main.checkAdmin.class.getResource("/image/logo.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(200, 200, 500,450);
 		contentPane = new JPanel();
