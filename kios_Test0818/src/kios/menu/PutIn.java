@@ -83,6 +83,7 @@ public class PutIn {
 					L1.setText(String.valueOf(arryCount));
 					L2.setText(String.valueOf((menuOrder.coffeePrice + menuOrder.sizePrice + menuOrder.addShot) * arryCount));
 				}
+				
 				inner_ArrayList.set(5, arryCount);
 				inner_ArrayList.set(6,(menuOrder.coffeePrice + menuOrder.sizePrice + menuOrder.addShot) * arryCount);
 				
@@ -104,6 +105,7 @@ public class PutIn {
 	               Static.value+=1;
 	               L1.setText(String.valueOf(arryCount));
 	               L2.setText(String.valueOf((menuOrder.coffeePrice+ menuOrder.sizePrice+ menuOrder.addShot) * arryCount));
+	               
 	               inner_ArrayList.set(5, arryCount);
 	               inner_ArrayList.set(6, (menuOrder.coffeePrice+ menuOrder.sizePrice+ menuOrder.addShot) * arryCount);
 	            }

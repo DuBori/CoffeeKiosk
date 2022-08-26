@@ -3,6 +3,7 @@ package kios.db;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Static {
@@ -12,4 +13,5 @@ public class Static {
 	// 2차원 ArrayList 외부ArrayList 객체 생성
 	public static int value;
 	public static String phone="";
+	public static String str="";
 }
