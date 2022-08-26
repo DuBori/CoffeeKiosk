@@ -111,7 +111,7 @@ public class PutIn {
 					if ((int)Static.outer_ArrayList.get(i).get(7) == System.identityHashCode(inner_ArrayList)) {
 						Static.panel_3.remove(TestPanel);
 						Static.outer_ArrayList.remove(i);
-						
+						menuOrder.scrollPane.setViewportView(Static.panel_3);
 						}
 				}
 				

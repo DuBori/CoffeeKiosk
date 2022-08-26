@@ -160,6 +160,7 @@ public void mouseClicked(MouseEvent e) {
      new updateMenu();
      new checkMileage().billaddPhone(Static.phone);
 
+     downId(down);
      copyData();
      new checkMileage().billCopyPhone(Static.phone);
      new checkMileage().accumulatedPay(Static.phone);

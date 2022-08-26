@@ -101,7 +101,10 @@ public class MemberUpdateFrame extends JFrame {
             e.printStackTrace();
         } finally {
             try {
-                if (preparedStatement != null) preparedStatement.close();
+                if (preparedStatement != null){
+                	preparedStatement.close();
+                	connection.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
