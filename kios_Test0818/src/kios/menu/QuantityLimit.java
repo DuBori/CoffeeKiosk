@@ -5,47 +5,44 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import kios.db.DBconnection;
-import kios.db.Static;
 
 public class QuantityLimit {
 
-    Connection con = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
     String query = null;
-    int product_id, product_count, bill_count;
+
+    int productCount;
 
     public QuantityLimit() {
-        try {
-            con = DBconnection.getConnection();
-            query = "select ? from product where ? < (select ? from menu_product)";
-            pstmt=con.prepareStatement(query);
-            pstmt.setInt(1, product_id);
-            pstmt.setInt(2, product_count);
-            pstmt.setInt(3, bill_count);
-            System.out.println(Static.count);
-            pstmt.executeQuery();
-	       /* if() {
-	        	JOptionPane.showMessageDialog(null, "선택하신 제품의 재고 수량 제한", "오류", JOptionPane.WARNING_MESSAGE);
-	        	return;
-	        }*/
-        } catch (Exception e) {
-        }
+
     }
 
-    public QuantityLimit(String sql, String p_id) {
+    public QuantityLimit(String text) {
         try {
-            con = DBconnection.getConnection();
-            query = sql;
-            pstmt = con.prepareStatement(query);
-            pstmt.setString(1, p_id);
-            rs = pstmt.executeQuery();
+            connection = DBconnection.getConnection();
 
+            query = "select product_count from product where product_name = ?";
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, text);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                productCount = resultSet.getInt("product_count");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

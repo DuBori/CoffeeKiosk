@@ -125,15 +125,14 @@ public class Payment extends JFrame implements MouseListener{
             con = DBconnection.getConnection();
 
             for (int i = 0; i < Static.outer_ArrayList.size(); i++) {
-               query = "insert into copy_data(bill_id, product_name, bill_defaultsize, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, ?, sysdate)";
+               query = "insert into copy_data(bill_id, product_name, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, sysdate)";
 
                pstmt=con.prepareStatement(query);
 
                pstmt.setInt(1, Static.count);
                pstmt.setString(2, Static.outer_ArrayList.get(i).get(0).toString());
-               pstmt.setInt(3, (int) Static.outer_ArrayList.get(i).get(3));
-               pstmt.setInt(4, (int) Static.outer_ArrayList.get(i).get(5));
-               pstmt.setInt(5, (int) Static.outer_ArrayList.get(i).get(6));
+               pstmt.setInt(3, (int) Static.outer_ArrayList.get(i).get(5));
+               pstmt.setInt(4, (int) Static.outer_ArrayList.get(i).get(6));
 
                pstmt.executeUpdate();
             }
