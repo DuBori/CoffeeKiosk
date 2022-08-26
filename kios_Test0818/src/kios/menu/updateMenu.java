@@ -94,7 +94,9 @@ public class updateMenu {
          pstmt.setString(2, text);
 
          pstmt.executeUpdate();
-
+         
+         pstmt.close();
+         ConClose(con);
       } catch (Exception e) {
          e.printStackTrace();
       }
@@ -112,9 +114,32 @@ public class updateMenu {
          pstmt.setString(2, text);
 
          pstmt.executeUpdate();
-
+         pstmt.close();
+         ConClose(con);
       } catch (Exception e) {
          e.printStackTrace();
       }
    }
+	private void ConClose(Connection con) {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void RsPreClose(ResultSet rs,PreparedStatement pstmt) {
+		try {
+			if(rs!=null) {
+				rs.close();
+				pstmt.close();
+			}else {
+				pstmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 }
