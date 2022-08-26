@@ -1,18 +1,11 @@
 package kios.menu;
 
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.AbstractButton;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatter;
 
@@ -20,48 +13,20 @@ import javax.swing.text.DefaultFormatter;
 //import jdk.nashorn.internal.ir.ContinueNode;
 import kios.db.DBconnection;
 import kios.db.Static;
-import kios.deco.TextDeco;
-import kios.main.mainClick;
-import kios.main.subMainFrame;
+import kios.main.*;
 import kios.mileage.Ex_Payment;
 
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.Icon;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
+import java.awt.event.*;
 
-import java.awt.Color;
-import java.awt.SystemColor;
-import java.awt.Toolkit;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
-import javax.swing.event.AncestorListener;
-import javax.swing.event.AncestorEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseWheelListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -71,16 +36,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.beans.PropertyChangeEvent;
-import javax.swing.event.CaretListener;
-import javax.swing.event.CaretEvent;
 
- 
 public class menuOrder extends JFrame {
 
 	DefaultTableModel model;
 	private JPanel contentPane;
 
 	public static JButton btnNewButton_7;
+	public static JPanel panel_3;
 	static String picNum;
 	public static List<JPanel> list;
 
@@ -88,10 +51,11 @@ public class menuOrder extends JFrame {
 	static JSpinner spinner_1;
 	static JComboBox comboBox, comboBox_1;
 	public static JScrollPane scrollPane;
-//	public static JPanel Panel;
+	public static JPanel Panel;
 	static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
 	static String IceHot, cupSize;
-	TextDeco td = new TextDeco();
+
+	static ArrayList<ArrayList<Object>> outer_ArrayList = new ArrayList<ArrayList<Object>>(); // 2차원 ArrayList 외부ArrayList 객체 생성
 
 	int total = 0;
 	int col = 0;
@@ -99,31 +63,34 @@ public class menuOrder extends JFrame {
 	String contents = "";
 
 	public menuOrder() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.menuOrder.class.getResource("/image/logo.png")));
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	
-		setBounds(100, 100, 715, 750);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 700, 700);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(74, 68, 61));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		JTabbedPane tabbedPane_Main = new JTabbedPane(JTabbedPane.TOP);	// 메인 tab
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		tabbedPane_Main.addTab("Coffee", null, panel, null);
 		panel.setLayout(null);
 		
 		JTabbedPane tabbedPane_Coffee = new JTabbedPane(JTabbedPane.TOP);	// Coffee 내부 Tab
+		tabbedPane_Coffee.setForeground(Color.WHITE);
+		tabbedPane_Coffee.setBackground(Color.WHITE);
 		tabbedPane_Coffee.setBounds(0, -27, 685, 472);
 		panel.add(tabbedPane_Coffee);
 		
 		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(Color.WHITE);
 		tabbedPane_Coffee.addTab("New tab", null, panel_8, null);
 		panel_8.setLayout(null);
 
 		JButton btnNewButton_ameri = new JButton("아메리카노");
-		
+		btnNewButton_ameri.setIcon(new ImageIcon(menuOrder.class.getResource("/image/americano.jpg")));
 		
 		btnNewButton_ameri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -132,7 +99,7 @@ public class menuOrder extends JFrame {
 			}
 
 		});
-		btnNewButton_ameri.setBounds(12, 100, 211, 188);
+		btnNewButton_ameri.setBounds(6, 122, 211, 188);
 		panel_8.add(btnNewButton_ameri);
 		
 		
@@ -145,7 +112,7 @@ public class menuOrder extends JFrame {
 			}
 
 		});
-		btn_latte.setBounds(235, 100, 211, 188);
+		btn_latte.setBounds(220, 122, 211, 188);
 		panel_8.add(btn_latte);
 
 		
@@ -158,10 +125,11 @@ public class menuOrder extends JFrame {
 			}
 
 		});
-		btn_mocha.setBounds(458, 100, 211, 188);
+		btn_mocha.setBounds(433, 122, 211, 188);
 		panel_8.add(btn_mocha);
 		
 		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(Color.WHITE);
 		tabbedPane_Coffee.addTab("New tab", null, panel_9, null);
 		panel_9.setLayout(null);
 
@@ -174,7 +142,7 @@ public class menuOrder extends JFrame {
 				new Coffee_Inner(btn_cappu.getText());
 			}
 		});
-		btn_cappu.setBounds(12, 100, 211, 188);
+		btn_cappu.setBounds(6, 122, 211, 188);
 		panel_9.add(btn_cappu);
 
 
@@ -186,7 +154,7 @@ public class menuOrder extends JFrame {
 				new Coffee_Inner(btn_caramel.getText());
 			}
 		});
-		btn_caramel.setBounds(235, 100, 211, 188);
+		btn_caramel.setBounds(220, 122, 211, 188);
 		panel_9.add(btn_caramel);
 
 		
@@ -199,12 +167,12 @@ public class menuOrder extends JFrame {
 				new Coffee_Inner(btn_espresso.getText());
 			}
 		});
-		btn_espresso.setBounds(458, 100, 211, 188);
+		btn_espresso.setBounds(433, 122, 211, 188);
 		panel_9.add(btn_espresso);
 
 		
 		JButton btn_prev_Coffee = new JButton("이전");
-		td.decobtn(btn_prev_Coffee);
+		btn_prev_Coffee.setBorder(new LineBorder(Color.BLACK));
 		btn_prev_Coffee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int nowTabNum = tabbedPane_Coffee.getSelectedIndex();
@@ -219,7 +187,7 @@ public class menuOrder extends JFrame {
 		panel.add(btn_prev_Coffee);
 
 		JButton btn_next_Coffee = new JButton("다음");
-		td.decobtn(btn_next_Coffee);
+		btn_next_Coffee.setBorder(new LineBorder(Color.BLACK));
 		btn_next_Coffee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int nowTabNum = tabbedPane_Coffee.getSelectedIndex();
@@ -235,12 +203,14 @@ public class menuOrder extends JFrame {
 		panel.add(btn_next_Coffee);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 
 		tabbedPane_Main.addTab("Non-Coffee", null, panel_1, null);
 
 		panel_1.setLayout(null);
 
 		JTabbedPane tabbedPane_NonCoffee = new JTabbedPane(JTabbedPane.TOP); // NonCoffee 내부 Tab
+		tabbedPane_NonCoffee.setForeground(Color.WHITE);
 		tabbedPane_NonCoffee.setBounds(0, -27, 685, 472);
 		panel_1.add(tabbedPane_NonCoffee);
 
@@ -258,7 +228,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_chamo.setBounds(12, 100, 211, 188);
+		btn_chamo.setBounds(6, 122, 211, 188);
 		panel_6.add(btn_chamo);
 
 		JButton btn_earlgrey = new JButton("얼그레이 티");
@@ -271,7 +241,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_earlgrey.setBounds(235, 100, 211, 188);
+		btn_earlgrey.setBounds(220, 122, 211, 188);
 		panel_6.add(btn_earlgrey);
 
 		JButton btn_jamong = new JButton("자몽 허니 블랙 티");
@@ -284,7 +254,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_jamong.setBounds(457, 100, 211, 188);
+		btn_jamong.setBounds(433, 122, 211, 188);
 		panel_6.add(btn_jamong);
 
 		JPanel panel_7 = new JPanel();
@@ -301,7 +271,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_saenggang.setBounds(11, 12, 211, 188);
+		btn_saenggang.setBounds(6, 20, 211, 188);
 		panel_7.add(btn_saenggang);
 
 		JButton btn_green = new JButton("녹차");
@@ -314,7 +284,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_green.setBounds(234, 12, 211, 188);
+		btn_green.setBounds(220, 20, 211, 188);
 		panel_7.add(btn_green);
 
 		JButton btn_maesil = new JButton("매실차");
@@ -327,7 +297,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_maesil.setBounds(457, 12, 211, 188);
+		btn_maesil.setBounds(433, 20, 211, 188);
 		panel_7.add(btn_maesil);
 
 		JButton btn_yuja = new JButton("유자차");
@@ -340,7 +310,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_yuja.setBounds(11, 234, 211, 188);
+		btn_yuja.setBounds(6, 220, 211, 188);
 		panel_7.add(btn_yuja);
 
 		JButton btn_prev_NonCoffee = new JButton("이전");
@@ -378,6 +348,8 @@ public class menuOrder extends JFrame {
 		panel_2.setLayout(null);
 
 		JTabbedPane tabbedPane_Food = new JTabbedPane(JTabbedPane.TOP); // Food 내부 Tab
+		tabbedPane_Food.setBackground(Color.WHITE);
+		tabbedPane_Food.setForeground(Color.WHITE);
 		tabbedPane_Food.setBounds(0, -27, 685, 472);
 		panel_2.add(tabbedPane_Food);
 
@@ -395,7 +367,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_cheese.setBounds(12, 100, 211, 188);
+		btn_cheese.setBounds(66, 122, 211, 188);
 		panel_food1.add(btn_cheese);
 
 		JButton btn_tiramisu = new JButton("티라미수 케이크");
@@ -408,7 +380,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_tiramisu.setBounds(235, 100, 211, 188);
+		btn_tiramisu.setBounds(384, 122, 211, 188);
 		panel_food1.add(btn_tiramisu);
 
 		JPanel panel_food2 = new JPanel();
@@ -425,7 +397,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_egg.setBounds(12, 100, 211, 188);
+		btn_egg.setBounds(66, 122, 211, 188);
 		panel_food2.add(btn_egg);
 
 		JButton btn_danhobak = new JButton("단호박 샌드위치");
@@ -438,7 +410,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_danhobak.setBounds(235, 100, 211, 188);
+		btn_danhobak.setBounds(384, 122, 211, 188);
 		panel_food2.add(btn_danhobak);
 
 		JPanel panel_food3 = new JPanel();
@@ -455,7 +427,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_scorn.setBounds(12, 100, 211, 188);
+		btn_scorn.setBounds(6, 122, 211, 188);
 		panel_food3.add(btn_scorn);
 
 		JButton btn_macaron = new JButton("마카롱");
@@ -468,7 +440,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_macaron.setBounds(235, 100, 211, 188);
+		btn_macaron.setBounds(220, 122, 211, 188);
 		panel_food3.add(btn_macaron);
 
 		JButton btn_waffle = new JButton("와플");
@@ -481,7 +453,7 @@ public class menuOrder extends JFrame {
 
 			}
 		});
-		btn_waffle.setBounds(458, 100, 211, 188);
+		btn_waffle.setBounds(433, 122, 211, 188);
 		panel_food3.add(btn_waffle);
 
 		JButton btn_prev_Food = new JButton("이전");
@@ -515,38 +487,23 @@ public class menuOrder extends JFrame {
 		scrollPane = new JScrollPane();
 
 		JButton btnNewButton = new JButton("결제하기");
-		td.decobtn(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(Static.outer_ArrayList.size() == 0) {
-					JOptionPane.showMessageDialog(null, "메뉴를 선택해주세요^-^");
-					return;
-				}
 				setVisible(false);
 				new Ex_Payment();
+
 			}
 		});
 		
 		JButton btnNewButton_1 = new JButton("뒤로가기");
-		td.decobtn(btnNewButton_1);
 		btnNewButton_1.addMouseListener(new mainClick()
 		{
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			setVisible(false);
+			dispose();
 			new subMainFrame();
-			}
-		});
-		
-		JButton btnNewButton_2 = new JButton("전체취소");
-		td.decobtn(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Static.panel_3.removeAll();
-				Static.outer_ArrayList.clear();
-				menuOrder.scrollPane.setViewportView(Static.panel_3);
 			}
 		});
 
@@ -556,16 +513,15 @@ public class menuOrder extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(tabbedPane_Main, GroupLayout.PREFERRED_SIZE, 702, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnNewButton_2, 0, 0, Short.MAX_VALUE)
-								.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnNewButton)
+								.addComponent(btnNewButton_1)))
+						.addComponent(tabbedPane_Main, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -573,20 +529,18 @@ public class menuOrder extends JFrame {
 					.addComponent(tabbedPane_Main, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
-
-
+		panel_3 = new JPanel();
+		panel_3.setLayout(new GridLayout(20, 1, 80, 0));
 		list = new ArrayList<JPanel>();
-		scrollPane.setViewportView(Static.panel_3);
-
+		scrollPane.setViewportView(panel_3);
+		
 
 		contentPane.setLayout(gl_contentPane);
 		setLocationRelativeTo(null);

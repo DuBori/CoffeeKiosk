@@ -19,10 +19,12 @@ public class Turnover extends JFrame {
     int orderSumResult = 0;
 
     public Turnover() {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage(kios.admin.Turnover.class.getResource("/image/logo.png")));
+
         setTitle("매출관리");
         JPanel container1 = new JPanel();
+        container1.setBackground(new Color(74, 68, 61));
         JPanel container2 = new JPanel();
+        container2.setBackground(new Color(74, 68, 61));
 
         String[] header = {"주문번호", "메뉴명", "수량", "금액", "주문일시"};
         model = new DefaultTableModel(header, 0);
@@ -44,20 +46,20 @@ public class Turnover extends JFrame {
         container2.add(btn1);
         container2.add(btn2);
 
-        add(jsp, BorderLayout.NORTH);
-        add(container1);
+        getContentPane().add(jsp, BorderLayout.NORTH);
+        getContentPane().add(container1);
         container1.setLayout(new FlowLayout(FlowLayout.RIGHT, 50, 50));
-        add(container2, BorderLayout.SOUTH);
+        getContentPane().add(container2, BorderLayout.SOUTH);
 
         setBounds(150, 150, 700, 600);
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         setResizable(false);
-        setLocationRelativeTo(null);
+        
 //      여기까지 화면 구현
 
-        // 조회 버튼
+        //조회 버튼
         btn1.addActionListener(e -> {
             model.setRowCount(0);
             orderSumResult = 0;
@@ -108,5 +110,4 @@ public class Turnover extends JFrame {
             }
         }
     }
-    
 }

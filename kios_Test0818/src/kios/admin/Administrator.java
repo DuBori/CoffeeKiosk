@@ -22,12 +22,16 @@ public class Administrator extends JFrame {
         setTitle("관리자 메뉴");
 
         JPanel container1 = new JPanel();
+        container1.setBackground(new Color(74, 68, 61));
         JPanel container2 = new JPanel();
+        container2.setBackground(new Color(74, 68, 61));
         JPanel container3 = new JPanel();
+        container3.setBackground(new Color(74, 68, 61));
 
-        JLabel jl1 = new JLabel("관리자 메뉴");
+        JLabel jl1 = new JLabel("관리자 페이지");
+        jl1.setForeground(Color.WHITE);
 
-        jl1.setFont(new Font(adminFont, Font.BOLD, 60));
+        jl1.setFont(new Font("Dialog", Font.PLAIN, 60));
 
         JButton btn1 = new JButton("회원정보");
         JButton btn2 = new JButton("매출관리");
@@ -48,6 +52,7 @@ public class Administrator extends JFrame {
         btn5.setPreferredSize(new Dimension(120,60));
 
         container1.add(jl1);
+        container2.setLayout(new GridLayout(0, 2, 0, 0));
 
         container2.add(btn1);
         container2.add(btn2);
@@ -56,12 +61,16 @@ public class Administrator extends JFrame {
         container3.add(btn4);
         container3.add(btn5);
 
-        add(container1, BorderLayout.NORTH);
-        add(container2);
-        container2.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
-        add(container3, BorderLayout.SOUTH);
+        getContentPane().add(container1, BorderLayout.NORTH);
+        getContentPane().add(container2);
+        
+        JLabel label = new JLabel("");
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setIcon(new ImageIcon(Administrator.class.getResource("/image/logo__1.png")));
+        container2.add(label);
+        getContentPane().add(container3, BorderLayout.SOUTH);
 
-        setBounds(200, 200, 700, 400);
+        setBounds(200, 200, 500, 450);
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -93,7 +102,7 @@ public class Administrator extends JFrame {
 
         });
 
-        // 메인으로 버튼
+        //메인으로 버튼
         btn4.addActionListener(e -> {
             dispose();
             new mainFrame();
