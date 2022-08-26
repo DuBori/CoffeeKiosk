@@ -540,7 +540,7 @@ public class menuOrder extends JFrame {
 		panel_3.setLayout(new GridLayout(20, 1, 80, 0));
 		list = new ArrayList<JPanel>();
 		scrollPane.setViewportView(panel_3);
-
+		
 
 		contentPane.setLayout(gl_contentPane);
 		setLocationRelativeTo(null);
