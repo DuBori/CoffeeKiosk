@@ -144,11 +144,12 @@ public void mouseClicked(MouseEvent e) {
 
 	     downId(down);
 	     copyData();
-	     tf2 = new test_Frame2();	
+
 	     new checkMileage().billCopyPhone(Static.phone);
 	     new checkMileage().accumulatedPay(Static.phone);
 	     new receipt(new receipt().select());
-	     tf2 = new test_Frame2();   
+	     
+	     tf2 = new test_Frame2();	
 	     Static.count++;
 	     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
 
@@ -164,11 +165,12 @@ public void mouseClicked(MouseEvent e) {
 
 		     downId(down);
 		     copyData();
-		     tf2 = new test_Frame2();	
+		     
 		     new checkMileage().billCopyPhone(Static.phone);
 		     new checkMileage().accumulatedPay(Static.phone);
 		     new receipt(new receipt().select());
-		     tf2 = new test_Frame2();   
+		     
+		     tf2 = new test_Frame2();	
 		     Static.count++;
 		     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
 
@@ -238,7 +240,7 @@ class test_Frame2 extends JDialog{
          @Override
          public void actionPerformed(ActionEvent e) {
             dispose();
-
+            new mainFrame();
          }
       });
 
