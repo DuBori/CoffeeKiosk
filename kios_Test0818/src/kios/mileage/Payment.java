@@ -137,27 +137,48 @@ public class Payment extends JFrame implements MouseListener{
 
 @Override
 public void mouseClicked(MouseEvent e) {
-	 dispose();
-	 
-     
-     new updateMenu();
-     new checkMileage().billaddPhone(Static.phone);
+	if(e.getSource() ==card) { 
+		dispose();
+	     new updateMenu();
+	     new checkMileage().billaddPhone(Static.phone);
 
-     downId(down);
-     copyData();
-     tf2 = new test_Frame2();	
-     new checkMileage().billCopyPhone(Static.phone);
-     new checkMileage().accumulatedPay(Static.phone);
-     new receipt(new receipt().select());
-     tf2 = new test_Frame2();   
-     Static.count++;
-     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
+	     downId(down);
+	     copyData();
+	     tf2 = new test_Frame2();	
+	     new checkMileage().billCopyPhone(Static.phone);
+	     new checkMileage().accumulatedPay(Static.phone);
+	     new receipt(new receipt().select());
+	     tf2 = new test_Frame2();   
+	     Static.count++;
+	     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
 
-     System.out.println(Static.outer_ArrayList.size());
-     while(Static.outer_ArrayList.size()>0) {
-    	 System.out.println("들어옴");
-    	 Static.outer_ArrayList.remove(0);
-     }
+	     System.out.println(Static.outer_ArrayList.size());
+	     while(Static.outer_ArrayList.size()>0) {
+	    	 System.out.println("들어옴");
+	    	 Static.outer_ArrayList.remove(0);
+	     }
+	}else if( e.getSource() ==cash){
+	    	 dispose();
+		     new updateMenu();
+		     new checkMileage().billaddPhone(Static.phone);
+
+		     downId(down);
+		     copyData();
+		     tf2 = new test_Frame2();	
+		     new checkMileage().billCopyPhone(Static.phone);
+		     new checkMileage().accumulatedPay(Static.phone);
+		     new receipt(new receipt().select());
+		     tf2 = new test_Frame2();   
+		     Static.count++;
+		     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
+
+		     System.out.println(Static.outer_ArrayList.size());
+		     while(Static.outer_ArrayList.size()>0) {
+		    	 System.out.println("들어옴");
+		    	 Static.outer_ArrayList.remove(0);
+	     }
+	}
+	
 }
 
 
@@ -217,7 +238,6 @@ class test_Frame2 extends JDialog{
          @Override
          public void actionPerformed(ActionEvent e) {
             dispose();
-            new mainFrame();
 
          }
       });
