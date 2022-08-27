@@ -51,7 +51,7 @@ public class subMainFrame extends JFrame {
 		takeout.setIcon(new ImageIcon(subMainFrame.class.getResource("/image/takeout.png")));
 		getContentPane().add(takeout);
 		
-        
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
