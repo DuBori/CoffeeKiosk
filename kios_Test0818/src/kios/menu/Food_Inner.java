@@ -112,7 +112,9 @@ public class Food_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("str은 "+Static.str);
+
+				 System.out.println("str은 "+Static.str);
+
 	        	 QuantityLimit quantityLimit = new QuantityLimit(text);
 	        	 if(!Static.str.equals(text)) {
 	        		 Static.value=0;

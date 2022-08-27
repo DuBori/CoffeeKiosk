@@ -228,8 +228,9 @@ public class NonCoffee_Inner extends JFrame {
 	        	 }
 	        	Static.str=text;
 				dispose();
-				System.out.println((int)menuOrder.spinner_1.getValue() + Static.value);
-	            if (quantityLimit.productCount <(int)menuOrder.spinner_1.getValue() + Static.value) {
+
+
+	            if (quantityLimit.productCount < (int)menuOrder.spinner_1.getValue() + Static.value) {
 	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
 	            } else {
 	               Static.value+= (int)menuOrder.spinner_1.getValue();
