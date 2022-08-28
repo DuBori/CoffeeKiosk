@@ -240,6 +240,7 @@ class test_Frame2 extends JDialog{
          public void actionPerformed(ActionEvent e) {
             dispose();
             new mainFrame();
+
          }
       });
 
