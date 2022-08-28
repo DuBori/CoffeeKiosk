@@ -46,9 +46,7 @@ public class check_Phone extends JFrame{
 				Static.phone=chkph;
 				new checkMileage(chkph,chkmil);
 			}else {
-				JOptionPane.showMessageDialog(null, "존재하지 않는 번호입니다.");
-
-				new Ex_Payment();
+				new Selet_Join();
 			}
 			
 		} catch (Exception e) {

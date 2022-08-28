@@ -73,6 +73,8 @@ public class receipt extends JFrame {
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_1 = new JLabel("<html><p>===================================================================</p>"
+				+ "<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;주문번호 : "+Static.count+"</p>"
+				+ "<p>===================================================================</p>"
 				+ "<p>[매장명] KH커피(종로점)</p>"
 				+ "<p>[주소] 서울특별시 중구 남대문로 120</p>"
 				+ "<p>[대표자]000</p>"
