@@ -25,7 +25,6 @@ public class mainFrame extends JFrame {
         setIconImage(img);
         
 		setTitle("커피 키오스크");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 700, 700);
 
@@ -44,7 +43,8 @@ public class mainFrame extends JFrame {
 		
 		button_action();
 		panel_action();
-		
+
+		setLocationRelativeTo(null);
 		setVisible(true);	
 	}
 

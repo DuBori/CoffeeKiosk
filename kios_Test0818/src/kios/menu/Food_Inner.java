@@ -91,19 +91,8 @@ public class Food_Inner extends JFrame {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-		           if(Static.value>0  ) {
-		        	   Static.value=0;
-		           }
-				dispose();
-	            QuantityLimit quantityLimit = new QuantityLimit(text);
 
-	            if (quantityLimit.productCount < (int)menuOrder.spinner_1.getValue() + Static.value) {
-	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
-	            } else {
-
-		               Static.value+= (int)menuOrder.spinner_1.getValue();
-	               new PutIn(text);
-	            }
+				menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.foodPrice)));
 			}
 		});
 
@@ -123,7 +112,9 @@ public class Food_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				 System.out.println("str은 "+Static.str);
+
 	        	 QuantityLimit quantityLimit = new QuantityLimit(text);
 	        	 if(!Static.str.equals(text)) {
 	        		 Static.value=0;

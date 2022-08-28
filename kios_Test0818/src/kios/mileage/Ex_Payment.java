@@ -5,7 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import kios.db.Static;
-import kios.main.mainFrame;
 import kios.register.Register;
 import kios.register.check_Phone;
 import javax.swing.GroupLayout.Alignment;
@@ -91,8 +90,6 @@ public class Ex_Payment extends JFrame{
 				dispose();
 				Static.phone="None";
 				new Payment();
-				
-				
 			}
 		});
 		
