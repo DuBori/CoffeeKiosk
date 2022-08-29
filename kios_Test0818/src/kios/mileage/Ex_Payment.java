@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import kios.db.Static;
+import kios.menu.menuOrder;
 import kios.register.Register;
 import kios.register.check_Phone;
 import javax.swing.GroupLayout.Alignment;
@@ -60,27 +61,38 @@ public class Ex_Payment extends JFrame{
 		});
 		
 		JButton button3 = new JButton("취소");
+		
+		JButton button3_1 = new JButton("뒤로");
+		button3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new menuOrder();
+				menuOrder.scrollPane.setViewportView(Static.panel_3);
+			}
+		});
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(35)
+				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
+					.addGap(23)
 					.addComponent(button1)
-					.addGap(22)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(button2)
-					.addGap(26)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(button3)
-					.addGap(35))
+					.addGap(6)
+					.addComponent(button3_1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(24, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(5)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(button1)
-						.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-							.addComponent(button2)
-							.addComponent(button3))))
+						.addComponent(button2)
+						.addComponent(button3)
+						.addComponent(button3_1)))
 		);
 		panel_2.setLayout(gl_panel_2);
 		button3.addActionListener(new ActionListener() {
