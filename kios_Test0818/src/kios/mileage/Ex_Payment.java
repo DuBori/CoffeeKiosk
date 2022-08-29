@@ -62,15 +62,15 @@ public class Ex_Payment extends JFrame{
 		JButton button3 = new JButton("취소");
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(50)
+					.addGap(35)
 					.addComponent(button1)
-					.addGap(24)
+					.addGap(22)
 					.addComponent(button2)
-					.addGap(33)
+					.addGap(26)
 					.addComponent(button3)
-					.addGap(55))
+					.addGap(35))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -78,7 +78,7 @@ public class Ex_Payment extends JFrame{
 					.addGap(5)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
 						.addComponent(button1)
-						.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
 							.addComponent(button2)
 							.addComponent(button3))))
 		);
@@ -147,7 +147,7 @@ public class Ex_Payment extends JFrame{
 			buttonPanel.add(buttons[i]);
 		}
 		//위치와 크기
-		setBounds(100, 100, 350, 405);
+		setBounds(100, 100, 335, 405);
 			
 		//화면의 가운데에 띄움
 		setLocationRelativeTo(null);
