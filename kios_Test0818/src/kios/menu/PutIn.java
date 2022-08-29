@@ -15,10 +15,9 @@ import kios.db.Static;
 public class PutIn {
 	boolean chk=false;
 	int arryCount = Integer.parseInt(menuOrder.spinner_1.getValue().toString());
-	int i;
-	
+	int i,j;
+	int size,jsize;
 	public PutIn() {}
-
 	// ########################### 첫번째 인자 생성자 ###########################
 	public PutIn(String text) {
 		
@@ -35,6 +34,18 @@ public class PutIn {
 
 		ArrayList<Object> inner_ArrayList = new ArrayList<>(); // 2차원 ArrayList 내부 ArrayList 객체 생성
 
+		
+
+		jsize=Static.outer_ArrayList.size();
+		while(jsize-->0)
+		{
+			if(Static.outer_ArrayList.get(j).get(0).equals(text))
+			{
+				Static.outer_ArrayList.get(j).add(7,menuOrder.cost+= Integer.parseInt(menuOrder.textField.getText()));
+			}
+			j++;
+		}
+		
 		inner_ArrayList.add(text);
 		inner_ArrayList.add(menuOrder.cupSize);
 		inner_ArrayList.add(menuOrder.IceHot);

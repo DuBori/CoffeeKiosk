@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import kios.db.DBconnection;
 import kios.db.Static;
 import kios.main.subMainFrame;
+import kios.menu.menuOrder;
 
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
@@ -156,7 +157,7 @@ public class receipt extends JFrame {
 						{
 							addString+="<p>("+billSize.substring(0,1)+")"+proName+"&emsp;&emsp;&emsp;"+costDefault+
 									"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-									+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"+billCost+"원</p>";
+									+billCount+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"+(billCost-menuOrder.addShot)+"원</p>";
 							addString+="<p>"+addShot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
 									+ "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;"
 									+shot+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
