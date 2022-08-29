@@ -33,6 +33,7 @@ public class Payment extends JFrame implements MouseListener{
    int down, result, bill_count, product_id;
    test_Frame2 tf2;
    JLabel card,cash;
+   String find;
    public Payment() {
 	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.Payment.class.getResource("/image/logo.png")));
 	  setTitle("결제");
@@ -116,13 +117,14 @@ public class Payment extends JFrame implements MouseListener{
 	         con = DBconnection.getConnection();
 
 	         for (int i = 0; i < Static.outer_ArrayList.size(); i++) {
-	            query = "insert into copy_data(bill_id, product_name, bill_defaultsize, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, ?, sysdate)";
+				 find = findName("select member_name from member_option where member_phone = ?", Static.phone);
+	            query = "insert into copy_data(bill_id, member_name, product_name, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, ?, sysdate)";
 
 	            pstmt=con.prepareStatement(query);
 
 	            pstmt.setInt(1, Static.count);
-	            pstmt.setString(2, Static.outer_ArrayList.get(i).get(0).toString());
-	            pstmt.setInt(3, (int) Static.outer_ArrayList.get(i).get(3));
+	            pstmt.setString(2, find);
+	            pstmt.setString(3, Static.outer_ArrayList.get(i).get(0).toString());
 	            pstmt.setInt(4, (int) Static.outer_ArrayList.get(i).get(5));
 	            pstmt.setInt(5, (int) Static.outer_ArrayList.get(i).get(6));
 
@@ -145,11 +147,11 @@ public void mouseClicked(MouseEvent e) {
 	     downId(down);
 	     copyData();
 
-	     new checkMileage().billCopyPhone(Static.phone);
+	     new checkMileage().billCopyPhone();
 	     new checkMileage().accumulatedPay(Static.phone);
-	     new receipt(new receipt().select());
-	     
-	     tf2 = new test_Frame2();	
+		 new receipt(new receipt().select());
+
+	     tf2 = new test_Frame2();
 	     Static.count++;
 	     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
 
@@ -166,11 +168,11 @@ public void mouseClicked(MouseEvent e) {
 		     downId(down);
 		     copyData();
 		     
-		     new checkMileage().billCopyPhone(Static.phone);
+		     new checkMileage().billCopyPhone();
 		     new checkMileage().accumulatedPay(Static.phone);
-		     new receipt(new receipt().select());
-		     
-		     tf2 = new test_Frame2();	
+			 new receipt(new receipt().select());
+
+		     tf2 = new test_Frame2();
 		     Static.count++;
 		     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
 		     
@@ -181,6 +183,23 @@ public void mouseClicked(MouseEvent e) {
     Static.str="";
 	
 }
+
+	public String findName(String sql, String text) {
+		try {
+			con = DBconnection.getConnection();
+			query = sql;
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, text);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				find = rs.getString("member_name");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return find;
+	}
 
 
 

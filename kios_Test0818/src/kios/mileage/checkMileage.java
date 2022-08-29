@@ -18,6 +18,7 @@ public class checkMileage extends JFrame{
 	String query;
 	int ckMileage;
 	int check;
+	String find;
 	public checkMileage() {
 
 	}
@@ -32,8 +33,8 @@ public class checkMileage extends JFrame{
 			if(check>0) {	
 				JOptionPane.showMessageDialog(null, "적립 완료");
 				//billaddPhone(text);
-				billCopyPhone(text);
-				accumulatedPay(text);
+//				billCopyPhone();
+//				accumulatedPay(text);
 				new Payment();
 			}else
 				JOptionPane.showMessageDialog(null, "적립 실패");
@@ -57,13 +58,14 @@ public class checkMileage extends JFrame{
 		}
 	}
 
-	void billCopyPhone(String text) {
+	void billCopyPhone() {
 		try {
 			con=DBconnection.getConnection();
-			query="update copy_data set member_phone = ? where bill_id = ?";
+			query="update copy_data set member_phone = ? where bill_id = ? and member_name = (select member_name from member_option where member_phone = ?)";
 			pstmt=con.prepareStatement(query);
-			pstmt.setString(1,text);
+			pstmt.setString(1, Static.phone);
 			pstmt.setInt(2, Static.count);
+			pstmt.setString(3, Static.phone);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
