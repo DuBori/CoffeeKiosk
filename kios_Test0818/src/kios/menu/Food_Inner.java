@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,7 +25,7 @@ public class Food_Inner extends JFrame {
 	ResultSet rs = null;
 	String sql = null;
 	DefaultTableModel model;
-
+	int temp,i;
 	public Food_Inner(String text) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.Food_Inner.class.getResource("/image/logo.png")));
 		setBounds(100, 100, 470, 260);
@@ -113,22 +114,34 @@ public class Food_Inner extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				 System.out.println("str은 "+Static.str);
+				dispose();
+	        	 Static.value=(int)menuOrder.spinner_1.getValue();
+	        	 ArrayList<ArrayList<Object>> list =Static.outer_ArrayList;
 
 	        	 QuantityLimit quantityLimit = new QuantityLimit(text);
-	        	 if(!Static.str.equals(text)) {
-	        		 Static.value=0;
+	        
+	        	 temp=list.size();
+	        	 while(temp-->0)
+	        	 {               
+
+	        		if( list.get(i).get(0).equals(text))
+	        		{
+
+	        			Static.value=(int)menuOrder.spinner_1.getValue()+(int) list.get(i).get(5);
+	        			break; 
+	        		}else {     	
+	        			Static.value=(int)menuOrder.spinner_1.getValue();
+	        			 i++;
+	        		}
 	        	 }
-	        	Static.str=text;
-				dispose();
-				 if (quantityLimit.productCount < (int)menuOrder.spinner_1.getValue() + Static.value) {
-		               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
-		            } else {
-		               Static.value+= (int)menuOrder.spinner_1.getValue();
-		               new PutIn(text, menuOrder.count);
-		            }
-				
-			}
+	        	 
+	           //10개 였는데 9개 시키고 다음 1개를 주문시 Static value = 0 -> 9이 되며, 
+	            if (quantityLimit.productCount < Static.value) { // 1 < 1+9
+	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
+	            } else {
+		               new PutIn(text);
+	            }
+	         }
 		});
 		JButton btn_cancel = new JButton("취소");
 		btn_cancel.setBounds(330, 184, 117, 29);

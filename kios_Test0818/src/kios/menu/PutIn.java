@@ -47,6 +47,7 @@ public class PutIn {
 					inner_ArrayList.get(1) == Static.outer_ArrayList.get(i).get(1) &&
 					inner_ArrayList.get(4) == Static.outer_ArrayList.get(i).get(4)) {
 				// 현재 메뉴 옵션과 동일한 주문을 찾으면
+				System.out.println("같은 메뉴가 담겼다 ");
 				arryCount = arryCount + (int)Static.outer_ArrayList.get(i).get(5);
 				Static.outer_ArrayList.remove(i);
 				Static.panel_3.remove(i);

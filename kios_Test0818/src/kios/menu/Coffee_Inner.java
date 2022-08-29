@@ -23,6 +23,7 @@ public class Coffee_Inner extends JFrame {
 	ResultSet rs = null;
 	String sql = null;
 	DefaultTableModel model;
+	int temp,i=0;
 	
 	public Coffee_Inner(String text) {
 
@@ -48,27 +49,27 @@ public class Coffee_Inner extends JFrame {
 		switch (m) {
 		case "ameri":
 			menuOrder.coffeePrice = 4500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/americano.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/americano.jpg"));
 			break;
 		case "latte":
 			menuOrder.coffeePrice = 5000;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caffelatte.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/caffelatte.jpg"));
 			break;
 		case "mocha":
 			menuOrder.coffeePrice = 5500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caffemocha.png"));
+			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/caffemocha.png"));
 			break;
 		case "cappu":
 			menuOrder.coffeePrice = 5000;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/cappuccino.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/cappuccino.jpg"));
 			break;
 		case "caramel":
 			menuOrder.coffeePrice = 5900;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caramelm.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/caramelm.jpg"));
 			break;
 		case "espresso":
 			menuOrder.coffeePrice = 4200;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/espresso.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/espresso.jpg"));
 			break;
 		}
 
@@ -216,22 +217,35 @@ public class Coffee_Inner extends JFrame {
 			
 	         @Override
 	         public void actionPerformed(ActionEvent e) {
-	        	 System.out.println("str은 "+Static.str);
-	        	 QuantityLimit quantityLimit = new QuantityLimit(text);
-	        	 if(!Static.str.equals(text)) {
-	        		 Static.value=0;
-	        	 }
-	        	Static.str=text;
 	        	 dispose();
-	           
-	            if (quantityLimit.productCount < (int)menuOrder.spinner_1.getValue() + Static.value) {
+	        	 Static.value=(int)menuOrder.spinner_1.getValue();
+	        	 ArrayList<ArrayList<Object>> list =Static.outer_ArrayList;
+
+	        	 QuantityLimit quantityLimit = new QuantityLimit(text);
+	        
+	        	 temp=list.size();
+	        	 while(temp-->0)
+	        	 {               
+
+	        		if( list.get(i).get(0).equals(text))
+	        		{
+
+	        			Static.value=(int)menuOrder.spinner_1.getValue()+(int) list.get(i).get(5);
+	        			break; 
+	        		}else {     	
+	        			Static.value=(int)menuOrder.spinner_1.getValue();
+	        			 i++;
+	        		}
+	        	 }
+	        	 
+	           //10개 였는데 9개 시키고 다음 1개를 주문시 Static value = 0 -> 9이 되며, 
+	            if (quantityLimit.productCount < Static.value) { // 1 < 1+9
 	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
 	            } else {
-		               Static.value+= (int)menuOrder.spinner_1.getValue();
-	               new PutIn(text);
+		               new PutIn(text);
 	            }
-	            System.out.println(Static.value);
 	         }
+	         
 	      });
 
 		JButton btn_cancel = new JButton("취소");
