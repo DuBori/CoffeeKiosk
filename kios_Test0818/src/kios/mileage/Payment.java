@@ -173,13 +173,16 @@ public void mouseClicked(MouseEvent e) {
 		     tf2 = new test_Frame2();	
 		     Static.count++;
 		     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
+		     
 
 		     System.out.println(Static.outer_ArrayList.size());
 		     while(Static.outer_ArrayList.size()>0) {
 		    	 System.out.println("들어옴");
 		    	 Static.outer_ArrayList.remove(0);
 	     }
+
 	}
+    Static.str="";
 	
 }
 
