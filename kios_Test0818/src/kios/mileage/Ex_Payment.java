@@ -111,21 +111,21 @@ public class Ex_Payment extends JFrame{
 		buttonPanel.setBounds(8, 90, 270, 235);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(51)
-							.addComponent(inputSpace, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE)))
+							.addGap(35)
+							.addComponent(inputSpace, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.CENTER)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(inputSpace, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+					.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
 		);
 		panel.setLayout(gl_panel);
 		// 입력 버튼의 글자를 차례대로 배열에 저장
@@ -147,7 +147,7 @@ public class Ex_Payment extends JFrame{
 			buttonPanel.add(buttons[i]);
 		}
 		//위치와 크기
-		setBounds(100, 100, 400, 415);
+		setBounds(100, 100, 350, 405);
 			
 		//화면의 가운데에 띄움
 		setLocationRelativeTo(null);
