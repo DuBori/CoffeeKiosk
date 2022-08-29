@@ -114,7 +114,7 @@ public class Food_Inner extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				dispose();
+				 dispose();
 	        	 Static.value=(int)menuOrder.spinner_1.getValue();
 	        	 ArrayList<ArrayList<Object>> list =Static.outer_ArrayList;
 
@@ -139,7 +139,7 @@ public class Food_Inner extends JFrame {
 	            if (quantityLimit.productCount < Static.value) { // 1 < 1+9
 	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
 	            } else {
-		               new PutIn(text);
+		               new PutIn(text,1);
 	            }
 	         }
 		});
