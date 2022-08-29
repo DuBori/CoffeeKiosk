@@ -138,7 +138,7 @@ public class Ex_Payment extends JFrame{
 			//글씨체
 			buttons[i].setFont(new Font("Arial", Font.BOLD, 20));
 			//글자색 지정
-			buttons[i].setForeground(Color.white);
+			buttons[i].setForeground(Color.gray);
 			//테두리 없앱
 			buttons[i].setBorderPainted(false);
 			//밑에서 만든 액션리스너를 버튼에 추가
@@ -147,7 +147,7 @@ public class Ex_Payment extends JFrame{
 			buttonPanel.add(buttons[i]);
 		}
 		//위치와 크기
-		setBounds(100, 100, 400, 400);
+		setBounds(100, 100, 400, 415);
 			
 		//화면의 가운데에 띄움
 		setLocationRelativeTo(null);
