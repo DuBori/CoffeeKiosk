@@ -72,8 +72,11 @@ public class check_Phone extends JFrame{
 				}
 				if(chkph.equals("") && pw !=null && name!=null)
 				{
-					System.out.println("가입 진행");
+					JOptionPane.showMessageDialog(null, "가입을 진행합니다.");
 					insert(phone,pw,name);
+				}else {
+					JOptionPane.showMessageDialog(null, "기존의 정보가 존재합니다.");
+					new Register();
 				}
 				
 			} catch (Exception e) {
