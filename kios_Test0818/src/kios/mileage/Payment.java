@@ -44,10 +44,10 @@ public class Payment extends JFrame implements MouseListener{
 	  cash.addMouseListener(this);
 	  card.setIcon(new ImageIcon(Payment.class.getResource("/image/card.png")));
 	  cash.setIcon(new ImageIcon(Payment.class.getResource("/image/cash.png")));
-
-
-
-
+	  
+		
+		
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -68,13 +68,13 @@ public class Payment extends JFrame implements MouseListener{
 
 
 		getContentPane().setLayout(groupLayout);
-
+	       
 		setResizable(false);
 		this.setSize(400,250);
 		this.setVisible(true);
 
 		setLocationRelativeTo(null);
-
+	        
 		setVisible(true);
    }
 
@@ -115,15 +115,16 @@ public class Payment extends JFrame implements MouseListener{
 	      try {
 	         con = DBconnection.getConnection();
 
-            for (int i = 0; i < Static.outer_ArrayList.size(); i++) {
-               query = "insert into copy_data(bill_id, product_name, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, sysdate)";
+	         for (int i = 0; i < Static.outer_ArrayList.size(); i++) {
+	            query = "insert into copy_data(bill_id, product_name, bill_defaultsize, bill_count, bill_cost, bill_date) values(?, ?, ?, ?, ?, sysdate)";
 
 	            pstmt=con.prepareStatement(query);
 
-               pstmt.setInt(1, Static.count);
-               pstmt.setString(2, Static.outer_ArrayList.get(i).get(0).toString());
-               pstmt.setInt(3, (int) Static.outer_ArrayList.get(i).get(5));
-               pstmt.setInt(4, (int) Static.outer_ArrayList.get(i).get(6));
+	            pstmt.setInt(1, Static.count);
+	            pstmt.setString(2, Static.outer_ArrayList.get(i).get(0).toString());
+	            pstmt.setInt(3, (int) Static.outer_ArrayList.get(i).get(3));
+	            pstmt.setInt(4, (int) Static.outer_ArrayList.get(i).get(5));
+	            pstmt.setInt(5, (int) Static.outer_ArrayList.get(i).get(6));
 
 	            pstmt.executeUpdate();
 	         }
@@ -136,7 +137,7 @@ public class Payment extends JFrame implements MouseListener{
 
 @Override
 public void mouseClicked(MouseEvent e) {
-	if(e.getSource() ==card) {
+	if(e.getSource() ==card) { 
 		dispose();
 	     new updateMenu();
 	     new checkMileage().billaddPhone(Static.phone);
@@ -146,9 +147,9 @@ public void mouseClicked(MouseEvent e) {
 
 	     new checkMileage().billCopyPhone(Static.phone);
 	     new checkMileage().accumulatedPay(Static.phone);
-
-	     tf2 = new test_Frame2();
-        new receipt(new receipt().select());
+	     new receipt(new receipt().select());
+	     
+	     tf2 = new test_Frame2();	
 	     Static.count++;
 	     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
 
@@ -164,22 +165,25 @@ public void mouseClicked(MouseEvent e) {
 
 		     downId(down);
 		     copyData();
-
+		     
 		     new checkMileage().billCopyPhone(Static.phone);
 		     new checkMileage().accumulatedPay(Static.phone);
-
-		     tf2 = new test_Frame2();
-        new receipt(new receipt().select());
+		     new receipt(new receipt().select());
+		     
+		     tf2 = new test_Frame2();	
 		     Static.count++;
 		     Static.panel_3= new JPanel(new GridLayout(20, 1, 80, 0));
+		     
 
 		     System.out.println(Static.outer_ArrayList.size());
 		     while(Static.outer_ArrayList.size()>0) {
 		    	 System.out.println("들어옴");
 		    	 Static.outer_ArrayList.remove(0);
 	     }
-	}
 
+	}
+    Static.str="";
+	
 }
 
 
@@ -187,28 +191,28 @@ public void mouseClicked(MouseEvent e) {
 @Override
 public void mousePressed(MouseEvent e) {
 	// TODO Auto-generated method stub
-
+	
 }
 
 
 @Override
 public void mouseReleased(MouseEvent e) {
 	// TODO Auto-generated method stub
-
+	
 }
 
 
 @Override
 public void mouseEntered(MouseEvent e) {
 	// TODO Auto-generated method stub
-
+	
 }
 
 
 @Override
 public void mouseExited(MouseEvent e) {
 	// TODO Auto-generated method stub
-
+	
 }
 }
 
@@ -221,7 +225,7 @@ class test_Frame2 extends JDialog{
    JPanel group2 = new JPanel(new BorderLayout());
    TextDeco td = new TextDeco();
    JButton button = new JButton("돌아가기");
-
+   
    public test_Frame2() {
 	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.test_Frame2.class.getResource("/image/logo.png")));
       setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -240,7 +244,6 @@ class test_Frame2 extends JDialog{
          public void actionPerformed(ActionEvent e) {
             dispose();
             new mainFrame();
-
          }
       });
 
