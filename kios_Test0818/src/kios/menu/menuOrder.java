@@ -52,7 +52,7 @@ public class menuOrder extends JFrame {
 	static JComboBox comboBox, comboBox_1;
 	public static JScrollPane scrollPane;
 	public static JPanel Panel;
-	static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
+	public static int coffeePrice, foodPrice, sizePrice, addShot, viewCost, shotCount, count, cost, removeCount;
 	static String IceHot, cupSize;
 
 	static ArrayList<ArrayList<Object>> outer_ArrayList = new ArrayList<ArrayList<Object>>(); // 2차원 ArrayList 외부ArrayList 객체 생성
@@ -90,7 +90,7 @@ public class menuOrder extends JFrame {
 		panel_8.setLayout(null);
 
 		JButton btnNewButton_ameri = new JButton("아메리카노");
-		btnNewButton_ameri.setIcon(new ImageIcon(menuOrder.class.getResource("/image/americano.jpg")));
+		btnNewButton_ameri.setIcon(new ImageIcon(menuOrder.class.getResource("/image/americano.jpeg")));
 		
 		btnNewButton_ameri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,6 +104,7 @@ public class menuOrder extends JFrame {
 		
 		
 		JButton btn_latte = new JButton("카페라떼");
+		btn_latte.setIcon(new ImageIcon(menuOrder.class.getResource("/image/caffelatte.jpeg")));
 		
 		btn_latte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -117,7 +118,7 @@ public class menuOrder extends JFrame {
 
 		
 		JButton btn_mocha = new JButton("카페모카");
-		
+		btn_mocha.setIcon(new ImageIcon(menuOrder.class.getResource("/image/caffemocha.jpeg")));
 		btn_mocha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "mocha";
@@ -135,7 +136,7 @@ public class menuOrder extends JFrame {
 
 		
 		JButton btn_cappu = new JButton("카푸치노");
-
+		btn_cappu.setIcon(new ImageIcon(menuOrder.class.getResource("/image/cappuccino.jpeg")));
 		btn_cappu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "cappu";
@@ -147,7 +148,7 @@ public class menuOrder extends JFrame {
 
 
 		JButton btn_caramel = new JButton("카라멜마키아또");
-
+		btn_caramel.setIcon(new ImageIcon(menuOrder.class.getResource("/image/caramelm.jpg")));
 		btn_caramel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "caramel";
@@ -160,7 +161,7 @@ public class menuOrder extends JFrame {
 		
 
 		JButton btn_espresso = new JButton("에스프레소");
-
+		btn_espresso.setIcon(new ImageIcon(menuOrder.class.getResource("/image/espresso.jpeg")));
 		btn_espresso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				picNum = "espresso";

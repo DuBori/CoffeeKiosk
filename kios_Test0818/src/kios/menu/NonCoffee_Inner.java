@@ -23,7 +23,7 @@ public class NonCoffee_Inner extends JFrame {
 	ResultSet rs = null;
 	String sql = null;
 	DefaultTableModel model;
-
+	int temp,i;
 	public NonCoffee_Inner(String text) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.NonCoffee_Inner.class.getResource("/image/logo.png")));
 		setBounds(100, 100, 470, 260);
@@ -221,22 +221,34 @@ public class NonCoffee_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 System.out.println("str은 "+Static.str);
-	        	 QuantityLimit quantityLimit = new QuantityLimit(text);
-	        	 if(!Static.str.equals(text)) {
-	        		 Static.value=0;
-	        	 }
-	        	Static.str=text;
 				dispose();
+	        	 Static.value=(int)menuOrder.spinner_1.getValue();
+	        	 ArrayList<ArrayList<Object>> list =Static.outer_ArrayList;
 
+	        	 QuantityLimit quantityLimit = new QuantityLimit(text);
+	        
+	        	 temp=list.size();
+	        	 while(temp-->0)
+	        	 {               
 
-	            if (quantityLimit.productCount < (int)menuOrder.spinner_1.getValue() + Static.value) {
+	        		if( list.get(i).get(0).equals(text))
+	        		{
+
+	        			Static.value=(int)menuOrder.spinner_1.getValue()+(int) list.get(i).get(5);
+	        			break; 
+	        		}else {     	
+	        			Static.value=(int)menuOrder.spinner_1.getValue();
+	        			 i++;
+	        		}
+	        	 }
+	        	 
+	           //10개 였는데 9개 시키고 다음 1개를 주문시 Static value = 0 -> 9이 되며, 
+	            if (quantityLimit.productCount < Static.value) { // 1 < 1+9
 	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
 	            } else {
-	               Static.value+= (int)menuOrder.spinner_1.getValue();
-	               new PutIn(text);
+		               new PutIn(text);
 	            }
-			}
+	         }
 		});
 		
 		JButton btn_cancel = new JButton("취소");

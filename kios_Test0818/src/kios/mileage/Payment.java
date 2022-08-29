@@ -175,11 +175,7 @@ public void mouseClicked(MouseEvent e) {
 		     
 
 		     System.out.println(Static.outer_ArrayList.size());
-		     while(Static.outer_ArrayList.size()>0) {
-		    	 System.out.println("들어옴");
-		    	 Static.outer_ArrayList.remove(0);
-	     }
-
+		     Static.outer_ArrayList.clear();
 	}
     Static.str="";
 	
