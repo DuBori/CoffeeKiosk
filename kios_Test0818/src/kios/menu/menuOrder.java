@@ -492,6 +492,10 @@ public class menuOrder extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(Static.outer_ArrayList.size() == 0) {
+					JOptionPane.showMessageDialog(null, "메뉴를 선택해주세요^-^");
+					return;
+				}
 				setVisible(false);
 				new Ex_Payment();
 
@@ -507,6 +511,15 @@ public class menuOrder extends JFrame {
 			new subMainFrame();
 			}
 		});
+		
+		JButton btnNewButton_1_1 = new JButton("전체삭제");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Static.panel_3.removeAll();
+				Static.outer_ArrayList.clear();
+				menuOrder.scrollPane.setViewportView(Static.panel_3);
+			}
+		});
 
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -519,9 +532,10 @@ public class menuOrder extends JFrame {
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnNewButton)
-								.addComponent(btnNewButton_1)))
-						.addComponent(tabbedPane_Main, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
+								.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+								.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addComponent(tabbedPane_Main, GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -529,11 +543,13 @@ public class menuOrder extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(tabbedPane_Main, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnNewButton_1_1)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnNewButton_1))
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
