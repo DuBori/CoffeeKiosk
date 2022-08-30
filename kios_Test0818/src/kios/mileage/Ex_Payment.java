@@ -1,5 +1,5 @@
 package kios.mileage;
-
+ 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -41,6 +41,7 @@ public class Ex_Payment extends JFrame{
 		
 		// 취소& 회원가입 버튼 생성.
 		JButton button1 = new JButton("회원가입");
+		button1.setForeground(new Color(111, 56, 38));
 		button1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -51,6 +52,7 @@ public class Ex_Payment extends JFrame{
 		});
 		
 		JButton button2 = new JButton("확인");
+		button2.setForeground(new Color(111, 56, 38));
 		button2.addActionListener(new ActionListener() {
 			
 			@Override
@@ -61,8 +63,10 @@ public class Ex_Payment extends JFrame{
 		});
 		
 		JButton button3 = new JButton("취소");
+		button3.setForeground(new Color(111, 56, 38));
 		
 		JButton button3_1 = new JButton("뒤로");
+		button3_1.setForeground(new Color(111, 56, 38));
 		button3_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -72,21 +76,21 @@ public class Ex_Payment extends JFrame{
 		});
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
-					.addGap(23)
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(button1)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(button2)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(button3)
-					.addGap(6)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(button3_1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(24, Short.MAX_VALUE))
+					.addContainerGap(11, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_2.createSequentialGroup()
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(button1)
@@ -125,19 +129,19 @@ public class Ex_Payment extends JFrame{
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(45, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(35)
-							.addComponent(inputSpace, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(inputSpace, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
+					.addGap(40))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.CENTER)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(inputSpace, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(buttonPanel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(19, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		// 입력 버튼의 글자를 차례대로 배열에 저장
@@ -148,9 +152,9 @@ public class Ex_Payment extends JFrame{
 		for(int i=0; i<button_names.length; i++) {
 			buttons[i] = new JButton(button_names[i]);
 			//글씨체
-			buttons[i].setFont(new Font("Arial", Font.BOLD, 20));
+			buttons[i].setFont(new Font("맑은고딕", Font.BOLD, 20));
 			//글자색 지정
-			buttons[i].setForeground(Color.gray);
+			buttons[i].setForeground(Color.white);
 			//테두리 없앱
 			buttons[i].setBorderPainted(false);
 			//밑에서 만든 액션리스너를 버튼에 추가

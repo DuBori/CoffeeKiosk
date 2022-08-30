@@ -1,5 +1,5 @@
 package kios.admin;
-
+ 
 import kios.db.DBconnection;
 
 import javax.swing.*;
@@ -97,6 +97,7 @@ public class Turnover extends JFrame {
                 model.addRow(data);
 
                 jl1.setText("합계 : " + orderSumResult + " 원");
+                jl1.setForeground(Color.white);
             }
         } catch (SQLException e) {
             e.printStackTrace();

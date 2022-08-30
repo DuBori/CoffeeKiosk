@@ -8,6 +8,7 @@ import kios.mileage.receipt;
 
 import java.sql.*;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -101,6 +102,7 @@ public class check_Phone extends JFrame{
 				check=pstmt.executeUpdate();
 				
 				if(check>0) {
+					//JOptionPane.showMessageDialog(null, "회원 가입 성공");
 					JOptionPane.showMessageDialog(null, "회원 가입 성공");
 					new Ex_Payment();
 				}
