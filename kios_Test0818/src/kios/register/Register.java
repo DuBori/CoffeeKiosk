@@ -1,5 +1,5 @@
 package kios.register;
-
+ 
 import kios.mileage.Ex_Payment;
 
 import java.awt.BorderLayout;

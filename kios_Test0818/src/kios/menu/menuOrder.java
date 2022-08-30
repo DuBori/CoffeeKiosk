@@ -1,6 +1,5 @@
 package kios.menu;
 
-
 import java.awt.*;
 
 import javax.swing.*;

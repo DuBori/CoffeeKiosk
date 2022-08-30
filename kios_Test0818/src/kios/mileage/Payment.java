@@ -23,7 +23,6 @@ import java.sql.ResultSet;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
-
 public class Payment extends JFrame implements MouseListener{
 
    Connection con = null;

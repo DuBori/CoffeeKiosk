@@ -1,5 +1,5 @@
 package kios.menu;
- 
+  
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.*;
