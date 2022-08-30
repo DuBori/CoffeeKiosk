@@ -47,31 +47,31 @@ public class NonCoffee_Inner extends JFrame {
 		switch(m) {
 		case "chamo":
 			menuOrder.coffeePrice = 4500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/americano.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/chamomile.png")));
 			break;
 		case "earlgrey":
 			menuOrder.coffeePrice = 4500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caffelatte.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/earlgrey.png")));
 			break;
 		case "jamong":
 			menuOrder.coffeePrice = 5700;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caffemocha.png"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/jamong.png")));
 			break;
 		case "saenggang":
 			menuOrder.coffeePrice = 5200;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/cappuccino.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/saenggang.png")));
 			break;
 		case "green":
 			menuOrder.coffeePrice = 5100;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caramelm.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/green.png")));
 			break;
 		case "maesil":
 			menuOrder.coffeePrice = 5200;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/espresso.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/maesil.png")));
 			break;
 		case "yuja":
 			menuOrder.coffeePrice = 5500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/espresso.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/yuja.png")));
 			break;
 		}
 		
@@ -152,57 +152,12 @@ public class NonCoffee_Inner extends JFrame {
 
 			}
 		});
-		menuOrder.comboBox.setBounds(252, 89, 68, 23);
+		menuOrder.comboBox.setBounds(282, 89, 100, 23);
 		contentPane.add(menuOrder.comboBox);
 
 		JLabel lblNewLabel_2 = new JLabel("사이즈");
-		lblNewLabel_2.setBounds(210, 92, 40, 15);
+		lblNewLabel_2.setBounds(240, 92, 40, 15);
 		contentPane.add(lblNewLabel_2);
-
-//		샷 추가를 입력받는 콤보박스
-		String[] shot = { "0", "1", "2", "3", "4", "5" };
-		menuOrder.comboBox_1 = new JComboBox(shot);
-		menuOrder.comboBox_1.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				String d = (String) menuOrder.comboBox_1.getSelectedItem();
-				switch (d) {
-				case "0":
-					menuOrder.addShot = 0;
-					menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.coffeePrice, menuOrder.sizePrice, menuOrder.addShot)));
-					break;
-				case "1":
-					menuOrder.addShot = 500;
-					menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.coffeePrice, menuOrder.sizePrice, menuOrder.addShot)));
-					break;
-				case "2":
-					menuOrder.addShot = 1000;
-					menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.coffeePrice, menuOrder.sizePrice, menuOrder.addShot)));
-					break;
-				case "3":
-					menuOrder.addShot = 1500;
-					menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.coffeePrice, menuOrder.sizePrice, menuOrder.addShot)));
-					break;
-				case "4":
-					menuOrder.addShot = 2000;
-					menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.coffeePrice, menuOrder.sizePrice, menuOrder.addShot)));
-					break;
-				case "5":
-					menuOrder.addShot = 2500;
-					menuOrder.textField.setText(String.valueOf(viewPrice(menuOrder.coffeePrice, menuOrder.sizePrice, menuOrder.addShot)));
-					break;
-				}
-			}
-		});
-		menuOrder.comboBox_1.setBounds(375, 89, 69, 23);
-		contentPane.add(menuOrder.comboBox_1);
-
-		JLabel lblNewLabel_3 = new JLabel("샷 추가");
-		lblNewLabel_3.setBounds(330, 92, 40, 15);
-		contentPane.add(lblNewLabel_3);
-		
 
 		JLabel lblNewLabel_2_1 = new JLabel("수량");
 		lblNewLabel_2_1.setBounds(213, 150, 30, 15);

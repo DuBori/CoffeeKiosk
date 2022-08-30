@@ -32,7 +32,6 @@ public class Coffee_Inner extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		contentPane.setBackground(Color.white);
 
 //		최종 가격 표시하는 텍스트 필드.
 		menuOrder.textField = new JTextField();
@@ -49,27 +48,27 @@ public class Coffee_Inner extends JFrame {
 		switch (m) {
 		case "ameri":
 			menuOrder.coffeePrice = 4500;
-			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/americano.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/americano.png")));
 			break;
 		case "latte":
 			menuOrder.coffeePrice = 5000;
-			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/caffelatte.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/latte.png")));
 			break;
 		case "mocha":
 			menuOrder.coffeePrice = 5500;
-			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/caffemocha.png"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/mocha.png")));
 			break;
 		case "cappu":
 			menuOrder.coffeePrice = 5000;
-			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/cappuccino.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/cappu.png")));
 			break;
 		case "caramel":
 			menuOrder.coffeePrice = 5900;
-			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/caramelm.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/caramel.png")));
 			break;
 		case "espresso":
 			menuOrder.coffeePrice = 4200;
-			btnNewButton_2.setIcon(new ImageIcon("kios_Test0818/src/images/espresso.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/espresso.png")));
 			break;
 		}
 
@@ -150,11 +149,11 @@ public class Coffee_Inner extends JFrame {
 
 			}
 		});
-		menuOrder.comboBox.setBounds(252, 89, 68, 23);
+		menuOrder.comboBox.setBounds(282, 73, 100, 23);
 		contentPane.add(menuOrder.comboBox);
 
 		JLabel lblNewLabel_2 = new JLabel("사이즈");
-		lblNewLabel_2.setBounds(210, 92, 40, 15);
+		lblNewLabel_2.setBounds(240, 75, 40, 15);
 		contentPane.add(lblNewLabel_2);
 
 //		샷 추가를 입력받는 콤보박스
@@ -194,11 +193,11 @@ public class Coffee_Inner extends JFrame {
 				}
 			}
 		});
-		menuOrder.comboBox_1.setBounds(375, 89, 69, 23);
+		menuOrder.comboBox_1.setBounds(282, 112, 69, 23);
 		contentPane.add(menuOrder.comboBox_1);
 
 		JLabel lblNewLabel_3 = new JLabel("샷 추가");
-		lblNewLabel_3.setBounds(330, 92, 40, 15);
+		lblNewLabel_3.setBounds(240, 112, 40, 15);
 		contentPane.add(lblNewLabel_3);
 
 		JLabel lblNewLabel_2_1 = new JLabel("수량");

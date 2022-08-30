@@ -35,6 +35,7 @@ public class Payment extends JFrame implements MouseListener{
    JLabel card,cash;
    String find;
    public Payment() {
+	  getContentPane().setBackground(Color.white);
 	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.Payment.class.getResource("/image/logo.png")));
 	  setTitle("결제");
       this.setLayout(new GridLayout(0,2));
@@ -234,23 +235,28 @@ public void mouseExited(MouseEvent e) {
 
 class test_Frame2 extends JDialog{
 
-   JLabel jlb = new JLabel("이미지");
-   JLabel jlb2 = new JLabel("주문번호 : "+ Static.count);
-   JPanel group = new JPanel();
-   JPanel group2 = new JPanel(new BorderLayout());
-   TextDeco td = new TextDeco();
-   JButton button = new JButton("돌아가기");
-   
-   public test_Frame2() {
-	  setIconImage(Toolkit.getDefaultToolkit().getImage(kios.mileage.test_Frame2.class.getResource("/image/logo.png")));
-      setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-      // 글씨가 들어가 있는데 판넬색깔이 잡아먹어서 글씨가 안보임
-      jlb.setForeground(Color.black);
-      getContentPane().add(jlb);
+	   JLabel jlb = new JLabel("");
+	   JLabel jlb1 = new JLabel("결제가 완료되었습니다", SwingConstants.CENTER);
+	   
+	   JLabel jlb2 = new JLabel("주문번호 : "+ Static.count);
+	   JPanel group = new JPanel();
+	   JPanel group2 = new JPanel(new BorderLayout());
+	   JButton button = new JButton("돌아가기");
+
+	   public test_Frame2() {
+	      setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	     // jlb.setIcon(new ImageIcon(Payment.class.getResource("/image/logo__1.png")));
+	      // 글씨가 들어가 있는데 판넬색깔이 잡아먹어서 글씨가 안보임
+	      jlb1.setForeground(Color.white);
+	      jlb2.setForeground(Color.white);
+	      //getContentPane().add(jlb);
+	      getContentPane().add(jlb1);
+      
       // 여기가 배경 판넬
-      td.decobtn(button);
-      td.decoLable(jlb2);
-      getContentPane().setBackground(Color.blue);
+      getContentPane().setBackground(new Color(74, 68, 61));
+      jlb2.setBackground(new Color(74, 68, 61));
+      group.setBackground(new Color(74, 68, 61));
+      group2.setBackground(new Color(74, 68, 61));
       jlb2.setFont(jlb.getFont().deriveFont(18.0f));
 
       button.addActionListener(new ActionListener() {

@@ -27,7 +27,6 @@ public class Food_Inner extends JFrame {
 	DefaultTableModel model;
 	int temp,i;
 	public Food_Inner(String text) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(kios.menu.Food_Inner.class.getResource("/image/logo.png")));
 		setBounds(100, 100, 470, 260);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -37,7 +36,7 @@ public class Food_Inner extends JFrame {
 //		최종 가격 표시하는 텍스트 필드
 		menuOrder.textField = new JTextField();
 		menuOrder.textField.setText(String.valueOf(menuOrder.foodPrice));
-		menuOrder.textField.setBounds(307, 144, 77, 28);
+		menuOrder.textField.setBounds(307, 88, 77, 28);
 		contentPane.add(menuOrder.textField);
 		menuOrder.textField.setColumns(10);
 
@@ -49,31 +48,31 @@ public class Food_Inner extends JFrame {
 		switch(m) {
 		case "cheese":
 			menuOrder.foodPrice = 5500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/americano.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/cheese.png")));
 			break;
 		case "tiramisu":
 			menuOrder.foodPrice = 6000;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caffelatte.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/tiramisu.png")));
 			break;
 		case "egg":
 			menuOrder.foodPrice = 6000;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caffemocha.png"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/egg_inner.png")));
 			break;
 		case "danhobak":
 			menuOrder.foodPrice = 6500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/cappuccino.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/danhobak_inner.png")));
 			break;
 		case "scorn":
 			menuOrder.foodPrice = 3000;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/caramelm.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/scone_inner.png")));
 			break;
 		case "macaron":
 			menuOrder.foodPrice = 2500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/espresso.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/macaron.png")));
 			break;
 		case "waffle":
 			menuOrder.foodPrice = 3500;
-			btnNewButton_2.setIcon(new ImageIcon("src/images/espresso.jpg"));
+			btnNewButton_2.setIcon(new ImageIcon(menuOrder.class.getResource("/image/waffle.png")));
 			break;
 		}
 		
@@ -86,7 +85,7 @@ public class Food_Inner extends JFrame {
 		JFormattedTextField field = (JFormattedTextField) comp.getComponent(0);
 		DefaultFormatter formatter = (DefaultFormatter) field.getFormatter();
 		formatter.setCommitsOnValidEdit(true);
-		menuOrder.spinner_1.setBounds(245, 147, 37, 22);
+		menuOrder.spinner_1.setBounds(245, 92, 37, 22);
 		contentPane.add(menuOrder.spinner_1);
 		menuOrder.spinner_1.addChangeListener(new ChangeListener() {
 
@@ -98,11 +97,11 @@ public class Food_Inner extends JFrame {
 		});
 
 		JLabel lblNewLabel_2_1 = new JLabel("수량");
-		lblNewLabel_2_1.setBounds(213, 150, 30, 15);
+		lblNewLabel_2_1.setBounds(213, 95, 30, 15);
 		contentPane.add(lblNewLabel_2_1);
 
 		JLabel lblNewLabel_1_1 = new JLabel("원");
-		lblNewLabel_1_1.setBounds(389, 157, 22, 15);
+		lblNewLabel_1_1.setBounds(389, 94, 22, 15);
 		contentPane.add(lblNewLabel_1_1);
 		
 		JButton btn_putIn = new JButton("담기");
@@ -113,7 +112,7 @@ public class Food_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				dispose();
 	        	 Static.value=(int)menuOrder.spinner_1.getValue();
 	        	 ArrayList<ArrayList<Object>> list =Static.outer_ArrayList;
@@ -139,7 +138,7 @@ public class Food_Inner extends JFrame {
 	            if (quantityLimit.productCount < Static.value) { // 1 < 1+9
 	               JOptionPane.showMessageDialog(null, "재고가 부족합니다. \n 남은 수량 : " + quantityLimit.productCount, "안내", JOptionPane.INFORMATION_MESSAGE);
 	            } else {
-		               new PutIn(text);
+		               new PutIn(text,1);
 	            }
 	         }
 		});

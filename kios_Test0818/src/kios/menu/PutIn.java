@@ -183,7 +183,7 @@ public class PutIn {
 		for (i = 0; i < Static.outer_ArrayList.size(); i++) {
 			
 			if(inner_ArrayList.get(0) == Static.outer_ArrayList.get(i).get(0)) {
-				
+				//  
 				arryCount = arryCount + (int)Static.outer_ArrayList.get(i).get(5);
 				Static.outer_ArrayList.remove(i);
 				Static.panel_3.remove(i);
