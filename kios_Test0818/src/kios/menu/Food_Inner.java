@@ -112,8 +112,7 @@ public class Food_Inner extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				dispose();
+				     dispose();
 	        	 Static.value=(int)menuOrder.spinner_1.getValue();
 	        	 ArrayList<ArrayList<Object>> list =Static.outer_ArrayList;
 
